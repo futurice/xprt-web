@@ -5,6 +5,8 @@ let MenuRoutes = {
 
 let MiscRoutes = {
   '/login': 'routeLogin',
+  '/sessions/:id': 'routeFeedbackDetails',
+  '/lectures/:id': 'routeLecturesDetails',
   '/preferences': 'routePreferences',
   '/logout': 'routeLogout'
 };

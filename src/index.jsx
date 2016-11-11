@@ -26,11 +26,10 @@ import App from './modules/AppViewContainer';
 //import Login from '../containers/Login';
 //import Register from '../containers/Register';
 //import Logout from '../containers/Logout';
-
-import Lectures from './modules/Lectures';
-
 import Home from './modules/Home';
 import Preferences from './modules/Preferences';
+import Lectures from './modules/Lectures';
+import LectureDetails from './modules/LectureDetails';
 
 import configureStore from './redux/store';
 
@@ -78,6 +77,7 @@ ReactDOM.render(
             <IndexRoute component={Home}/>
             <Redirect from='/home' to='/' />
             <Route path='/lectures' component={Lectures}/>
+            <Route path='/lectures/:id' component={LectureDetails}/>
             <Route path='/preferences' component={Preferences}/>
           </Route>
           <Redirect from='*' to='/' />
