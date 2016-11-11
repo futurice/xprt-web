@@ -12,14 +12,14 @@ import * as UiActions from '../actions/ui';
 // icons
 import Home from 'material-ui/svg-icons/action/home';
 import Feedback from 'material-ui/svg-icons/action/assessment';
-import Children from 'material-ui/svg-icons/action/supervisor-account';
+import Lecture from 'material-ui/svg-icons/action/class';
 import Preferences from 'material-ui/svg-icons/action/settings';
 import Logout from 'material-ui/svg-icons/action/exit-to-app';
 
 let icons = {
   '/': Home,
+  '/lectures': Lecture,
   '/sessions': Feedback,
-  '/users': Children,
   '/preferences': Preferences,
   '/logout': Logout
 }
