@@ -1,16 +1,11 @@
 import { Component, PropTypes } from 'react';
-import {Card, CardHeader, CardText} from 'material-ui/Card';
+import { Card, CardHeader, CardText } from 'material-ui/Card';
 import { FormattedMessage } from 'react-intl';
 import { push } from 'react-router-redux'
 
 import {
-  get,
-  errors
+  get
 } from '../../utils/api';
-
-errors.on('*', (err, status) => {
-  alert(err, status);
-});
 
 class Lectures extends Component {
   constructor(props) {
