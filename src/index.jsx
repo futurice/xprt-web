@@ -30,7 +30,7 @@ import App from './modules/AppViewContainer';
 
 import Home from './modules/Home/HomeViewContainer';
 import Lectures from './modules/Lectures/LectureViewContainer';
-import LectureDetails from './modules/LectureDetails';
+import LectureDetails from './modules/LectureDetails/LectureDetailsViewContainer';
 
 import Preferences from './modules/Preferences';
 
