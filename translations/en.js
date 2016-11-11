@@ -17,6 +17,7 @@ export default {
   routeHome: 'Home',
   routeFeedback: 'Feedback',
   routeLecture: 'Lectures',
+  routeLecturesDetails: 'Lecture Detail',
   routeLogin: 'Login',
   routeFeedbackDetails: 'Feedback details',
   routePreferences: 'Preferences',
