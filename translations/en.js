@@ -5,6 +5,9 @@ export default {
   newFeedbackDesc: 'Feedback that has been assigned to you',
   newFeedbackEmpty: 'All of your feedback has been handled!',
 
+  lectures: 'Lectures',
+  lecturesDesc: 'Lectures description',
+
   unhandledFeedback: 'All feedback',
   unhandledFeedbackDesc: 'All unhandled feedback',
   unhandledFeedbackEmpty: 'All feedback in the system has been handled!',
@@ -13,15 +16,13 @@ export default {
 
   routeHome: 'Home',
   routeFeedback: 'Feedback',
-  routeChildren: 'Children',
+  routeLecture: 'Lectures',
   routeLogin: 'Login',
   routeFeedbackDetails: 'Feedback details',
-  routeChildDetails: 'Child details',
   routePreferences: 'Preferences',
   routeLogout: 'Logout',
 
   feedback: 'Feedback',
-  children: 'Children',
   rowsPerPage: 'Rows per page',
 
   name: 'Name',

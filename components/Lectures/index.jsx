@@ -1,6 +1,7 @@
 import { Component, PropTypes } from 'react';
-import { Card, CardHeader, CardText } from 'material-ui/Card';
+import {Card, CardHeader, CardText} from 'material-ui/Card';
 import { FormattedMessage } from 'react-intl';
+
 import {
   get,
   errors
@@ -10,18 +11,18 @@ errors.on('*', (err, status) => {
   alert(err, status);
 });
 
-class Home extends Component {
-  constructor() {
-    super();
+class Lectures extends Component {
+  constructor(props) {
+    super(props);
 
     this.state = {
-      experts: []
+      lectures: []
     };
   }
 
   async componentDidMount() {
-    const experts = await get('/experts');
-    this.setState({ experts });
+    const lectures = await get('/lectures');
+    this.setState({ lectures });
   }
 
   render() {
@@ -38,10 +39,10 @@ class Home extends Component {
         flexBasis: '450px'
       }}>
         <CardHeader
-          title={ <FormattedMessage id='newFeedback' /> }
-          subtitle={ <FormattedMessage id='newFeedbackDesc' /> } />
+          title={ <FormattedMessage id='lectures' /> }
+          subtitle={ <FormattedMessage id='lecturesDesc' /> } />
         <CardText>
-          {JSON.stringify(this.state.experts, null, 4)}
+          {JSON.stringify(this.state.lectures, null, 4)}
         </CardText>
       </Card>
       </div>
@@ -49,8 +50,8 @@ class Home extends Component {
   }
 }
 
-Home.contextTypes = {
+Lectures.contextTypes = {
   muiTheme: PropTypes.object.isRequired
 };
 
-export default Home;
+export default Lectures;

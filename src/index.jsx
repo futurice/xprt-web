@@ -51,6 +51,7 @@ import Home from '../components/Home';
 import Sessions from '../components/Sessions/SessionTable';
 import Users from '../components/Users/UserTable';
 import Preferences from '../components/Preferences';
+import Lectures from '../components/Lectures';
 import SessionDetail from '../components/SessionDetail';
 import UserDetail from '../components/UserDetail';
 
@@ -99,8 +100,7 @@ ReactDOM.render(
             <Redirect from='/home' to='/' />
             <Route path='/sessions' component={Sessions}/>
             <Route path='/sessions/:id' component={SessionDetail}/>
-            <Route path='/users/:id' component={UserDetail}/>
-            <Route path='/users' component={Users}/>
+            <Route path='/lectures' component={Lectures}/>
             <Route path='/preferences' component={Preferences}/>
             <Route path='/logout' component={Logout}/>
           </Route>

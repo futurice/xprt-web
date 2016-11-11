@@ -5,6 +5,9 @@ export default {
   newFeedbackDesc: 'Sinulle merkityt palautteet',
   newFeedbackEmpty: 'Kaikki palautteet käsitelty!',
 
+  lectures: 'Luennot',
+  lecturesDesc: 'Luennot lipsum dolor',
+
   unhandledFeedback: 'Kaikki palautteet',
   unhandledFeedbackDesc: 'Kaikki käsittelemättömät palautteet',
   unhandledFeedbackEmpty: 'Kaikki järjestelmässä olevat palautteet käsitelty!',
@@ -13,15 +16,13 @@ export default {
 
   routeHome: 'Koti',
   routeFeedback: 'Palautteet',
-  routeChildren: 'Lapset',
+  routeLecture: 'Luento',
   routeLogin: 'Kirjaudu sisään',
   routeFeedbackDetails: 'Palautteen tiedot',
-  routeChildDetails: 'Lapsen tiedot',
   routePreferences: 'Asetukset',
   routeLogout: 'Kirjaudu ulos',
 
   feedback: 'Palautteet',
-  children: 'Lapset',
   rowsPerPage: 'Riviä per sivu',
 
   name: 'Nimi',
