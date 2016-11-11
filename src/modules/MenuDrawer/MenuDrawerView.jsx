@@ -5,9 +5,9 @@ import React, { Component, PropTypes } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { AppBar, Divider, Drawer, MenuItem } from 'material-ui';
 import { push } from 'react-router-redux'
-import { MenuRoutes } from '../src/Routes';
+import { MenuRoutes } from '../../utils/routes';
 
-import * as UiActions from '../actions/ui';
+import * as MenuDrawerState from './MenuDrawerState';
 
 // icons
 import Home from 'material-ui/svg-icons/action/home';
@@ -27,12 +27,12 @@ let icons = {
 class MenuDrawer extends Component {
   changeView(view) {
     //this.props.actions.changeView(view)
-    this.props.dispatch(UiActions.closeDrawer());
+    this.props.dispatch(MenuDrawerState.closeDrawer());
     this.props.dispatch(push(view.toLowerCase()));
   }
 
   onChange(open) {
-    this.props.dispatch(UiActions.toggleDrawer());
+    this.props.dispatch(MenuDrawerState.toggleDrawer());
   }
 
   render() {
@@ -43,7 +43,7 @@ class MenuDrawer extends Component {
         onRequestChange={() => this.onChange()} >
 
         <AppBar title={<FormattedMessage id='navigation' />}
-                onLeftIconButtonTouchTap={() => this.props.dispatch(UiActions.closeDrawer())} />
+                onLeftIconButtonTouchTap={() => this.props.dispatch(MenuDrawerState.closeDrawer())} />
 
         {Object.keys(MenuRoutes).map((path, i) => {
             return(
@@ -90,4 +90,4 @@ function select(state, ownProps) {
   };
 }
 
-export default connect(select)(MenuDrawer);
+export default MenuDrawer;
