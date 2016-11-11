@@ -8,7 +8,7 @@ class LectureDetail extends Component {
   render() {
     return(
       <div>
-        Hello from details!
+        Hello from details! Lecture ID: { this.props.lectureId }
       </div>
     );
   }
