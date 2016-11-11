@@ -7,7 +7,29 @@ import { FormattedMessage } from 'react-intl';
 
 import Paper from 'material-ui/Paper';
 
+import {
+  get,
+  errors
+} from '../../src/utils/api';
+
+errors.on('*', (err, status) => {
+  alert(err, status);
+});
+
 class Home extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      experts: []
+    };
+  }
+
+  async componentDidMount() {
+    const experts = await get('/experts');
+    this.setState({ experts });
+  }
+
   render() {
     return(
       <div style={{
@@ -25,28 +47,7 @@ class Home extends Component {
           title={ <FormattedMessage id='newFeedback' /> }
           subtitle={ <FormattedMessage id='newFeedbackDesc' /> } />
         <CardText>
-          <SessionTable filter={{
-            reviewed: 0,
-            assignee: this.props.employeeId,
-            small: true
-          }} noFeedbackMsg={ <FormattedMessage id='newFeedbackEmpty' /> } small={true}/>
-        </CardText>
-      </Card>
-
-      <Card style={{
-        margin: this.context.muiTheme.spacing.desktopGutter / 2,
-        flex: 1,
-        flexBasis: '450px'
-      }}>
-        <CardHeader
-          title={ <FormattedMessage id='unhandledFeedback' /> }
-          subtitle={ <FormattedMessage id='unhandledFeedbackDesc' /> }
-        />
-        <CardText>
-          <SessionTable extra={true} filter={{
-            reviewed: 0,
-            small: true
-          }} noFeedbackMsg={ <FormattedMessage id='unhandledFeedbackEmpty' /> } small={true}/>
+          {JSON.stringify(this.state.experts, null, 4)}
         </CardText>
       </Card>
       </div>

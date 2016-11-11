@@ -64,6 +64,12 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import theme from './material_ui_raw_theme_file';
 const muiTheme = getMuiTheme(theme);
 
+import {
+  setConfiguration
+} from './utils/configuration';
+
+setConfiguration('API_ROOT', 'http://localhost:3888');
+
 //Needed for React Developer Tools
 window.React = React;
 
@@ -88,7 +94,7 @@ ReactDOM.render(
         <Router history={history}>
           <Route path='/login' component={Login}/>
           <Route path='/register' component={Register}/>
-          <Route path='/' component={requireAuthentication(App)}>
+          <Route path='/' component={App}>
             <IndexRoute component={Home}/>
             <Redirect from='/home' to='/' />
             <Route path='/sessions' component={Sessions}/>
