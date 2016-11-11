@@ -26,10 +26,13 @@ import App from './modules/AppViewContainer';
 //import Login from '../containers/Login';
 //import Register from '../containers/Register';
 //import Logout from '../containers/Logout';
-import Home from './modules/Home';
-import Preferences from './modules/Preferences';
-import Lectures from './modules/Lectures';
+
+
+import Home from './modules/Home/HomeViewContainer';
+import Lectures from './modules/Lectures/LectureViewContainer';
 import LectureDetails from './modules/LectureDetails';
+
+import Preferences from './modules/Preferences';
 
 import configureStore from './redux/store';
 
