@@ -4,7 +4,7 @@ import { FormattedMessage } from 'react-intl';
 import {
   get,
   errors
-} from '../../src/utils/api';
+} from '../../utils/api';
 
 errors.on('*', (err, status) => {
   alert(err, status);

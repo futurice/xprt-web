@@ -2,8 +2,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import React, { PropTypes, Component } from 'react';
 import { AppBar, Drawer, MenuItem } from 'material-ui';
-import * as UiActions from '../actions/ui';
-import { MenuRoutes, MiscRoutes } from '../src/Routes';
+import * as MenuDrawerState from '../MenuDrawer/MenuDrawerState';
+import { MenuRoutes, MiscRoutes } from '../../utils/routes';
 import { FormattedMessage } from 'react-intl';
 
 const defaultStyle = {
@@ -12,7 +12,7 @@ const defaultStyle = {
 
 class Header extends Component {
   toggleDrawer() {
-    this.props.actions.toggleDrawer();
+    this.props.dispatch(MenuDrawerState.toggleDrawer());
   }
 
   matchMiscRoute(path, params) {
@@ -45,19 +45,4 @@ class Header extends Component {
   }
 }
 
-function mapStateToProps(state, ownProps) {
-  return {
-    view: state.ui.get('view')
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(UiActions, dispatch)
-  };
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Header);
+export default Header;

@@ -1,12 +1,10 @@
 let MenuRoutes = {
   '/': 'routeHome',
-  '/lectures': 'routeLecture',
-  '/sessions': 'routeFeedback'
+  '/lectures': 'routeLecture'
 };
 
 let MiscRoutes = {
   '/login': 'routeLogin',
-  '/sessions/:id': 'routeFeedbackDetails',
   '/preferences': 'routePreferences',
   '/logout': 'routeLogout'
 };

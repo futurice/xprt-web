@@ -1,8 +1,6 @@
 import { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import rest from '../../reducers/api';
-
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
@@ -20,7 +18,7 @@ import {
 } from 'material-ui/styles/colors';
 
 // Components
-import DeleteDialog from '../Shared/DeleteDialog';
+import DeleteDialog from '../../components/DeleteDialog/DeleteDialog';
 
 class Preferences extends Component {
   constructor(props) {
@@ -51,24 +49,29 @@ class Preferences extends Component {
     this.setState({ locale });
     localStorage.locale = locale;
 
+    /*
     dispatch(rest.actions.locale.post({ locale }, () => {
       // TODO: fixme - there are better ways
       location.reload();
     }));
+    */
   }
 
   handleDelete() {
     const {dispatch} = this.props;
+    /*
     dispatch(rest.actions.employeeDetail.delete({id: this.state.employeeId}, () => {
       this.setState({employeeId: this.props.employeeId});
       dispatch(rest.actions.employees());
     }));
+    */
     this.setState({dialogOpen: false});
   }
 
   verifyEmployee(employeeId) {
     const {dispatch} = this.props;
 
+    /*
     dispatch(rest.actions.employeeVerify({
       employeeId
     }, err => {
@@ -77,11 +80,13 @@ class Preferences extends Component {
       });
       dispatch(rest.actions.employees());
     }));
+    */
   }
 
   changePassword(password, employeeId) {
     const {dispatch} = this.props;
 
+    /*
     dispatch(rest.actions.employeePassword(null, {
       body: JSON.stringify({
         password,
@@ -92,6 +97,7 @@ class Preferences extends Component {
         error: err || this.props.error.data.message || 'Successfully changed password.'
       });
     }));
+    */
   }
 
   setEmployeeId(event, index, value) {
@@ -108,7 +114,7 @@ class Preferences extends Component {
 
   componentDidMount() {
     const {dispatch} = this.props;
-    dispatch(rest.actions.employees());
+    //dispatch(rest.actions.employees());
   }
 
   render() {
