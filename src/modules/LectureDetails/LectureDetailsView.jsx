@@ -19,14 +19,6 @@ const styles = {
   }
 };
 
-function handleRequestDelete() {
-  alert('You clicked the delete button.');
-}
-
-function handleTouchTap() {
-  alert('You clicked the Chip.');
-}
-
 class LectureDetail extends Component {
   constructor(props) {
     super(props);
@@ -53,7 +45,7 @@ class LectureDetail extends Component {
           subtitle={Moment(this.state.lecture.dates).format("D MMMM YYYY, h:mm")}
           avatar="http://lorempixel.com/128/128/people"
         >
-        <Chip onTouchTap={handleTouchTap} style={styles.chip}>
+        <Chip style={styles.chip}>
           <Avatar size={32}>{String(this.state.lecture.creatorType).charAt(0)}</Avatar>
           {_.capitalize(this.state.lecture.creatorType)}
         </Chip>
