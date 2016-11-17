@@ -31,6 +31,8 @@ import App from './modules/AppViewContainer';
 import Home from './modules/Home/HomeViewContainer';
 import Lectures from './modules/Lectures/LectureViewContainer';
 import LectureDetails from './modules/LectureDetails/LectureDetailsViewContainer';
+import Experts from './modules/Experts/ExpertViewContainer';
+import ExpertDetails from './modules/ExpertDetails/ExpertDetailsViewContainer';
 
 import Preferences from './modules/Preferences';
 
@@ -81,6 +83,8 @@ ReactDOM.render(
             <Redirect from='/home' to='/' />
             <Route path='/lectures' component={Lectures}/>
             <Route path='/lectures/:id' component={LectureDetails}/>
+            <Route path='/experts' component={Experts}/>
+            <Route path='/experts/:id' component={ExpertDetails}/>
             <Route path='/preferences' component={Preferences}/>
           </Route>
           <Redirect from='*' to='/' />

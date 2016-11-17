@@ -18,6 +18,8 @@ export default {
   routeFeedback: 'Feedback',
   routeLecture: 'Lectures',
   routeLecturesDetails: 'Lecture Detail',
+  routeExpert: 'Experts',
+  routeExpertsDetails: 'Expert Detail',
   routeLogin: 'Login',
   routeFeedbackDetails: 'Feedback details',
   routePreferences: 'Preferences',
