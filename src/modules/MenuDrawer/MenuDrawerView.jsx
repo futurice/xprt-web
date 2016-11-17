@@ -14,6 +14,7 @@ import Home from 'material-ui/svg-icons/action/home';
 import Feedback from 'material-ui/svg-icons/action/assessment';
 import Lecture from 'material-ui/svg-icons/action/class';
 import Expert from 'material-ui/svg-icons/action/face';
+import Teacher from 'material-ui/svg-icons/maps/local-library';
 import Preferences from 'material-ui/svg-icons/action/settings';
 import Logout from 'material-ui/svg-icons/action/exit-to-app';
 
@@ -21,6 +22,7 @@ let icons = {
   '/': Home,
   '/lectures': Lecture,
   '/experts': Expert,
+  '/teachers': Teacher,
   '/sessions': Feedback,
   '/preferences': Preferences,
   '/logout': Logout

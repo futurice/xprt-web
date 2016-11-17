@@ -33,6 +33,8 @@ import Lectures from './modules/Lectures/LectureViewContainer';
 import LectureDetails from './modules/LectureDetails/LectureDetailsViewContainer';
 import Experts from './modules/Experts/ExpertViewContainer';
 import ExpertDetails from './modules/ExpertDetails/ExpertDetailsViewContainer';
+import Teachers from './modules/Teachers/TeacherViewContainer';
+import TeacherDetails from './modules/TeacherDetails/TeacherDetailsViewContainer';
 
 import Preferences from './modules/Preferences';
 
@@ -85,6 +87,8 @@ ReactDOM.render(
             <Route path='/lectures/:id' component={LectureDetails}/>
             <Route path='/experts' component={Experts}/>
             <Route path='/experts/:id' component={ExpertDetails}/>
+            <Route path='/teachers' component={Teachers}/>
+            <Route path='/teachers/:id' component={TeacherDetails}/>
             <Route path='/preferences' component={Preferences}/>
           </Route>
           <Redirect from='*' to='/' />

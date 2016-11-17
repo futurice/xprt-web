@@ -19,6 +19,8 @@ export default {
   routeLecture: 'Luento',
   routeExpert: 'Experts',
   routeExpertsDetails: 'Expert Detail',
+  routeTeacher: 'Teachers',
+  routeTeachersDetails: 'Teacher Detail',
   routeLogin: 'Kirjaudu sisään',
   routeFeedbackDetails: 'Palautteen tiedot',
   routePreferences: 'Asetukset',
