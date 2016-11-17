@@ -17,6 +17,8 @@ export default {
   routeHome: 'Koti',
   routeFeedback: 'Palautteet',
   routeLecture: 'Luento',
+  routeExpert: 'Experts',
+  routeExpertsDetails: 'Expert Detail',
   routeLogin: 'Kirjaudu sisään',
   routeFeedbackDetails: 'Palautteen tiedot',
   routePreferences: 'Asetukset',
