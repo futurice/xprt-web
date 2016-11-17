@@ -20,6 +20,8 @@ export default {
   routeLecturesDetails: 'Lecture Detail',
   routeExpert: 'Experts',
   routeExpertsDetails: 'Expert Detail',
+  routeTeacher: 'Teachers',
+  routeTeachersDetails: 'Teacher Detail',
   routeLogin: 'Login',
   routeFeedbackDetails: 'Feedback details',
   routePreferences: 'Preferences',
