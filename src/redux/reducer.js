@@ -1,5 +1,6 @@
-import { fromJS } from 'immutable';
-import { loop, combineReducers } from 'redux-loop';
+//import { fromJS } from 'immutable';
+//import { loop, combineReducers } from 'redux-loop';
+import { combineReducers } from 'redux-immutablejs';
 //import { routerReducer } from 'react-router-redux';
 import menuDrawerReducer from '../modules/MenuDrawer/MenuDrawerState';
 import { intlReducer } from 'react-intl-redux'
@@ -20,8 +21,10 @@ const namespacedReducer = combineReducers(
 );
 
 export default function rootReducer(state, action) {
-  const [nextState, effects] = namespacedReducer(state, action);
+  //const [nextState, effects] = namespacedReducer(state, action);
+  const nextState = namespacedReducer(state, action);
 
   // enforce the state is immutable
-  return loop(fromJS(nextState), effects);
+  //return loop(fromJS(nextState), effects);
+  return nextState;
 }
