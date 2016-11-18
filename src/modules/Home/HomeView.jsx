@@ -2,9 +2,8 @@ import { Component, PropTypes } from 'react';
 import { Card, CardHeader, CardText } from 'material-ui/Card';
 import { FormattedMessage } from 'react-intl';
 import RaisedButton from 'material-ui/RaisedButton';
-import { List, ListItem } from 'material-ui/List';
-import Avatar from 'material-ui/Avatar';
-import { push } from 'react-router-redux'
+import { push } from 'react-router-redux';
+import ExpertView from '../Experts/ExpertView'
 
 import {
   get
@@ -30,20 +29,6 @@ const styles = {
 class Home extends Component {
   constructor() {
     super();
-
-    this.state = {
-      experts: []
-    };
-  }
-
-  openExpert(expertId) {
-    const path = '/experts/' + expertId;
-    this.props.dispatch(push(path));
-  }
-
-  async componentDidMount() {
-    const experts = await get('/experts');
-    this.setState({ experts });
   }
 
   render() {
@@ -63,26 +48,12 @@ class Home extends Component {
               <RaisedButton label="Create Account" primary={true} fullWidth={true} style={styles.button} />
             </CardText>
           </Card>
-            <Card style={styles.card}>
-              <CardText>
-                <h1>Some of our Experts</h1>
-                <List>
-                  {this.state.experts.slice(0,5).map(expert => (
-                    <ListItem
-                      key={expert.id}
-                      primaryText={expert.name}
-                      secondaryText={expert.title}
-                      leftAvatar={
-                        <Avatar src={expert.photograph} />
-                      }
-                      onClick={(e) => {
-                         e.preventDefault();
-                         this.openExpert(expert.id)
-                       }} />
-                   ))}
-               </List>
-              </CardText>
-            </Card>
+          <Card style={styles.card}>
+            <CardText>
+              <h1>Some of our Experts</h1>
+              <ExpertView count={5} />
+            </CardText>
+          </Card>
       </div>
     );
   }
