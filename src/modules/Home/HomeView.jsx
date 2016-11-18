@@ -3,7 +3,7 @@ import { Card, CardHeader, CardText } from 'material-ui/Card';
 import { FormattedMessage } from 'react-intl';
 import RaisedButton from 'material-ui/RaisedButton';
 import { push } from 'react-router-redux';
-import ExpertView from '../Experts/ExpertView'
+import ExpertList from '../../components/Experts/ExpertList'
 
 import {
   get
@@ -29,6 +29,20 @@ const styles = {
 class Home extends Component {
   constructor() {
     super();
+
+    this.state = {
+      experts: []
+    };
+  }
+
+  openExpert = (expertId) => {
+    const path = '/experts/' + expertId;
+    this.props.dispatch(push(path));
+  }
+
+  componentDidMount = async () => {
+    const experts = await get('/experts');
+    this.setState({ experts });
   }
 
   render() {
@@ -51,7 +65,7 @@ class Home extends Component {
           <Card style={styles.card}>
             <CardText>
               <h1>Some of our Experts</h1>
-              <ExpertView count={5} />
+              <ExpertList experts={this.state.experts} openExpert={this.openExpert} />
             </CardText>
           </Card>
       </div>

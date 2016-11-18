@@ -1,8 +1,6 @@
 import { Component, PropTypes } from 'react';
-import { List, ListItem } from 'material-ui/List';
-import Avatar from 'material-ui/Avatar';
-import { push } from 'react-router-redux'
-
+import ExpertList from '../../components/Experts/ExpertList'
+import { push } from 'react-router-redux';
 import {
   get
 } from '../../utils/api';
@@ -16,39 +14,21 @@ class Experts extends Component {
     };
   }
 
-  openExpert(expertId) {
+  openExpert = (expertId) => {
     const path = '/experts/' + expertId;
     this.props.dispatch(push(path));
   }
 
-  async componentDidMount() {
+  componentDidMount = async () => {
     const experts = await get('/experts');
     this.setState({ experts });
   }
 
-  render() {
+  render = () => {
     return(
-      <List>
-        {this.state.experts.slice(0, this.props.count).map(expert => (
-          <ListItem
-            key={expert.id}
-            primaryText={expert.name}
-            secondaryText={expert.title}
-            leftAvatar={
-              <Avatar src={expert.photograph} />
-            }
-            onClick={(e) => {
-               e.preventDefault();
-               this.openExpert(expert.id)
-             }} />
-         ))}
-     </List>
+      <ExpertList experts={this.state.experts} openExpert={this.openExpert} />
     );
   }
 }
-
-Experts.contextTypes = {
-  muiTheme: PropTypes.object.isRequired
-};
 
 export default Experts;
