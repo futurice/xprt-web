@@ -65,7 +65,7 @@ class Home extends Component {
           <Card style={styles.card}>
             <CardText>
               <h1>Some of our Experts</h1>
-              <ExpertList experts={this.state.experts} openExpert={this.openExpert} />
+              <ExpertList experts={this.state.experts.slice(0, 5)} openExpert={this.openExpert} />
             </CardText>
           </Card>
       </div>
