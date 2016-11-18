@@ -17,6 +17,7 @@ export default {
   routeHome: 'Koti',
   routeFeedback: 'Palautteet',
   routeLecture: 'Luento',
+  routeLectureNew: 'New',
   routeExpert: 'Experts',
   routeExpertsDetails: 'Expert Detail',
   routeTeacher: 'Teachers',
