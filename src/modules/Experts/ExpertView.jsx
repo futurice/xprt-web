@@ -29,7 +29,7 @@ class Experts extends Component {
   render() {
     return(
       <List>
-        {this.state.experts.map(expert => (
+        {this.state.experts.slice(0, this.props.count).map(expert => (
           <ListItem
             key={expert.id}
             primaryText={expert.name}
