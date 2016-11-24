@@ -1,7 +1,4 @@
-//import { fromJS } from 'immutable';
-//import { loop, combineReducers } from 'redux-loop';
 import { combineReducers } from 'redux-immutablejs';
-//import { routerReducer } from 'react-router-redux';
 import menuDrawerReducer from '../modules/MenuDrawer/MenuDrawerState';
 import { intlReducer } from 'react-intl-redux'
 
@@ -9,7 +6,7 @@ const reducers = {
   // Menu drawer state
   drawer: menuDrawerReducer,
 
-  // Routing state
+  // Routing state (TODO!)
   //routing: routerReducer,
 
   // Internationalization state (TODO!)
@@ -21,10 +18,5 @@ const namespacedReducer = combineReducers(
 );
 
 export default function rootReducer(state, action) {
-  //const [nextState, effects] = namespacedReducer(state, action);
-  const nextState = namespacedReducer(state, action);
-
-  // enforce the state is immutable
-  //return loop(fromJS(nextState), effects);
-  return nextState;
+  return namespacedReducer(state, action);
 }
