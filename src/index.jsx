@@ -59,11 +59,12 @@ window.React = React;
 
 const store = configureStore();
 
-// TODO!!! because of this, browser history not synced to redux even though we use
-// react-router-redux!
-//
-//const history = syncHistoryWithStore(browserHistory, store);
-const history = browserHistory;
+// react-router-redux interop with redux-immutablejs
+const history = syncHistoryWithStore(browserHistory, store, {
+  selectLocationState (state) {
+    return state.get('routing').toObject();
+  }
+});
 
 const requireAuthentication = UserAuthWrapper({
   authSelector: state => state.auth.data,

@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux-immutablejs';
 import menuDrawerReducer from '../modules/MenuDrawer/MenuDrawerState';
 import { restReducer } from '../services/rest';
+import routerReducer from '../services/router';
 import { intlReducer } from 'react-intl-redux'
 
 const reducers = {
@@ -8,7 +9,7 @@ const reducers = {
   drawer: menuDrawerReducer,
 
   // Routing state (TODO!)
-  //routing: routerReducer,
+  routing: routerReducer,
 
   // REST API
   rest: restReducer,
