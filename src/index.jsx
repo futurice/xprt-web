@@ -42,6 +42,8 @@ import ExpertDetails from './modules/ExpertDetails/ExpertDetailsViewContainer';
 import Teachers from './modules/Teachers/TeacherViewContainer';
 import TeacherDetails from './modules/TeacherDetails/TeacherDetailsViewContainer';
 
+import Register from './modules/RegisterExpert/RegisterExpertViewContainer';
+
 import Preferences from './modules/Preferences';
 
 import configureStore from './redux/store';
@@ -91,6 +93,7 @@ ReactDOM.render(
             <Route path='/teachers' component={Teachers}/>
             <Route path='/teachers/:id' component={TeacherDetails}/>
             <Route path='/preferences' component={Preferences}/>
+            <Route path='/register' component={Register}/>
           </Route>
           <Redirect from='*' to='/' />
         </Router>

@@ -40,6 +40,11 @@ class Home extends Component {
     this.props.dispatch(push(path));
   }
 
+  createAccount = () => {
+    const path = '/register';
+    this.props.dispatch(push(path));
+  }
+
   componentDidMount = async () => {
     const experts = await get('/experts');
     this.setState({ experts });
@@ -59,7 +64,7 @@ class Home extends Component {
                 <li>Curabitur faucibus, nibh mollis porttitor mollis, tellus ligula blandit erat, sit amet tempor magna ligula vitae massa.</li>
                 <li>Sed turpis leo, sodales auctor ex quis, vehicula iaculis augue. Donec condimentum consequat augue, in bibendum nisl cursus vulputate. Aenean faucibus ex nec ligula euismod, et euismod magna eleifend.</li>
               </ul>
-              <RaisedButton label="Create Account" primary={true} fullWidth={true} style={styles.button} />
+              <RaisedButton label="Create Account" primary={true} fullWidth={true} style={styles.button} onTouchTap={this.createAccount} />
             </CardText>
           </Card>
           <Card style={styles.card}>

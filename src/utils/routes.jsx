@@ -7,6 +7,7 @@ let MenuRoutes = {
 
 let MiscRoutes = {
   '/login': 'routeLogin',
+  '/register': 'routeRegister',
   '/sessions/:id': 'routeFeedbackDetails',
   '/lectures/:id': 'routeLecturesDetails',
   '/experts/:id': 'routeExpertsDetails',

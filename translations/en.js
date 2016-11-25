@@ -26,6 +26,7 @@ export default {
   routeFeedbackDetails: 'Feedback details',
   routePreferences: 'Preferences',
   routeLogout: 'Logout',
+  routeRegister: 'Register',
 
   feedback: 'Feedback',
   rowsPerPage: 'Rows per page',
