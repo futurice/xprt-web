@@ -2426,7 +2426,7 @@ isobject@^2.0.0:
   dependencies:
     isarray "1.0.0"
 
-isomorphic-fetch@^2.1.1, isomorphic-fetch@^2.2.1:
+isomorphic-fetch, isomorphic-fetch@^2.1.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/isomorphic-fetch/-/isomorphic-fetch-2.2.1.tgz#611ae1acf14f5e81f729507472819fe9733558a9"
   dependencies:
@@ -3561,9 +3561,9 @@ redux-act@^0.5.0:
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/redux-act/-/redux-act-0.5.0.tgz#e7174aaa243edbd6fba4a65440e4b2bdca61d064"
 
-redux-api@^0.9.9:
-  version "0.9.14"
-  resolved "https://registry.yarnpkg.com/redux-api/-/redux-api-0.9.14.tgz#fac17e25a4267c9c426fca18e0cf3fd56c614784"
+redux-api:
+  version "0.9.16"
+  resolved "https://registry.yarnpkg.com/redux-api/-/redux-api-0.9.16.tgz#509c1d9919de8c95db37a5777f4977a63ffbf628"
   dependencies:
     fast-apply "0.0.3"
     qs "5.2.0"
@@ -3583,7 +3583,7 @@ redux-loop@^2.2.2:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/redux-loop/-/redux-loop-2.2.2.tgz#1df804487be0f79daf7eff065ad8301ce255fd4e"
 
-redux-thunk@^2.1.0:
+redux-thunk:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/redux-thunk/-/redux-thunk-2.1.0.tgz#c724bfee75dbe352da2e3ba9bc14302badd89a98"
 

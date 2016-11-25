@@ -1,3 +1,9 @@
+import {
+  setConfiguration
+} from './utils/configuration';
+
+setConfiguration('API_ROOT', 'http://localhost:3888');
+
 import React from "react";
 import ReactDOM from "react-dom";
 
@@ -47,12 +53,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import theme from './material_ui_raw_theme_file';
 const muiTheme = getMuiTheme(theme);
-
-import {
-  setConfiguration
-} from './utils/configuration';
-
-setConfiguration('API_ROOT', 'http://localhost:3888');
 
 //Needed for React Developer Tools
 window.React = React;
