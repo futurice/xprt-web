@@ -9,7 +9,7 @@ export default connect(
   }),
   dispatch => ({
     getLectures() {
-      dispatch(rest.actions.lectures.sync());
+      dispatch(rest.actions.lectures());
     },
     openLecture(lectureId) {
       const path = '/lectures/' + lectureId;

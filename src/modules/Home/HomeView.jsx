@@ -20,9 +20,9 @@ const styles = {
     height: 68
   },
   card: {
-      margin: 20, // TODO: How to get -> context.muiTheme.spacing.desktopGutter / 2,
-      flex: 1,
-      flexBasis: '450px'
+    margin: 20, // TODO: How to get -> context.muiTheme.spacing.desktopGutter / 2,
+    flex: 1,
+    flexBasis: '450px'
   }
 };
 

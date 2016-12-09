@@ -1,6 +1,5 @@
 import { Component, PropTypes } from 'react';
 import Dialog from 'material-ui/Dialog';
-import Divider from 'material-ui/Divider';
 import { Card, CardHeader, CardText } from 'material-ui/Card';
 import Paper from 'material-ui/Paper';
 import {
@@ -12,7 +11,9 @@ import {
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 import ExpandTransition from 'material-ui/internal/ExpandTransition';
-import TextField from 'material-ui/TextField';
+import AccountDetails from './AccountDetails';
+import Topics from './Topics';
+import Location from './Location';
 
 const styles = {
   wrapper: {
@@ -57,55 +58,36 @@ class HorizontalTransition extends Component {
   };
 
   handlePrev = () => {
-    const {stepIndex} = this.state;
-    if (stepIndex === 0) {
-      return this.props.closeRegistration();
-    }
-
     if (!this.state.loading) {
       this.dummyAsync(() => this.setState({
         loading: false,
-        stepIndex: stepIndex - 1
+        stepIndex: this.state.stepIndex - 1
       }));
     }
   };
 
-  getStepContent(stepIndex) {
+  getStepContent = (stepIndex) => {
     switch (stepIndex) {
       case 0:
         return (
-          <div>
-            <p>
-              Please enter your account info.
-            </p>
-
-            <TextField style={{margin: 10}} hintText="Name" underlineShow={false} />
-            <Divider />
-            <TextField style={{margin: 10}} hintText="Email" className="formcontainer" underlineShow={false} />
-            <Divider />
-            <TextField style={{margin: 10}} hintText="Password" className="formcontainer" type='password' underlineShow={false} />
-            <Divider />
-          </div>
+          <AccountDetails handlePrev={this.props.cancel} onSubmit={(values) => {
+            console.log(values);
+            this.handleNext();
+          }}/>
         );
       case 1:
         return (
-          <div>
-            <TextField style={{marginTop: 0}} floatingLabelText="Ad group name" />
-            <p>
-              Ad group status is different than the statuses for campaigns, ads, and keywords, though the
-              statuses can affect each other. Ad groups are contained within a campaign, and each campaign can
-              have one or more ad groups. Within each ad group are ads, keywords, and bids.
-            </p>
-            <p>Something something whatever cool</p>
-          </div>
+          <Topics handlePrev={this.handlePrev} onSubmit={(values) => {
+            console.log(values);
+            this.handleNext();
+          }}/>
         );
       case 2:
         return (
-          <p>
-            Try out different ad text to see what brings in the most customers, and learn how to
-            enhance your ads using features like ad extensions. If you run into any problems with your
-            ads, find out how to tell if they're running and how to resolve approval issues.
-          </p>
+          <Location handlePrev={this.handlePrev} onSubmit={async (values) => {
+            const res = await this.props.register(values);
+            console.log(res);
+          }}/>
         );
     }
   }
@@ -135,18 +117,6 @@ class HorizontalTransition extends Component {
     return (
       <div style={contentStyle}>
         <div>{this.getStepContent(stepIndex)}</div>
-        <div style={{marginTop: 24, marginBottom: 12}}>
-          <FlatButton
-            label={stepIndex === 0 ? 'Cancel' : 'Back'}
-            onTouchTap={this.handlePrev}
-            style={{marginRight: 12}}
-          />
-          <RaisedButton
-            label={stepIndex === 2 ? 'Finish' : 'Next'}
-            primary={true}
-            onTouchTap={this.handleNext}
-          />
-        </div>
       </div>
     );
   }
@@ -182,7 +152,7 @@ class RegisterExpert extends Component {
       <div style={styles.wrapper}>
         <Card style={styles.card}>
           <CardText>
-            <HorizontalTransition closeRegistration={ this.props.closeRegistration } />
+            <HorizontalTransition cancel={ this.props.cancel } register={ this.props.register } />
           </CardText>
         </Card>
       </div>

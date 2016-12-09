@@ -8,7 +8,7 @@ export default connect(
   }),
   dispatch => ({
     getExperts() {
-      dispatch(rest.actions.experts.sync());
+      dispatch(rest.actions.experts());
     }
   })
 )(HomeView);

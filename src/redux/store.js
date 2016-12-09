@@ -1,11 +1,12 @@
 import { createStore, compose, applyMiddleware } from 'redux';
 import { install } from 'redux-loop';
+import { Map } from 'immutable';
 import rootReducer from './reducer';
 import thunk from 'redux-thunk';
 import { routerMiddleware } from 'react-router-redux';
 import { browserHistory } from 'react-router'
 
-export default function configureStore(initialState) {
+export default function configureStore(initialState = Map()) {
   const enhancer = compose(
     applyMiddleware(thunk),
     applyMiddleware(routerMiddleware(browserHistory)),
