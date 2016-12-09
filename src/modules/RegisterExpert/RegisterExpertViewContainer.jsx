@@ -13,7 +13,7 @@ export default connect(null,
     },
     async register(values) {
       const res = await post('/experts', values);
-      return res;
+      dispatch(goBack());
     }
   })
 )(RegisterExpertView);
