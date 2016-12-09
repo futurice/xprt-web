@@ -6,13 +6,17 @@ import { fromJS, toJS, Iterable } from 'immutable';
 
 const apiRoot = 'http://localhost:3888';
 
+// Endpoint configurations
 const rest = reduxApi({
-  // simple edpoint description
   lectures: {
     url: `${apiRoot}/lectures`,
     transformer: transformers.array
+  },
+  experts: {
+    url: `${apiRoot}/experts`,
+    transformer: transformers.array
   }
-}).use("fetch", adapterFetch(fetch)); // it's necessary to point using REST backend
+}).use("fetch", adapterFetch(fetch));
 
 export default rest;
 
@@ -28,6 +32,3 @@ export const restReducer = (state = fromJS({}), action) => {
 
   return fromJS(state);
 };
-////export const restReducer = createReducer({
-//'@@redux-api@lectures': (state) => console.log('there')
-//}, {});

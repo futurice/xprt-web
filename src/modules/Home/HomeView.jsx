@@ -45,9 +45,8 @@ class Home extends Component {
     this.props.dispatch(push(path));
   }
 
-  componentDidMount = async () => {
-    const experts = await get('/experts');
-    this.setState({ experts });
+  componentDidMount = () => {
+    this.props.getExperts();
   }
 
   render() {
@@ -70,7 +69,7 @@ class Home extends Component {
           <Card style={styles.card}>
             <CardText>
               <h1>Some of our Experts</h1>
-              <ExpertList experts={this.state.experts.slice(0, 5)} openExpert={this.openExpert} />
+              <ExpertList experts={this.props.experts.data.slice(0, 5)} openExpert={this.openExpert} />
             </CardText>
           </Card>
       </div>
