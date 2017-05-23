@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import Button from 'material-ui/Button';
+import Button from 'material-ui-old/Button';
 
 const styles = {
   preview: {

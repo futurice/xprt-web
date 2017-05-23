@@ -1,0 +1,24 @@
+
+
+html {
+  font-family: 'Catamaran', sans-serif;
+  min-height: 100%;
+  font-size: 13px;
+  line-height: 20px;
+  margin: 0px;
+  background: #262626;
+  background-image: url('../img/xprt-background.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+body {
+  margin: 0;
+  margin-left: 60px;
+}
+
+
+@media (max-width:769px){
+  body {margin-left: 0px;}
+}
+
+.formcontainer input:-webkit-autofill { -webkit-text-fill-color: green; -webkit-box-shadow: 0 0 0 1000px white inset; }

@@ -3,11 +3,12 @@ import {
   red,
   blue,
   orange,
-  grey,
   white,
-  black,
+  grey300,
   darkBlack,
+  fullBlack,
 } from 'material-ui/styles/colors';
+import { fade } from 'material-ui-old/utils/colorManipulator';
 
 export default {
   // Spacing config of app. Sets the size of various components.
@@ -49,19 +50,23 @@ export default {
         'rgba(255, 255, 255, 1) '
   */
   legacyPalette: {
-    primary1Color: blue[500],
-    primary2Color: blue[300],
-    primary3Color: grey[700],
-    accent1Color: orange[500],
-    accent2Color: grey[200],
-    accent3Color: grey[600],
-    textColor: darkBlack,
+    primary1Color: '#15a369',
+    primary1ColorTransparent: 'rgba(21,163,105,0.8)',
+    primary2Color: '#eab94e',
+    primary3Color: '#333333',
+    accent1Color: white,
+    accent2Color: white,
+    accent3Color: white,
+    textColor: '#CCCCCC',
     alternateTextColor: white,
-    canvasColor: grey[50],
-    borderColor: grey[300],
-    disabledColor: grey[700],
-    pickerHeaderColor: orange[500],
-    clockCircleColor: grey[700],
-    shadowColor: black,
+    menuTextColor: '#08412A',
+    menuTextColorActive: '#fff',
+    canvasColor: '#333333',
+    borderColor: grey300,
+    disabledColor: '#cccccc',
+    pickerHeaderColor: white,
+    clockCircleColor: fade(darkBlack, 0.07),
+    shadowColor: fullBlack,
+    transparentColor: 'rgba(0,0,0,0)',
   },
 };

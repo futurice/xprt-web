@@ -1,15 +1,15 @@
 import React, { PropTypes } from 'react';
 
-import TextField from 'material-ui/TextField';
+import TextField from 'material-ui-old/TextField';
 import {
   Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
-} from 'material-ui/Dialog';
-import Button from 'material-ui/Button';
-import { LinearProgress } from 'material-ui/Progress';
+} from 'material-ui-old/Dialog';
+import Button from 'material-ui-old/Button';
+import { LinearProgress } from 'material-ui-old/Progress';
 
 import ImageUpload from '../components/ImageUpload';
 

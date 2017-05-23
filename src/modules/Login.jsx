@@ -3,14 +3,14 @@
 
 import React from 'react';
 
-import Button from 'material-ui/Button';
-import TextField from 'material-ui/TextField';
+import Button from 'material-ui-old/Button';
+import TextField from 'material-ui-old/TextField';
 
-import { CardActions, CardHeader, CardContent } from 'material-ui/Card';
-import Avatar from 'material-ui/Avatar';
-import Icon from 'material-ui/Icon';
+import { CardActions, CardHeader, CardContent } from 'material-ui-old/Card';
+import Avatar from 'material-ui-old/Avatar';
+import Icon from 'material-ui-old/Icon';
 
-import { LinearProgress } from 'material-ui/Progress';
+import { LinearProgress } from 'material-ui-old/Progress';
 
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
@@ -96,7 +96,7 @@ export default class Login extends React.Component {
         <ResponsiveCard style={{ maxWidth: 360 }}>
           <CardHeader
             avatar={
-              <Avatar style={{ backgroundColor: theme.palette.primary[500] }}>
+              <Avatar style={{ backgroundColor: theme.legacyPalette.primary[500] }}>
                 <Icon>account_circle</Icon>
               </Avatar>
             }

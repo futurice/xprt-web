@@ -33,10 +33,11 @@ Routes may optionally contain the following keys:
 
 // Components
 import Home from '../modules/Home';
+/*
 import Users from '../modules/Users';
 import Preferences from '../modules/Preferences';
-import Login from '../modules/Login';
 import Logout from '../modules/Logout';
+*/
 
 // Routes
 const routeConfigs = [{
@@ -45,34 +46,36 @@ const routeConfigs = [{
   component: Home,
   icon: 'home',
   requiresLogin: false,
-}, {
-  path: '/users',
-  name: 'Users',
-  component: Users,
-  icon: 'supervisor_account',
-  separator: true,
-  requiresLogin: true,
-}, {
-  path: '/preferences',
-  name: 'Preferences',
-  component: Preferences,
-  icon: 'settings',
-  requiresLogin: true,
-}, {
-  path: '/login',
-  name: 'Login',
-  component: Login,
+},
+/*{
+  path: '/profile',
+  name: 'MyProfile',
+  component: MyProfile,
   icon: 'account_circle',
-  requiresLogin: false,
-  hideWhenScope: ['user', 'admin'],
+  hideWhenScope: [null],
+}, {
+  path: '/about',
+  name: 'AboutXprt',
+  component: About,
+  icon: 'preferences',
+}, {
+  path: '/contact',
+  name: 'ContactUs',
+  component: Contact,
+  icon: 'preferences',
+}, {
+  path: '/adminview',
+  name: 'AdminView',
+  component: AdminView,
+  icon: 'preferences',
+  hideWhenScope: [null, 'user'],
 }, {
   path: '/logout',
   name: 'Logout',
   component: Logout,
   icon: 'exit_to_app',
-  requiresLogin: false,
   hideWhenScope: [null],
-}];
+}*/];
 
 export default routeConfigs;
 

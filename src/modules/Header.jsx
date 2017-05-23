@@ -3,15 +3,15 @@
 
 import React from 'react';
 
-import AppBar from 'material-ui/AppBar';
-import Toolbar from 'material-ui/Toolbar';
-import Text from 'material-ui/Text';
-import IconButton from 'material-ui/IconButton';
-import Divider from 'material-ui/Divider';
-import Icon from 'material-ui/Icon';
+import AppBar from 'material-ui-old/AppBar';
+import Toolbar from 'material-ui-old/Toolbar';
+import Text from 'material-ui-old/Text';
+import IconButton from 'material-ui-old/IconButton';
+import Divider from 'material-ui-old/Divider';
+import Icon from 'material-ui-old/Icon';
 
-import { Menu } from 'material-ui/Menu';
-import { ListItem, ListItemText, ListItemIcon } from 'material-ui/List';
+import { Menu } from 'material-ui-old/Menu';
+import { ListItem, ListItemText, ListItemIcon } from 'material-ui-old/List';
 
 import { FormattedMessage, injectIntl } from 'react-intl';
 

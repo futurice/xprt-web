@@ -1,26 +1,13 @@
 export default {
-  // Navigation
-  navigation: 'Navigaatio',
+  Navigation: 'Navigaatio',
   Home: 'Koti',
-  Users: 'Käyttäjät',
   Preferences: 'Asetukset',
+  Registration: 'Rekisteröinti',
   Logout: 'Kirjaudu ulos',
   Login: 'Kirjaudu sisään',
-
-  // Users view
-  userId: 'ID',
-  email: 'Sähköpostiosoite',
-  description: 'Kuvaus',
-  showUserDetails: 'Lisätiedot',
-  userDetails: 'Käyttäjän lisätiedot',
-
-  // Preferences view
-  language: 'Sovelluksen kieli',
-  selectedLanguage: 'Valittu kieli',
-  resetState: 'Nollaa sovelluksen tila',
-  resetStateExplanation: 'Käytä tätä toimintoa jos huomaat ongelmia sovelluksen toiminnassa. Vaikuttaa ainoastaan sinun sessioon.',
-  resetStateButton: 'Nollaa tila',
-
-  // Miscellaneous
-  close: 'Sulje',
+  MyAccount: 'Omat tiedot',
+  ContactUs: 'OTA YHTEYTTÄ',
+  AboutXprt: 'Tietoa XPRT:stä',
+  MyProfile: 'Oma profiili',
+  AdminView: 'Admin näkymä',
 };

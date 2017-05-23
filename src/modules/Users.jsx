@@ -5,18 +5,18 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { injectIntl } from 'react-intl';
 
-import Button from 'material-ui/Button';
+import Button from 'material-ui-old/Button';
 import {
   Table,
   TableBody,
   TableHead,
   TableRow,
   TableCell,
-} from 'material-ui/Table';
+} from 'material-ui-old/Table';
 
-import Icon from 'material-ui/Icon';
+import Icon from 'material-ui-old/Icon';
 
-import { DialogContentText } from 'material-ui/Dialog';
+import { DialogContentText } from 'material-ui-old/Dialog';
 import DialogWithButtons from '../components/DialogWithButtons';
 
 import rest from '../utils/rest';

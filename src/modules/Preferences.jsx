@@ -4,15 +4,15 @@
 import React from 'react';
 import { injectIntl } from 'react-intl';
 
-import { List, ListItem, ListItemText } from 'material-ui/List';
-import { Menu, MenuItem } from 'material-ui/Menu';
-import Text from 'material-ui/Text';
+import { List, ListItem, ListItemText } from 'material-ui-old/List';
+import { Menu, MenuItem } from 'material-ui-old/Menu';
+import Text from 'material-ui-old/Text';
 
-import Button from 'material-ui/Button';
+import Button from 'material-ui-old/Button';
 
 import {
   CardContent,
-} from 'material-ui/Card';
+} from 'material-ui-old/Card';
 
 import { connect } from 'react-redux';
 import { updateIntl } from 'react-intl-redux';

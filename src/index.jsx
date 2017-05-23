@@ -18,9 +18,12 @@ import legacyGetMuiTheme from 'material-ui-old/styles/getMuiTheme';
 
 import { IntlProvider } from 'react-intl-redux';
 
+import { StyleRoot } from 'radium';
+
 import ErrorSnackbar from './modules/ErrorSnackbar';
 import NavigationDrawer from './modules/NavigationDrawer';
-import Header from './modules/Header';
+// import NavigationDrawerSmall from './modules/NavigationDrawerSmall';
+// import Header from './modules/Header';
 
 import routeConfigs, { IndexRoute, ConfiguredRoutes } from './utils/routes';
 
@@ -84,21 +87,22 @@ const Root = () => (
   <Provider store={store}>
     <LegacyMuiThemeProvider muiTheme={legacyMuiTheme}>
       <MuiThemeProvider theme={muiTheme}>
-        <IntlProvider>
-          <ConnectedRouter history={history}>
-            <div style={style.appContainer}>
-              <NavigationDrawer />
-              <Header />
+        <StyleRoot>
+          <IntlProvider>
+            <ConnectedRouter history={history}>
+              <div style={style.appContainer}>
+                <NavigationDrawer />
 
-              <div style={style.viewContainer}>
-                <IndexRoute routeConfig={routeConfigs[0]} />
-                <ConfiguredRoutes />
+                <div style={style.viewContainer}>
+                  <IndexRoute routeConfig={routeConfigs[0]} />
+                  <ConfiguredRoutes />
 
-                <ErrorSnackbar />
+                  <ErrorSnackbar />
+                </div>
               </div>
-            </div>
-          </ConnectedRouter>
-        </IntlProvider>
+            </ConnectedRouter>
+          </IntlProvider>
+        </StyleRoot>
       </MuiThemeProvider>
     </LegacyMuiThemeProvider>
   </Provider>
