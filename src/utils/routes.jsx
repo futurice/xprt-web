@@ -45,6 +45,7 @@ const routeConfigs = [{
   name: 'Home',
   component: Home,
   icon: 'home',
+  requiresLogin: false,
 }, /* {
   path: '/profile',
   name: 'MyProfile',

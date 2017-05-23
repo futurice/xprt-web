@@ -5,13 +5,12 @@ import React, { Component } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Text from 'material-ui/Text';
 import IconButton from 'material-ui/IconButton';
 import Icon from 'material-ui/Icon';
 
-import Drawer from 'material-ui/Drawer';
+import { AppBar, Divider, Drawer, MenuItem } from 'material-ui-old';
 
 import {
   List,
@@ -29,9 +28,17 @@ import {
 
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+import { push } from 'connected-react-router';
 
 import routes from '../utils/routes';
 import theme from '../utils/theme';
+
+const styles = {
+  drawer: {
+    backgroundColor:theme.legacyPalette.primary1ColorTransparent,
+    color: theme.legacyPalette.menuTextColor,
+  },
+}
 
 // Action creators
 export const closeDrawer = createAction('Close menu drawer');
@@ -68,9 +75,10 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = (dispatch, ownProps) => ({
   changeView(view) {
     dispatch(closeDrawer());
-    ownProps.push(view.toLowerCase());
+    dispatch(push(view.toLowerCase()));
   },
   close() {
+    console.log('close() called');
     dispatch(closeDrawer());
   },
 });
@@ -87,68 +95,38 @@ export default class NavigationDrawer extends Component {
 
     return (
       <Drawer
-        open={drawerOpened}
-        onRequestClose={() => close()}
-      >
+        open={this.props.drawerOpened}
+        docked={false}
+        containerStyle={styles.drawer}
+        onRequestChange={() => this.props.close()} >
 
-        <AppBar
-          style={{ position: 'relative' }}
-        >
-          <Toolbar>
-            <IconButton
-              contrast
-              onClick={() => closeDrawer()}
-            >
-              menu
-            </IconButton>
-            <Text
-              style={{ flex: 1 }}
-              type="title"
-              colorInherit
-            >
-              <FormattedMessage id="navigation" />
-            </Text>
-          </Toolbar>
-        </AppBar>
+        {
+          routes.map((route, index) => {
+            let active = (this.props.pathname === route.path);
+            if (route.path === routes[0].path && this.props.pathname === '/') {
+              active = true;
+            }
 
-        <List>
-          {
-            routes.map((route) => {
-              let active = (path === route.path);
+            if (isArray(route.hideWhenScope) && route.hideWhenScope.includes(this.props.scope)) {
+              return null;
+            }
 
-              if (route.path === routes[0].path && path === '/') {
-                active = true;
-              }
+            return(
+              <div key={index}>
+                {route.separator ? <Divider /> : null}
+                <MenuItem
+                  style={{
+                    color: active ? theme.palette.menuTextColorActive : null,
+                    paddingLeft: '50px',
+                  }}
+                  onTouchTap={() => {this.props.changeView(route.path)}}>
 
-              const scope = user ? user.scope : null;
-
-              if (isArray(route.hideWhenScope) && route.hideWhenScope.includes(scope)) {
-                return null;
-              }
-
-              return (
-                <div key={route.path}>
-                  <ListItem
-                    button
-                    divider={route.separator}
-                    onClick={() => { changeView(route.path); }}
-                  >
-                    <ListItemIcon
-                      style={active ? { color: theme.palette.primary[500] } : null}
-                    >
-                      <Icon>{route.icon}</Icon>
-                    </ListItemIcon>
-
-                    <ListItemText
-                      style={active ? { color: theme.palette.primary[500] } : null}
-                      primary={<FormattedMessage id={route.name} />}
-                    />
-                  </ListItem>
-                </div>
-              );
-            })
-          }
-        </List>
+                  <FormattedMessage id={route.name} />
+                </MenuItem>
+              </div>
+            );
+          })
+        }
       </Drawer>
     );
   }

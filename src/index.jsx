@@ -22,7 +22,7 @@ import { StyleRoot } from 'radium';
 
 import ErrorSnackbar from './modules/ErrorSnackbar';
 import NavigationDrawer from './modules/NavigationDrawer';
-// import NavigationDrawerSmall from './modules/NavigationDrawerSmall';
+import NavigationDrawerSmall from './modules/NavigationDrawerSmall';
 // import Header from './modules/Header';
 
 import routeConfigs, { IndexRoute, ConfiguredRoutes } from './utils/routes';
@@ -91,6 +91,7 @@ const Root = () => (
           <IntlProvider>
             <ConnectedRouter history={history}>
               <div style={style.appContainer}>
+                <NavigationDrawerSmall />
                 <NavigationDrawer />
 
                 <div style={style.viewContainer}>

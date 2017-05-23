@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import TermsModal from './TermsModal';
 import PrivacyModal from './PrivacyModal';
 import XprtLogoSmall from './XprtLogoSmall';
-import Radium from 'radium';
 
 import theme from '../utils/theme';
 
@@ -18,9 +17,6 @@ const styles = {
   footerLeft: {
     marginLeft: '5%',
     flex: 1,
-    '@media (max-width: 769px)': {
-      margin: 0,
-    },
   },
   footerRight: {
     flex: 1,
@@ -28,19 +24,14 @@ const styles = {
     textAlign: 'right',
     marginRight: '5%',
     fontSize: '16px',
-    color: theme.palette.primary3Color,
-    '@media (max-width: 769px)': {
-      textAlign: 'center',
-      margin: 0,
-    },
+    color: theme.legacyPalette.primary3Color,
   },
   footerText: {
     fontSize: '16px',
-    color: theme.palette.primary3Color,
+    color: theme.legacyPalette.primary3Color,
   },
 };
 
-@Radium
 export default class Footer extends Component {
   render() {
     return (
