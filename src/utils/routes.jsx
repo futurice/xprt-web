@@ -33,10 +33,10 @@ Routes may optionally contain the following keys:
 
 // Components
 import Home from '../modules/Home';
+import Logout from '../modules/Logout';
 /*
 import Users from '../modules/Users';
 import Preferences from '../modules/Preferences';
-import Logout from '../modules/Logout';
 */
 
 // Routes
@@ -45,9 +45,7 @@ const routeConfigs = [{
   name: 'Home',
   component: Home,
   icon: 'home',
-  requiresLogin: false,
-},
-/*{
+}, /* {
   path: '/profile',
   name: 'MyProfile',
   component: MyProfile,
@@ -69,13 +67,13 @@ const routeConfigs = [{
   component: AdminView,
   icon: 'preferences',
   hideWhenScope: [null, 'user'],
-}, {
+},*/ {
   path: '/logout',
   name: 'Logout',
   component: Logout,
   icon: 'exit_to_app',
   hideWhenScope: [null],
-}*/];
+}];
 
 export default routeConfigs;
 
@@ -89,7 +87,7 @@ export const RouteConfigShape = PropTypes.shape({
   name: PropTypes.string.isRequired,
   component: PropTypes.func.isRequired,
   icon: PropTypes.string.isRequired,
-  requiresLogin: PropTypes.bool.isRequired,
+  requiresLogin: PropTypes.bool,
   showHeader: PropTypes.bool,
 });
 

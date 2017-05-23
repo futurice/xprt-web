@@ -2,8 +2,12 @@ import React, { Component } from 'react';
 
 import Radium from 'radium';
 import Slider from 'react-slick';
-
 import FlatButton from 'material-ui-old/FlatButton';
+
+import { connect } from 'react-redux';
+import { push } from 'connected-react-router';
+import rest from '../utils/rest';
+
 import LoginModal from './LoginModal';
 import RegisterModal from './RegisterModal';
 // import TermsModal from '../components/TermsModal';
@@ -262,6 +266,42 @@ const styles = {
   },
 };
 
+const mapStateToProps = state => ({
+  isLoggedIn: !!state.auth.data.token,
+});
+
+const mapDispatchToProps = dispatch => ({
+  getExperts() {
+    dispatch(rest.actions.experts());
+  },
+  changeView(view) {
+    dispatch(push(view.toLowerCase()));
+  },
+  doLogin(creds, callback) {
+    dispatch(rest.actions.auth({}, { body: JSON.stringify(creds) }, callback));
+  },
+  doRegister(user) {
+    dispatch(rest.actions.register.post({}, {
+      body: JSON.stringify({
+        name: user.name,
+        email: user.email,
+        password: user.password,
+        description: user.shortIntroduction,
+        isExpert: true,
+        details: user.lectureDetails,
+        title: user.title,
+        address: user.officeAddress,
+        phone: user.phone,
+        company: user.companyName,
+        locale: 'fi',
+        subjects: user.subjects,
+        area: user.supportedLocations,
+      }),
+    }));
+  },
+});
+
+@connect(mapStateToProps, mapDispatchToProps)
 @Radium
 export default class Home extends Component {
   render() {
@@ -290,7 +330,12 @@ export default class Home extends Component {
             <div style={styles.leftText}>
               <div style={styles.homeText}>
                 <p style={styles.smallHeader}>TEACHERS</p>
-                <p style={styles.mobileFont}>{"Download and install the app to browse and view the experts' profile. Easily inite experts to your classroom."}</p>
+                <p style={styles.mobileFont}>
+                  {
+                    `Download and install the app to browse and view the experts' profile.
+                    Easily inite experts to your classroom.`
+                  }
+                </p>
               </div>
               <div>
                 <FlatButton label="DOWNLOAD FOR IPHONE" style={styles.buttonStyle} /><br />
@@ -301,7 +346,12 @@ export default class Home extends Component {
               <div style={styles.homeText}>
                 <p style={styles.smallHeader}>EXPERTS</p>
 
-                <p style={styles.mobileFont}>Sign up as an expert and  to share your skills for the benefit of the future generation.</p>
+                <p style={styles.mobileFont}>
+                  {
+                    `Sign up as an expert to share your skills for the benefit of the future
+                    generation.`
+                  }
+                </p>
               </div>
               {this.props.isLoggedIn ?
                 <FlatButton label="MY PROFILE" style={styles.buttonStyle} onTouchTap={() => this.props.changeView('/profile')} />
@@ -326,31 +376,43 @@ export default class Home extends Component {
             <div style={styles.imageWrapper}>
               <div style={styles.emptyImage} />
               <div style={styles.leftImage}>
-                <img src={mockup1} style={styles.mockImage} />
+                <img src={mockup1} style={styles.mockImage} alt="App screenshot" />
                 <p style={styles.imageNumber}>01</p>
                 <p style={styles.textColor}>BACON IPSUM</p>
-                <p style={[styles.textColor, styles.imageDescription]}>Bacon ipsum dolor amet short loin landjaeger tongue,
-                  filet mignon ribeye hamburger spare ribs. Pork hamburger
-                  turkey tongue drumstick boudin ball tip beef ribs pancetta
-                  tail turducken pig chuck.</p>
+                <p style={[styles.textColor, styles.imageDescription]}>
+                  {
+                    `Bacon ipsum dolor amet short loin landjaeger tongue,
+                    filet mignon ribeye hamburger spare ribs. Pork hamburger
+                    turkey tongue drumstick boudin ball tip beef ribs pancetta
+                    tail turducken pig chuck.`
+                  }
+                </p>
               </div>
               <div style={styles.centerImage}>
-                <img src={mockup2} style={styles.mockImage} />
+                <img src={mockup2} style={styles.mockImage} alt="App screenshot" />
                 <p style={styles.imageNumber}>02</p>
                 <p style={styles.textColor}>BACON IPSUM</p>
-                <p style={[styles.textColor, styles.imageDescription]}>Bacon ipsum dolor amet short loin landjaeger tongue,
-                  filet mignon ribeye hamburger spare ribs. Pork hamburger
-                  turkey tongue drumstick boudin ball tip beef ribs pancetta
-                  tail turducken pig chuck.</p>
+                <p style={[styles.textColor, styles.imageDescription]}>
+                  {
+                    `Bacon ipsum dolor amet short loin landjaeger tongue,
+                    filet mignon ribeye hamburger spare ribs. Pork hamburger
+                    turkey tongue drumstick boudin ball tip beef ribs pancetta
+                    tail turducken pig chuck.`
+                  }
+                </p>
               </div>
               <div style={styles.rightImage}>
-                <img src={mockup3} style={styles.mockImage} />
+                <img src={mockup3} style={styles.mockImage} alt="App screenshot" />
                 <p style={styles.imageNumber}>03</p>
                 <p style={styles.textColor}>BACON IPSUM</p>
-                <p style={[styles.textColor, styles.imageDescription]}>Bacon ipsum dolor amet short loin landjaeger tongue,
-                  filet mignon ribeye hamburger spare ribs. Pork hamburger
-                  turkey tongue drumstick boudin ball tip beef ribs pancetta
-                  tail turducken pig chuck.</p>
+                <p style={[styles.textColor, styles.imageDescription]}>
+                  {
+                    `Bacon ipsum dolor amet short loin landjaeger tongue,
+                    filet mignon ribeye hamburger spare ribs. Pork hamburger
+                    turkey tongue drumstick boudin ball tip beef ribs pancetta
+                    tail turducken pig chuck.`
+                  }
+                </p>
               </div>
               <div style={styles.emptyImage} />
             </div>
@@ -360,7 +422,7 @@ export default class Home extends Component {
           <div style={styles.firstRow}>
             <Slider {...sliderSettings}>
               <div>
-                <img src={profilePlaceholder} style={{ ...styles.profilePicture, filter: 'grayscale(100%)', margin: '0 auto' }} />
+                <img src={profilePlaceholder} alt="Sample expert" style={{ ...styles.profilePicture, filter: 'grayscale(100%)', margin: '0 auto' }} />
                 <div style={styles.secondRow}>
                   <p style={[styles.descriptionText, styles.mobileFont]}>
                     {
@@ -375,7 +437,7 @@ export default class Home extends Component {
                 </div>
               </div>
               <div>
-                <img src={profilePlaceholder} style={{ ...styles.profilePicture, filter: 'grayscale(0%)', margin: '0 auto' }} />
+                <img src={profilePlaceholder} alt="Sample expert" style={{ ...styles.profilePicture, filter: 'grayscale(0%)', margin: '0 auto' }} />
                 <div style={styles.secondRow}>
                   <p style={[styles.descriptionText, styles.mobileFont]}>
                     {
@@ -390,7 +452,7 @@ export default class Home extends Component {
                 </div>
               </div>
               <div>
-                <img src={profilePlaceholder} style={{ ...styles.profilePicture, filter: 'contrast(1000%)', margin: '0 auto' }} />
+                <img src={profilePlaceholder} alt="Sample expert" style={{ ...styles.profilePicture, filter: 'contrast(1000%)', margin: '0 auto' }} />
                 <div style={styles.secondRow}>
                   <p style={[styles.descriptionText, styles.mobileFont]}>
                     {

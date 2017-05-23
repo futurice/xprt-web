@@ -1,3 +1,3 @@
 export default {
-  API_ROOT: window.location.protocol + '//' + window.location.hostname + ':3888'
+  apiRoot: `${window.location.protocol}//${window.location.hostname}:3888`,
 };

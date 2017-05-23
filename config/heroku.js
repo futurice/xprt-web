@@ -1,3 +1,3 @@
 export default {
-  API_ROOT: 'https://xprt-backend.herokuapp.com'
+  apiRoot: 'https://xprt-backend.herokuapp.com',
 };

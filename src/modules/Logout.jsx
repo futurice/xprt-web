@@ -3,7 +3,7 @@
 
 import React from 'react';
 
-import { CircularProgress } from 'material-ui-old/Progress';
+import { CircularProgress } from 'material-ui/Progress';
 import { connect } from 'react-redux';
 import { clearState } from '../utils/persist';
 
