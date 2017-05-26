@@ -1,7 +1,4 @@
-// Disable prop type checking in modules
-/* eslint-disable react/prop-types */
-
-import React, { Component } from 'react';
+import React from 'react';
 
 import { FormattedMessage } from 'react-intl';
 import { push } from 'react-router-redux';
@@ -82,7 +79,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 @connect(mapStateToProps, mapDispatchToProps)
-export default class NavigationDrawer extends Component {
+export default class NavigationDrawer extends React.Component {
   static defaultProps = {
     user: null,
   };
