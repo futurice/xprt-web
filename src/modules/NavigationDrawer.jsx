@@ -73,7 +73,6 @@ const mapDispatchToProps = dispatch => ({
     dispatch(push(view.toLowerCase()));
   },
   close() {
-    console.log('close() called');
     dispatch(closeDrawer());
   },
 });
