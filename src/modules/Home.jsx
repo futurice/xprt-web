@@ -5,8 +5,11 @@ import Slider from 'react-slick';
 import FlatButton from 'material-ui-old/FlatButton';
 
 import { connect } from 'react-redux';
-import { push } from 'connected-react-router';
+import { push } from 'react-router-redux';
 import rest from '../utils/rest';
+
+import Button from 'material-ui/Button';
+import Typography from 'material-ui/Typography';
 
 import LoginModal from './LoginModal';
 import RegisterModal from './RegisterModal';

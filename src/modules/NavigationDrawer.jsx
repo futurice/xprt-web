@@ -4,16 +4,16 @@
 import React, { Component } from 'react';
 
 import { FormattedMessage } from 'react-intl';
+import { push } from 'react-router-redux';
 
 import Toolbar from 'material-ui/Toolbar';
-import Text from 'material-ui/Text';
+import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
 import Icon from 'material-ui/Icon';
 
 import { AppBar, Divider, Drawer, MenuItem } from 'material-ui-old';
 
-import {
-  List,
+import List, {
   ListItem,
   ListItemText,
   ListItemIcon,
@@ -27,8 +27,6 @@ import {
 } from 'redux-act';
 
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
-import { push } from 'connected-react-router';
 
 import routes from '../utils/routes';
 import theme from '../utils/theme';
@@ -68,11 +66,11 @@ export const reducer = createReducer({
 
 const mapStateToProps = (state, ownProps) => ({
   drawerOpened: state.drawer.drawerOpened,
-  path: ownProps.location.pathname,
+  path: state.router.location.pathname,
   user: state.auth.data.decoded,
 });
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
+const mapDispatchToProps = dispatch => ({
   changeView(view) {
     dispatch(closeDrawer());
     dispatch(push(view.toLowerCase()));
@@ -83,7 +81,6 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
 });
 
-@withRouter
 @connect(mapStateToProps, mapDispatchToProps)
 export default class NavigationDrawer extends Component {
   static defaultProps = {

@@ -1,10 +1,11 @@
 import { combineReducers } from 'redux';
 
+import { routerReducer } from 'react-router-redux';
+import { reducer as formReducer } from 'redux-form';
 import { reducer as drawer } from '../modules/NavigationDrawer';
-import { reducer as err } from '../modules/ErrorSnackbar';
 import { reducer as intl } from './intl';
+import { reducer as err } from '../modules/ErrorSnackbar';
 import { reducers as restReducers } from './rest';
-import { reducer as formReducer } from 'redux-form'
 
 const reducers = {
   // Navigation drawer state
@@ -18,6 +19,9 @@ const reducers = {
 
   // Redux form
   form: formReducer,
+
+  // Router state
+  router: routerReducer,
 
   // REST API endpoints' state
   ...restReducers,

@@ -2,7 +2,7 @@ import Offline from 'offline-plugin/runtime';
 import React from 'react';
 import { Provider } from 'react-redux';
 import { render } from 'react-dom';
-import { ConnectedRouter } from 'connected-react-router';
+import { ConnectedRouter } from 'react-router-redux';
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 

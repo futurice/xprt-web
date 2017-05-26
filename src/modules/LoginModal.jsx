@@ -6,7 +6,7 @@ import MUITextField from '../components/MUITextField';
 import theme from '../utils/theme';
 import rest from '../utils/rest';
 
-import { push } from 'connected-react-router';
+import { push } from 'react-router-redux';
 
 const styles = {
   buttonStyle: {
