@@ -1,12 +1,13 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import Dialog from 'material-ui-old/Dialog';
 import FlatButton from 'material-ui-old/FlatButton';
+
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
+
 import MUITextField from '../components/MUITextField';
 import theme from '../utils/theme';
 import rest from '../utils/rest';
-
-import { push } from 'react-router-redux';
 
 const styles = {
   buttonStyle: {
@@ -35,7 +36,7 @@ const styles = {
   },
 };
 
-class LoginModal extends Component {
+class LoginModal extends React.Component {
 
   state = {
     open: false,
@@ -77,7 +78,6 @@ class LoginModal extends Component {
   };
 
   render() {
-    const { auth } = this.props;
     const errMsg = this.props.auth.error && this.props.auth.error.message;
 
     return (
@@ -103,7 +103,8 @@ class LoginModal extends Component {
               }}
             />
             <MUITextField
-              label="Password" type="password"
+              label="Password"
+              type="password"
               value={this.state.password}
               onChange={(event) => {
                 this.handleChange(event, 'password');

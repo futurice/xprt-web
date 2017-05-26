@@ -35,6 +35,10 @@ Routes may optionally contain the following keys:
 
 // Components
 import Home from '../modules/Home';
+import MyProfile from '../modules/About';
+import About from '../modules/About';
+import Contact from '../modules/About';
+import AdminView from '../modules/About';
 import Logout from '../modules/Logout';
 /*
 import Users from '../modules/Users';
@@ -48,7 +52,7 @@ const routeConfigs = [{
   component: Home,
   icon: 'home',
   requiresLogin: false,
-}, /* {
+}, {
   path: '/profile',
   name: 'MyProfile',
   component: MyProfile,
@@ -70,7 +74,7 @@ const routeConfigs = [{
   component: AdminView,
   icon: 'preferences',
   hideWhenScope: [null, 'user'],
-},*/ {
+}, {
   path: '/logout',
   name: 'Logout',
   component: Logout,

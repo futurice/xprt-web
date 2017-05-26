@@ -30,10 +30,10 @@ import theme from '../utils/theme';
 
 const styles = {
   drawer: {
-    backgroundColor:theme.legacyPalette.primary1ColorTransparent,
+    backgroundColor: theme.legacyPalette.primary1ColorTransparent,
     color: theme.legacyPalette.menuTextColor,
   },
-}
+};
 
 // Action creators
 export const closeDrawer = createAction('Close menu drawer');
@@ -91,7 +91,8 @@ export default class NavigationDrawer extends React.Component {
         open={this.props.drawerOpened}
         docked={false}
         containerStyle={styles.drawer}
-        onRequestChange={() => this.props.close()} >
+        onRequestChange={() => this.props.close()}
+      >
 
         {
           routes.map((route, index) => {
@@ -104,7 +105,7 @@ export default class NavigationDrawer extends React.Component {
               return null;
             }
 
-            return(
+            return (
               <div key={index}>
                 {route.separator ? <Divider /> : null}
                 <MenuItem
@@ -112,7 +113,8 @@ export default class NavigationDrawer extends React.Component {
                     color: active ? theme.palette.menuTextColorActive : null,
                     paddingLeft: '50px',
                   }}
-                  onTouchTap={() => {this.props.changeView(route.path)}}>
+                  onTouchTap={() => { this.props.changeView(route.path); }}
+                >
 
                   <FormattedMessage id={route.name} />
                 </MenuItem>

@@ -336,7 +336,7 @@ export default class Home extends Component {
                 <p style={styles.mobileFont}>
                   {
                     `Download and install the app to browse and view the experts' profile.
-                    Easily inite experts to your classroom.`
+                    Easily invite experts to your classroom.`
                   }
                 </p>
               </div>

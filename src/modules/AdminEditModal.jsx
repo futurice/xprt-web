@@ -6,7 +6,7 @@ import MUITextField from '../MUITextField';
 import Radium from 'radium';
 import FlatButton from 'material-ui-old/FlatButton';
 import Dialog from 'material-ui-old/Dialog';
-import ChipInput from '../components/ChipInput';;
+import ChipInput from '../components/ChipInput';
 import AutoComplete from 'material-ui-old/AutoComplete';
 import Checkbox from 'material-ui-old/Checkbox';
 import styles from './editModalStyles';
