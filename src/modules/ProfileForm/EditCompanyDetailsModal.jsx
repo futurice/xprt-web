@@ -1,20 +1,13 @@
 import React from 'react';
 import Dialog from 'material-ui-old/Dialog';
 import FlatButton from 'material-ui-old/FlatButton';
-import RaisedButton from 'material-ui-old/RaisedButton';
 import Radium from 'radium';
 import Checkbox from 'material-ui-old/Checkbox';
-import OccupationFields from '../RegisterForm/OccupationFields';
 import { Field, reduxForm, formValueSelector } from 'redux-form';
-import MUITextField from '../components/MUITextField';
 import { connect } from 'react-redux';
-import styles from './editModalStyles';
 
-const formdata = {
-  companyName: 'Sportmrt',
-  title: 'CEO',
-  officeAddress: '',
-};
+import MUITextField from '../../components/MUITextField';
+import styles from './editModalStyles';
 
 const required = value => value ? undefined : 'Required';
 

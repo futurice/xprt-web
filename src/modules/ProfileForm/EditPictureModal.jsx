@@ -1,14 +1,9 @@
-import React, { Component } from 'react';
-import { Field, reduxForm } from 'redux-form';
-import TextField from 'material-ui-old/TextField';
-import MUITextField from '../components/MUITextField';
+import React from 'react';
 import Radium from 'radium';
 import FlatButton from 'material-ui-old/FlatButton';
 import Dialog from 'material-ui-old/Dialog';
-import ChipInput from '../components/ChipInput';
-import AutoComplete from 'material-ui-old/AutoComplete';
-import styles from './editModalStyles';
 
+import styles from './editModalStyles';
 
 @Radium
 export default class EditPictureModal extends React.Component {

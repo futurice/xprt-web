@@ -60,6 +60,7 @@
     "jwt-decode": "^2.1.0",
     "lodash": "^4.17.4",
     "material-ui": "1.0.0-alpha.15",
+    "material-ui-chip-input": "^0.14.0",
     "npm-install-version": "^6.0.1",
     "offline-plugin": "^4.5.5",
     "prop-types": "^15.5.10",

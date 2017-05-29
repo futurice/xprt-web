@@ -1,16 +1,99 @@
 import React, { Component } from 'react';
 import { Field, reduxForm, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
-import TextField from 'material-ui-old/TextField';
-import MUITextField from '../MUITextField';
 import Radium from 'radium';
 import FlatButton from 'material-ui-old/FlatButton';
 import Dialog from 'material-ui-old/Dialog';
-import ChipInput from '../components/ChipInput';
 import AutoComplete from 'material-ui-old/AutoComplete';
 import Checkbox from 'material-ui-old/Checkbox';
-import styles from './editModalStyles';
-import OccupationFields from '../RegisterForm/OccupationFields';
+
+import MUITextField from '../components/MUITextField';
+import ChipInput from '../components/ChipInput';
+import theme from '../utils/theme';
+
+const styles = {
+  floatingLabelFocusStyle: {
+    color: theme.legacyPalette.primary2Color,
+  },
+  underlineStyle: {
+    color: theme.legacyPalette.primary2Color,
+    borderColor: theme.legacyPalette.primary2Color,
+  },
+  link: {
+    ':hover': {
+      cursor: 'pointer',
+    },
+  },
+  button: {
+    border: '1px solid #555555',
+    padding: 15,
+    margin: 5,
+    borderRadius: 20,
+    lineHeight: '0.4em',
+    marginTop: '1em',
+    float: 'left',
+    color: theme.legacyPalette.textColor,
+  },
+  noborder: {
+    border: 0,
+  },
+  editProfilePicture: {
+    borderRadius: '50%',
+    width: '200px',
+    height: '200px',
+  },
+  editPictureWindow: {
+    height: '300px',
+    textAlign: 'center',
+  },
+
+
+  // Styling for editing Pen on left column
+  editPen: {
+    float: 'right',
+    width: '24px',
+    height: '24px',
+  },
+  editPenLeft: {
+    float: 'left',
+    marginLeft: '150px',
+    marginTop: '-32px',
+    width: '24px',
+    height: '24px',
+  },
+
+  transparentInput: {
+    backgroundColor: theme.legacyPalette.transparentColor,
+    border: '1px solid #555555',
+    marginBottom: 10,
+    color: theme.legacyPalette.textColor,
+    width: '100%',
+    maxWidth: 700,
+    padding: '10px 0px 10px 10px',
+    borderRadius: 5,
+    fontFamily: ('Catamaran' : 'sans-serif'),
+    fontSize: '16px',
+    fontWeight: '300',
+    '@media (max-width: 768px)': {
+      maxWidth: 768,
+      width: '100%',
+      borderRadius: 0,
+    },
+  },
+  mobileHide: {
+    '@media (max-width: 768px)': {
+      display: 'none',
+    },
+  },
+  contactForm: {
+    paddingRight: 10,
+  },
+  mainDivTextTitle: {
+    color: theme.legacyPalette.primary1Color,
+    fontSize: '16px',
+    fontWeight: '300',
+  },
+};
 
 const cityList = [
   'Helsinki',

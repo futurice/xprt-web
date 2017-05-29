@@ -44,38 +44,38 @@ const rest = reduxApi({
     },
   },
   profile: {
-    url: `${config.API_ROOT}/users/me`,
+    url: `${config.apiRoot}/users/me`,
     crud: true,
   },
   invitations: {
-    url: `${config.API_ROOT}/invitations/:lectureId`,
+    url: `${config.apiRoot}/invitations/:lectureId`,
     crud: true,
   },
   expertLectures: {
-    url: `${config.API_ROOT}/expert/lectures`,
+    url: `${config.apiRoot}/expert/lectures`,
     transformer: transformers.array,
     crud: true,
   },
   adminLectures: {
-    url: `${config.API_ROOT}/lectures`,
+    url: `${config.apiRoot}/lectures`,
     transformer: transformers.array,
     crud: true,
   },
   adminUser: {
-    url: `${config.API_ROOT}/users/:userId`,
+    url: `${config.apiRoot}/users/:userId`,
     crud: true,
   },
   register: {
-    url: `${config.API_ROOT}/users`,
+    url: `${config.apiRoot}/users`,
     crud: true,
   },
   users: {
-    url: `${config.API_ROOT}/users`,
+    url: `${config.apiRoot}/users`,
     transformer: transformers.array,
     crud: true,
   },
   feedback: {
-    url: `${config.API_ROOT}/feedback`,
+    url: `${config.apiRoot}/feedback`,
     crud: true,
   },
   // Add more API endpoints here! Examples below:

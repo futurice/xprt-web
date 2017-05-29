@@ -35,10 +35,10 @@ Routes may optionally contain the following keys:
 
 // Components
 import Home from '../modules/Home';
-import MyProfile from '../modules/About';
+import MyProfile from '../modules/MyProfile';
 import About from '../modules/About';
-import Contact from '../modules/About';
-import AdminView from '../modules/About';
+import Contact from '../modules/Contact';
+import AdminView from '../modules/Admin';
 import Logout from '../modules/Logout';
 /*
 import Users from '../modules/Users';
