@@ -61,7 +61,7 @@ export const reducer = createReducer({
   }),
 }, initialState);
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = state => ({
   drawerOpened: state.drawer.drawerOpened,
   path: state.router.location.pathname,
   user: state.auth.data.decoded,
@@ -80,7 +80,9 @@ const mapDispatchToProps = dispatch => ({
 @connect(mapStateToProps, mapDispatchToProps)
 export default class NavigationDrawer extends React.Component {
   static defaultProps = {
-    user: null,
+    user: {
+      scope: null,
+    },
   };
 
   render() {
@@ -101,7 +103,7 @@ export default class NavigationDrawer extends React.Component {
               active = true;
             }
 
-            if (isArray(route.hideWhenScope) && route.hideWhenScope.includes(this.props.scope)) {
+            if (isArray(route.hideWhenScope) && route.hideWhenScope.includes(this.props.user.scope)) {
               return null;
             }
 

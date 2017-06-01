@@ -40,10 +40,6 @@ import About from '../modules/About';
 import Contact from '../modules/Contact';
 import AdminView from '../modules/Admin';
 import Logout from '../modules/Logout';
-/*
-import Users from '../modules/Users';
-import Preferences from '../modules/Preferences';
-*/
 
 // Routes
 const routeConfigs = [{
@@ -51,12 +47,12 @@ const routeConfigs = [{
   name: 'Home',
   component: Home,
   icon: 'home',
-  requiresLogin: false,
 }, {
   path: '/profile',
   name: 'MyProfile',
   component: MyProfile,
   icon: 'account_circle',
+  requiresLogin: true,
   hideWhenScope: [null],
 }, {
   path: '/about',
