@@ -4,9 +4,8 @@ import { connect } from 'react-redux';
 import Radium from 'radium';
 import FlatButton from 'material-ui-old/FlatButton';
 import Dialog from 'material-ui-old/Dialog';
-import AutoComplete from 'material-ui-old/AutoComplete';
 
-import ChipInput from '../../components/ChipInput';
+import ChipInputWrapper from '../../components/ChipInputWrapper';
 import MUITextField from '../../components/MUITextField';
 import styles from './editModalStyles';
 
@@ -21,56 +20,27 @@ const subjectList = [
   'Historia',
 ];
 
-const formdata = {
-  introduction: 'Short introduction about expert. I can do this and that and tell cool jokes about Scrum etc.',
-  subjects: 'Major Tom, Lalilulelo, Liquid, Snake',
-  lectureDetails: 'Details about lecture',
-};
+const required = value => (value ? undefined : 'Required');
 
-const required = value => value ? undefined : 'Required';
-
-const renderTextField = ({ input, label, meta: { touched, error }, ...custom }) => (
+const renderTextField = ({ input, label, meta: { touched, error }, ...rest }) => (
   <MUITextField
     floatingLabelText={label}
     errorText={touched && error}
     {...input}
-    {...custom}
+    {...rest}
   />
 );
 
-const renderChipInput = ({ input, label, hintText, dataSource, meta: { touched, error }, ...custom }) => (
-  <ChipInput
+const mapStateToProps = (state, ownProps) => ({
+  initialValues: ownProps.expert,
+});
 
-    {...input}
-    value={input.value || []}
-    onRequestAdd={(addedChip) => {
-      let values = input.value || [];
-      values = values.slice();
-      values.push(addedChip);
-      input.onChange(values);
-    }}
-    onRequestDelete={(deletedChip) => {
-      let values = input.value || [];
-      values = values.filter(v => v !== deletedChip);
-      input.onChange(values);
-    }}
-    onBlur={() => input.onBlur()}
-
-    onChange={chips => handleChange(chips)} // Chips inside textfield
-    filter={AutoComplete.fuzzyFilter} // Autocomplete
-    maxSearchResults={5} // Autocomplete (number of suggestions shown)
-    hintText={hintText}
-    floatingLabelText={label}
-    floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
-    underlineFocusStyle={styles.underlineStyle}
-    floatingLabelFixed
-    className="formcontainer"
-    fullWidth
-    dataSource={dataSource}
-    {...custom}
-  />
-);
-
+@connect(mapStateToProps)
+@reduxForm({
+  form: 'expertDetailsEditForm',
+  destroyOnUnmount: false,
+  enableReinitialize: true,
+})
 @Radium
 export default class ExperdDetailsModal extends React.Component {
   state = {
@@ -88,7 +58,9 @@ export default class ExperdDetailsModal extends React.Component {
   render() {
     return (
       <div>
-        <a style={styles.link} label="Dialog" onTouchTap={this.handleOpen}><img src={'../../img/edit.png'} style={styles.editPen} /></a>
+        <a style={styles.link} label="Dialog" onTouchTap={this.handleOpen}>
+          <img alt="edit" src={'../../img/edit.png'} style={styles.editPen} />
+        </a>
         <Dialog
           modal={false}
           autoScrollBodyContent
@@ -112,7 +84,7 @@ export default class ExperdDetailsModal extends React.Component {
                 name="subjects"
                 label="Subjects"
                 validate={required}
-                component={renderChipInput}
+                component={ChipInputWrapper}
                 id="subjects"
                 dataSource={subjectList}
                 floatingLabelFixed
@@ -142,22 +114,8 @@ export default class ExperdDetailsModal extends React.Component {
               style={styles.button}
             />
           </form>
-
-
         </Dialog>
       </div>
     );
   }
 }
-
-ExperdDetailsModal = reduxForm({
-  form: 'expertDetailsEditForm',
-  destroyOnUnmount: false,
-  enableReinitialize: true,
-})(ExperdDetailsModal);
-
-ExperdDetailsModal = connect(
-  (state, ownProps) => ({
-    initialValues: ownProps.expert,
-  }),
-)(ExperdDetailsModal);

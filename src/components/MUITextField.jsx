@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import TextField from 'material-ui-old/TextField';
 
 import theme from '../utils/theme';
@@ -15,20 +16,28 @@ const styles = {
     position: 'absolute',
     right: 0,
   },
+  hintStyle: {
+    color: theme.legacyPalette.hintColor,
+  },
 };
 
-class MUITextField extends Component {
+class MUITextField extends React.Component {
+  static propTypes = {
+    label: PropTypes.string,
+  };
+
+  static defaultProps = {
+    label: '',
+  };
 
   render() {
-    const { label, id, type, ...rest } = this.props;
+    const { ...rest } = this.props;
 
     return (<TextField
-      floatingLabelText={label}
       floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
       underlineFocusStyle={styles.underlineStyle}
+      hintStyle={styles.hintStyle}
       errorStyle={styles.errorStyle}
-      type={type}
-      id={id}
       fullWidth
       {...rest}
     />

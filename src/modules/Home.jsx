@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import Radium from 'radium';
 import Slider from 'react-slick';
@@ -7,9 +7,6 @@ import FlatButton from 'material-ui-old/FlatButton';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import rest from '../utils/rest';
-
-import Button from 'material-ui/Button';
-import Typography from 'material-ui/Typography';
 
 import LoginModal from './LoginModal';
 import RegisterModal from './RegisterModal';
@@ -306,7 +303,7 @@ const mapDispatchToProps = dispatch => ({
 
 @connect(mapStateToProps, mapDispatchToProps)
 @Radium
-export default class Home extends Component {
+export default class Home extends React.Component {
   render() {
     const sliderSettings = {
       autoplay: true,
@@ -324,8 +321,10 @@ export default class Home extends Component {
                 <XprtLogo />
               </div>
               <p>TEACH TOGETHER. GROW TOGETHER.</p>
-              <p style={styles.mobileFont}>Xprt connects teachers and experts for the benefit of Finnish school children.
-                Arranging a visiting lecture from a professional expert has become easier.</p>
+              <p style={styles.mobileFont}>
+                Xprt connects teachers and experts for the benefit of Finnish school children.
+                Arranging a visiting lecture from a professional expert has become easier.
+              </p>
             </div>
           </div>
 

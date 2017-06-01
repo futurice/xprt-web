@@ -5,6 +5,9 @@
   },
   "rules": {
     "import/no-extraneous-dependencies": 0,
+    "import/no-unresolved": [2, { ignore: ['material-ui-old.*'] }],
+    "import/extensions": 0,
+    "react/prefer-stateless-function": 0,
   },
   "extends": "airbnb",
   "parser": "babel-eslint",

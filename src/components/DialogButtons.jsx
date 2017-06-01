@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import FlatButton from 'material-ui-old/FlatButton';
 import ArrowForward from 'material-ui-old/svg-icons/navigation/arrow-forward';
 import ArrowBack from 'material-ui-old/svg-icons/navigation/arrow-back';
@@ -17,7 +18,18 @@ const styles = {
   },
 };
 
-class DialogButtons extends Component {
+class DialogButtons extends React.Component {
+  static propTypes = {
+    handleSubmit: PropTypes.func.isRequired,
+    handleCancel: PropTypes.func.isRequired,
+    handlePrev: PropTypes.func,
+    stepIndex: PropTypes.number.isRequired,
+  };
+
+  static defaultProps = {
+    handleSubmit: null,
+    handlePrev: null,
+  };
 
   render() {
     return (
@@ -36,10 +48,10 @@ class DialogButtons extends Component {
           style={{ ...styles.button, ...styles.iconButton }}
         />
         <FlatButton
-          type="submit"
           label={this.props.stepIndex === 2 ? 'Finish' : 'Next'}
           icon={this.props.stepIndex === 2 ? '' : <ArrowForward />}
           labelPosition="before"
+          type="submit"
           primary={this.props.stepIndex === 2}
           onTouchTap={this.props.handleSubmit}
           style={{ ...styles.button, ...styles.iconButton }}

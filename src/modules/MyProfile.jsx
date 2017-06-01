@@ -232,9 +232,9 @@ function LocationsList(props) {
   const length = locations.length;
   const list = locations.map((location, i) => {
     if (length === i + 1) {
-      return <span>{location}</span>;
+      return <span key={location}>{location}</span>;
     }
-    return <span>{location}, </span>;
+    return <span key={location}>{location}, </span>;
   });
   return (
     <p style={styles.mainDivText}>{list}</p>
@@ -260,20 +260,21 @@ function SubjectChips(props) {
 
 function SubjectList(props) {
   const subjects = props.subjects;
-  console.log(subjects);
+
   if (!subjects) {
-    return null;
+    return <span>No subjects</span>;
   }
+
   if (!isArray(subjects)) {
     return <span>{subjects}</span>;
   }
 
   const length = subjects.length;
-  const list = subjects.map((subjects, i) => {
+  const list = subjects.map((subject, i) => {
     if (length === i + 1) {
-      return <span>{subjects}</span>;
+      return <span>{subject}</span>;
     }
-    return <span>{subjects}, </span>;
+    return <span>{subject}, </span>;
   });
   return (
     <span>{list}</span>
@@ -298,6 +299,9 @@ function OfficeVisit(props) {
 // makes dates be in format dd.mm.yyyy
 function DateFormat(props) {
   const date = props.date;
+  if (!date) {
+    return <span>No date set</span>;
+  }
   const day = date.slice(8, 10);
   const month = date.slice(5, 7);
   const year = date.slice(0, 4);
@@ -396,11 +400,23 @@ export default class MyProfile extends React.Component {
       }}
       >
         <CardHeader
-          title={lecture.title} subtitle={lecture.email} titleStyle={{
+          title={lecture.title}
+          subtitle={lecture.email}
+          titleStyle={{
             ...styles.titleStyle,
-          }} subtitleStyle={{
+          }}
+          subtitleStyle={{
             ...styles.subtitleStyle,
-          }} avatar={<Avatar src="../../img/placeholder_profilepicture.png" size={60} style={styles.avatarStyle} />} actAsExpander showExpandableButton
+          }}
+          avatar={
+            <Avatar
+              src="../../img/placeholder_profilepicture.png"
+              size={60}
+              style={styles.avatarStyle}
+            />
+          }
+          actAsExpander
+          showExpandableButton
         />
         <CardText expandable>
           <p style={styles.mainDivTextTitleSchool}>SCHOOL:</p>
@@ -425,12 +441,18 @@ export default class MyProfile extends React.Component {
           <p style={styles.mainDivText}>{lecture.description}</p>
           <div style={styles.ButtonAlignRight}>
             <FlatButton
-              onTouchTap={() => this.handleInvite(lecture.id, 'rejected')} expandable label="DECLINE" style={{
+              onTouchTap={() => this.handleInvite(lecture.id, 'rejected')}
+              expandable
+              label="DECLINE"
+              style={{
                 ...styles.buttonStyle,
               }}
             />
             <FlatButton
-              onTouchTap={() => this.handleInvite(lecture.id, 'accepted')} expandable label="ACCEPT" style={{
+              onTouchTap={() => this.handleInvite(lecture.id, 'accepted')}
+              expandable
+              label="ACCEPT"
+              style={{
                 ...styles.buttonStyle,
                 ...styles.buttonGold,
               }}
@@ -447,11 +469,23 @@ export default class MyProfile extends React.Component {
       }}
       >
         <CardHeader
-          title={lecture.title} subtitle={lecture.lecturetheme} titleStyle={{
+          title={lecture.title}
+          subtitle={lecture.lecturetheme}
+          titleStyle={{
             ...styles.titleStyle,
-          }} subtitleStyle={{
+          }}
+          subtitleStyle={{
             ...styles.subtitleStyle,
-          }} avatar={<Avatar src="../../img/placeholder_profilepicture.png" size={60} style={styles.avatarStyle} />} actAsExpander showExpandableButton
+          }}
+          avatar={
+            <Avatar
+              src="../../img/placeholder_profilepicture.png"
+              size={60}
+              style={styles.avatarStyle}
+            />
+          }
+          actAsExpander
+          showExpandableButton
         />
         <CardText expandable>
           <p style={styles.mainDivTextTitleSchool}>SCHOOL:</p>
@@ -482,11 +516,23 @@ export default class MyProfile extends React.Component {
     declined = declined.map(lecture => (
       <Card style={styles.contentCardRight}>
         <CardHeader
-          title={lecture.title} subtitle={lecture.lecturetheme} titleStyle={{
+          title={lecture.title}
+          subtitle={lecture.lecturetheme}
+          titleStyle={{
             ...styles.titleStyle,
-          }} subtitleStyle={{
+          }}
+          subtitleStyle={{
             ...styles.subtitleStyle,
-          }} avatar={<Avatar src="../../img/placeholder_profilepicture.png" size={60} style={styles.avatarStyle} />} actAsExpander showExpandableButton
+          }}
+          avatar={
+            <Avatar
+              src="../../img/placeholder_profilepicture.png"
+              size={60}
+              style={styles.avatarStyle}
+            />
+          }
+          actAsExpander
+          showExpandableButton
         />
         <CardText expandable>
           <p style={styles.mainDivTextTitleSchool}>SCHOOL:</p>
@@ -516,8 +562,11 @@ export default class MyProfile extends React.Component {
     return (
       <div>
         <div style={styles.firstWrapper}>
-          {/* Profile Picture */}
-          <img src={expert.imageUrl} style={{ ...styles.profilePicture, ...styles.mobileHide }} />
+          <img
+            alt="Expert profile"
+            src={expert.imageUrl}
+            style={{ ...styles.profilePicture, ...styles.mobileHide }}
+          />
           <EditPictureModal doEdit={this.props.doEdit} />
         </div>
 

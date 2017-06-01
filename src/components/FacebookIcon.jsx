@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
-import theme from '../utils/theme';
+import React from 'react';
 
-export default class FacebookIcon extends Component {
+export default class FacebookIcon extends React.Component {
   render() {
     return (
       <div>

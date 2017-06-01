@@ -150,14 +150,14 @@ const styles = {
   },
 };
 
-const required = value => value ? undefined : 'Required';
-const email = value =>
+// TODO Validate max lengths etc. http://redux-form.com/6.6.3/examples/fieldLevelValidation/
+const required = value => (value ? undefined : 'Required');
+const email = value => (
   value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value) ?
-  'Invalid email address' : undefined;
+  'Invalid email address' : undefined
+);
 
-  // TODO Validate max lengths etc. http://redux-form.com/6.6.3/examples/fieldLevelValidation/
-
-const renderTextField = ({ input, label, type, meta: { touched, error, warning } }) => (
+const renderTextField = ({ input, label, type, meta: { touched, error } }) => (
   <div>
     {touched && error &&
     <p style={styles.errorText}>{error}</p>
@@ -173,7 +173,7 @@ const renderTextField = ({ input, label, type, meta: { touched, error, warning }
   </div>
 );
 
-const renderTextArea = ({ input, label, type, meta: { touched, error, warning } }) => (
+const renderTextArea = ({ input, label, type, meta: { touched, error } }) => (
   <div>
     {touched && error &&
     <p style={styles.errorText}>{error}</p>
@@ -190,7 +190,7 @@ const renderTextArea = ({ input, label, type, meta: { touched, error, warning } 
 );
 
 const ContactForm = (props) => {
-  const { handleSubmit, pristine, reset, submitting } = props;
+  const { handleSubmit } = props;
   return (
 
     <form onSubmit={handleSubmit} style={styles.contactForm}>

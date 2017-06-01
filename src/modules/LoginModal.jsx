@@ -96,14 +96,14 @@ class LoginModal extends React.Component {
             onSubmit={this.handleSubmit}
           >
             <MUITextField
-              label="Email"
+              floatingLabelText="Email"
               value={this.state.email}
               onChange={(event) => {
                 this.handleChange(event, 'email');
               }}
             />
             <MUITextField
-              label="Password"
+              floatingLabelText="Password"
               type="password"
               value={this.state.password}
               onChange={(event) => {

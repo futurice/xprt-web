@@ -1,14 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Field, reduxForm, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
 import Radium from 'radium';
 import FlatButton from 'material-ui-old/FlatButton';
 import Dialog from 'material-ui-old/Dialog';
-import AutoComplete from 'material-ui-old/AutoComplete';
 import Checkbox from 'material-ui-old/Checkbox';
 
 import MUITextField from '../components/MUITextField';
-import ChipInput from '../components/ChipInput';
+import ChipInputWrapper from '../components/ChipInputWrapper';
 import theme from '../utils/theme';
 
 const styles = {
@@ -95,12 +94,14 @@ const styles = {
   },
 };
 
+// TODO: retreive from backend?
 const cityList = [
   'Helsinki',
   'Espoo',
   'Vantaa',
 ];
 
+// TODO: retreive from backend?
 const subjectList = [
   'Liikunta',
   'Äidinkieli',
@@ -112,32 +113,19 @@ const subjectList = [
   'Historia',
 ];
 
-const formdata = {
-  name: 'Esko Esimerkki',
-  phone: '+358 45 23423434 ',
-  email: 'esko.esimerkki@example.com',
-  supportedLocations: 'Helsinki, Espoo',
-  companyName: 'Sportmrt',
-  title: 'CEO',
-  officeAddress: '',
-  introduction: 'Short introduction about expert. I can do this and that and tell cool jokes about Scrum etc.',
-  subjects: 'Major Tom, Lalilulelo, Liquid, Snake',
-  lectureDetails: 'Details about lecture',
-};
+const required = value => (value ? undefined : 'Required');
 
-
-const required = value => value ? undefined : 'Required';
-
-const email = value =>
+const email = value => (
   value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value) ?
-  'Invalid email address' : undefined;
+  'Invalid email address' : undefined
+);
 
-const renderTextField = ({ input, label, meta: { touched, error }, ...custom }) => (
+const renderTextField = ({ input, label, meta: { touched, error }, ...rest }) => (
   <MUITextField
     floatingLabelText={label}
     errorText={touched && error}
     {...input}
-    {...custom}
+    {...rest}
   />
 );
 const renderCheckbox = ({ input, label, style }) => (
@@ -149,41 +137,20 @@ const renderCheckbox = ({ input, label, style }) => (
   />
 );
 
-const renderChipInput = ({ input, label, hintText, dataSource, meta: { touched, error }, ...custom }) => (
-  <ChipInput
+const selector = formValueSelector('myProfileEditForm');
+const mapStateToProps = (state, ownProps) => ({
+  officeVisit: selector(state, 'officeVisit'),
+  initialValues: ownProps.user,
+});
 
-    {...input}
-    value={input.value || []}
-    onRequestAdd={(addedChip) => {
-      let values = input.value || [];
-      values = values.slice();
-      values.push(addedChip);
-      input.onChange(values);
-    }}
-    onRequestDelete={(deletedChip) => {
-      let values = input.value || [];
-      values = values.filter(v => v !== deletedChip);
-      input.onChange(values);
-    }}
-    onBlur={() => input.onBlur()}
-
-    onChange={chips => handleChange(chips)} // Chips inside textfield
-    filter={AutoComplete.fuzzyFilter} // Autocomplete
-    maxSearchResults={5} // Autocomplete (number of suggestions shown)
-    hintText={hintText}
-    floatingLabelText={label}
-    floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
-    underlineFocusStyle={styles.underlineStyle}
-    floatingLabelFixed
-    className="formcontainer"
-    fullWidth
-    dataSource={dataSource}
-    {...custom}
-  />
-);
-
+@connect(mapStateToProps)
+@reduxForm({
+  form: 'myProfileEditForm',
+  destroyOnUnmount: true,
+  enableReinitialize: true,
+})
 @Radium
-class AdminEditModal extends Component {
+export default class AdminEditModal extends React.Component {
   state = {
     open: false,
   };
@@ -209,11 +176,10 @@ class AdminEditModal extends Component {
 
   handlePrev = () => {
     const { stepIndex } = this.state;
-    if (stepIndex === 0) {
-      return this.props.closeRegistration();
-    }
 
-    if (!this.state.loading) {
+    if (stepIndex === 0) {
+      this.props.closeRegistration();
+    } else if (!this.state.loading) {
       this.dummyAsync(() => this.setState({
         loading: false,
         stepIndex: stepIndex - 1,
@@ -224,7 +190,9 @@ class AdminEditModal extends Component {
   render() {
     return (
       <div>
-        <a style={styles.link} label="Dialog" onTouchTap={this.handleOpen}><img src={'../../img/edit.png'} style={styles.editPen} /></a>
+        <a style={styles.link} label="Dialog" onTouchTap={this.handleOpen}>
+          <img alt="edit" src={'../../img/edit.png'} style={styles.editPen} />
+        </a>
         <Dialog
           modal={false}
           autoScrollBodyContent
@@ -249,7 +217,8 @@ class AdminEditModal extends Component {
                   name="phone"
                   validate={required}
                   component={renderTextField}
-                  label="Phone" type="text"
+                  label="Phone"
+                  type="text"
                   floatingLabelFixed
                 />
 
@@ -257,14 +226,15 @@ class AdminEditModal extends Component {
                   name="email"
                   validate={[required, email]}
                   component={renderTextField}
-                  label="Email" type="text"
+                  label="Email"
+                  type="text"
                   floatingLabelFixed
                 />
 
                 <Field
                   name="area"
                   label="Supported locations"
-                  component={renderChipInput}
+                  component={ChipInputWrapper}
                   id="supportedLocations"
                   dataSource={cityList}
                   floatingLabelFixed
@@ -319,7 +289,7 @@ class AdminEditModal extends Component {
                   name="subjects"
                   label="Subjects"
                   validate={required}
-                  component={renderChipInput}
+                  component={ChipInputWrapper}
                   id="subjects"
                   dataSource={subjectList}
                   floatingLabelFixed
@@ -354,28 +324,3 @@ class AdminEditModal extends Component {
     );
   }
 }
-
-AdminEditModal = reduxForm({
-  form: 'myProfileEditForm',
-  destroyOnUnmount: true,
-  enableReinitialize: true,
-})(AdminEditModal);
-
-AdminEditModal = connect(
-  (state, ownProps) => ({
-    initialValues: ownProps.user,
-  }),
-)(AdminEditModal);
-
-const selector = formValueSelector('myProfileEditForm');
-AdminEditModal = connect(
-  (state) => {
-    const officeVisit = selector(state, 'officeVisit');
-    return {
-      officeVisit,
-    };
-  },
-)(AdminEditModal);
-
-
-export default AdminEditModal;

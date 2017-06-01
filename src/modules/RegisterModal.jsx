@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import Dialog from 'material-ui-old/Dialog';
 import { Step, Stepper, StepLabel } from 'material-ui-old/Stepper';
 import FlatButton from 'material-ui-old/FlatButton';
@@ -35,6 +35,7 @@ const styles = {
     color: theme.legacyPalette.primary2Color,
   },
   dialogFixTop: {
+    border: 0,
     zIndex: '1302',
     display: 'flex',
     flexFlow: 'row nowrap',
@@ -49,11 +50,46 @@ const styles = {
 };
 
 @Radium
-class RegisterModal extends Component {
+class RegisterModal extends React.Component {
 
   state = {
     open: false,
     stepIndex: 0,
+  };
+
+  getStepContent = (stepIndex) => {
+    switch (stepIndex) {
+      case 0:
+        return (
+          <BasicInfoFields
+            stepIndex={stepIndex}
+            onSubmit={this.handleNext}
+            handleCancel={this.handleClose}
+          />
+        );
+      case 1:
+        return (
+          <OccupationFields
+            stepIndex={stepIndex}
+            onSubmit={this.handleNext}
+            handleCancel={this.handleClose}
+            handlePrev={this.handlePrev}
+            officeVisitPossible={false}
+          />
+        );
+      case 2:
+        return (
+          <ExpertProfileFields
+            stepIndex={stepIndex}
+            onSubmit={this.handleSubmit}
+            handleCancel={this.handleClose}
+            handlePrev={this.handlePrev}
+          />
+        );
+      default:
+        console.log('Unexpected stepIndex in RegisterModal');
+        return null;
+    }
   };
 
   handleOpen = () => {
@@ -64,11 +100,7 @@ class RegisterModal extends Component {
     this.setState({ open: false, stepIndex: 0 });
   };
 
-  handleCancel = () => {
-    this.setState({ open: false, stepIndex: 0 });
-  };
-
-  handleNext = (values) => {
+  handleNext = () => {
     const { stepIndex } = this.state;
     if (stepIndex < 2) {
       this.setState({ stepIndex: stepIndex + 1 });
@@ -89,38 +121,6 @@ class RegisterModal extends Component {
     this.setState({ open: false, stepIndex: 0 });
   };
 
-  getStepContent(stepIndex) {
-    switch (stepIndex) {
-      case 0:
-        return (
-          <BasicInfoFields
-            stepIndex={stepIndex}
-            onSubmit={this.handleNext}
-            handleCancel={this.handleCancel}
-          />
-        );
-      case 1:
-        return (
-          <OccupationFields
-            stepIndex={stepIndex}
-            onSubmit={this.handleNext}
-            handleCancel={this.handleCancel}
-            handlePrev={this.handlePrev}
-            officeVisitPossible={false}
-          />
-        );
-      case 2:
-        return (
-          <ExpertProfileFields
-            stepIndex={stepIndex}
-            onSubmit={this.handleSubmit}
-            handleCancel={this.handleCancel}
-            handlePrev={this.handlePrev}
-          />
-        );
-    }
-  }
-
   render() {
     const { stepIndex } = this.state;
 
@@ -132,6 +132,7 @@ class RegisterModal extends Component {
           <Dialog
             modal
             open={this.state.open}
+            onRequestClose={this.handleClose}
             autoScrollBodyContent
             style={styles.dialogFixTop}
             contentStyle={styles.contentStyle}

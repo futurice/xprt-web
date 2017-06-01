@@ -208,10 +208,17 @@ class Contact extends React.Component {
             { !this.state.feedbackSent ? (
               <div style={styles.rightText}>
                 <p>
-              Xprt connects teachers and experts for the benefit of Finnish school children. Arranging a visiting lecture from a professional expert has become easier.
-            </p>
+                  Xprt connects teachers and experts for the benefit of Finnish school children.
+                  Arranging a visiting lecture from a professional expert has become easier.
+                </p>
 
-                <p>Contact us to hear more. <span style={{ ...styles.requiredText, ...styles.mobileHide }}>* marks a required field</span></p>
+                <p>
+                  Contact us to hear more.
+
+                  <span style={{ ...styles.requiredText, ...styles.mobileHide }}>
+                    * marks a required field
+                  </span>
+                </p>
 
                 <ContactForm onSubmit={(fields) => {
                   this.props.submitFeedback(fields, (err) => {

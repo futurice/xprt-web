@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
-import theme from '../utils/theme';
+import React from 'react';
 
-export default class HundredLogo extends Component {
+export default class HundredLogo extends React.Component {
   render() {
     return (
       <div style={{ marginRight: '1em' }}>

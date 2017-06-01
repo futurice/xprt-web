@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class FuturiceLogo extends Component {
+export default class FuturiceLogo extends React.Component {
   render() {
     return (
       <div>

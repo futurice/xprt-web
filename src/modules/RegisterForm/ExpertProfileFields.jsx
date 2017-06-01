@@ -1,12 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import MUITextField from '../../components/MUITextField';
-import ChipInput from '../../components/ChipInput';
-import MenuItem from 'material-ui-old/MenuItem';
-import AutoComplete from 'material-ui-old/AutoComplete';
-import DialogButtons from '../../components/DialogButtons';
-import styles from './registerFormStyles';
 
+import ChipInputWrapper from '../../components/ChipInputWrapper';
+import MUITextField from '../../components/MUITextField';
+import DialogButtons from '../../components/DialogButtons';
+
+// TODO: fetch from backend
 const subjectList = [
   'Liikunta',
   'Äidinkieli',
@@ -18,85 +17,40 @@ const subjectList = [
   'Historia',
 ];
 
+// TODO: fetch from backend
 const cityList = [
   'Helsinki',
   'Espoo',
   'Vantaa',
 ];
 
-const renderTextField = ({ input, label, meta: { touched, error }, ...custom }) => (
+const renderTextField = ({ input, label, meta: { touched, error }, ...rest }) => (
   <MUITextField
     floatingLabelText={label}
     errorText={touched && error}
     {...input}
-    {...custom}
+    {...rest}
   />
 );
 
-/* const renderChipInput = props => (
-  <ChipInput
-    onChange={(chips) => handleChange(chips)} // Chips inside textfield
-    filter={AutoComplete.fuzzyFilter} // Autocomplete
-    dataSource={props.dataSource} // Autocomplete (source of suggestions)
-    maxSearchResults={5} // Autocomplete (number of suggestions shown)
-    hintText={props.hintText}
-    floatingLabelText={props.label}
-    floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
-    underlineFocusStyle={styles.underlineStyle}
-    floatingLabelFixed={true}
-    className='formcontainer'
-    fullWidth={true}/>
-)*/
+const required = value => (value ? undefined : 'Required');
+const chipRequired = value => (value ? undefined : 'At least one chip');
 
-const required = value => value ? undefined : 'Required';
-const chipRequired = value => value ? undefined : 'At least one chip';
-
-const renderChipInput = ({ input, label, hintText, dataSource, meta: { touched, error }, ...custom }) => (
-  <ChipInput
-
-    {...input}
-    value={input.value || []}
-    onRequestAdd={(addedChip) => {
-      let values = input.value || [];
-      values = values.slice();
-      values.push(addedChip);
-      input.onChange(values);
-    }}
-    onRequestDelete={(deletedChip) => {
-      let values = input.value || [];
-      values = values.filter(v => v !== deletedChip);
-      input.onChange(values);
-    }}
-    onBlur={() => input.onBlur()}
-
-    onChange={chips => handleChange(chips)} // Chips inside textfield
-    filter={AutoComplete.fuzzyFilter} // Autocomplete
-    maxSearchResults={5} // Autocomplete (number of suggestions shown)
-    hintText={hintText}
-    floatingLabelText={label}
-    floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
-    underlineFocusStyle={styles.underlineStyle}
-    floatingLabelFixed
-    className="formcontainer"
-    fullWidth
-    dataSource={dataSource}
-    {...custom}
-  />
-);
-
-
-class ExpertProfileFields extends Component {
+@reduxForm({
+  form: 'registerForm',
+  destroyOnUnmount: false,
+})
+export default class ExpertProfileFields extends React.Component {
 /* This prevents enter from closing the registration window*/
-  onKeyPress(event) {
-    if (event.which === 13 /* Enter */) {
-      event.preventDefault();
-    }
-  }
+  // onKeyPress(event) {
+  //   if (event.which === 13 /* Enter */) {
+  //     event.preventDefault();
+  //   }
+  // }
   render() {
     return (
       <form
         onSubmit={this.props.handleSubmit}
-        onKeyPress={this.onKeyPress}
       >
         <div style={{ height: 394 }}>
           <Field
@@ -104,7 +58,7 @@ class ExpertProfileFields extends Component {
             label="Short introduction"
             component={renderTextField}
             type="text"
-            hintText="Tell briefly about you, your expertise and experience"
+            hintText="Describe yourself, your expertise and experience briefly"
             floatingLabelFixed
             validate={required}
           />
@@ -112,10 +66,10 @@ class ExpertProfileFields extends Component {
           <Field
             name="subjects"
             label="Subjects"
-            component={renderChipInput}
+            component={ChipInputWrapper}
             id="subjects"
             dataSource={subjectList}
-            hintText="List of subjects you could teach about"
+            hintText="List the subjects you could teach about"
             validate={chipRequired}
           />
 
@@ -134,7 +88,7 @@ class ExpertProfileFields extends Component {
           <Field
             name="supportedLocations"
             label="Supported locations"
-            component={renderChipInput}
+            component={ChipInputWrapper}
             id="supportedLocations"
             dataSource={cityList}
             hintText="List the cities you could teach in"
@@ -152,10 +106,3 @@ class ExpertProfileFields extends Component {
     );
   }
 }
-
-ExpertProfileFields = reduxForm({
-  form: 'registerForm',
-  destroyOnUnmount: false,
-})(ExpertProfileFields);
-
-export default ExpertProfileFields;

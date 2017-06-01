@@ -226,12 +226,18 @@ class About extends React.Component {
             <div style={styles.leftSpace} />
             <div style={styles.leftText}>
               <p style={styles.smallHeader}>TEACHERS</p>
-              <p>Download and install the app to browse and view the experts profile. Easily invite experts to your classroom.</p>
+              <p>
+                Download and install the app to browse and view the experts profile. Easily invite
+                experts to your classroom.
+              </p>
               <FlatButton label="DOWNLOAD FOR IPHONE" style={styles.buttonStyle} /><br />
               <FlatButton label="DOWNLOAD FOR ANDROID" style={styles.buttonStyle} />
 
               <p style={styles.smallHeaderUnder}>EXPERTS</p>
-              <p>Sign up as an expert and  to share your skills for the benefit of the future generation.</p>
+              <p>
+                Sign up as an expert and  to share your skills for the benefit of the future
+                generation.
+              </p>
               {this.props.isLoggedIn ?
                 <FlatButton label="MY PROFILE" style={styles.buttonStyle} onTouchTap={() => this.props.changeView('/profile')} />
                 :
@@ -244,7 +250,8 @@ class About extends React.Component {
             </div>
             <div style={styles.rightText}>
               <p>
-                Xprt connects teachers and experts for the benefit on Finnish school children. Arranging a visiting lecture from a professional expert has become easier
+                Xprt connects teachers and experts for the benefit on Finnish school children.
+                Arranging a visiting lecture from a professional expert has become easier
               </p>
               <p style={styles.mobileHide}>
                 See Xprt in action.
@@ -253,7 +260,13 @@ class About extends React.Component {
                 <h1 style={styles.bigHeader}>About</h1>
               </div>
               <div style={styles.video}>
-                <iframe style={styles.videoSize} src="https://www.youtube.com/embed/niGGKthoCNQ" frameBorder="0" allowFullScreen />
+                <iframe
+                  title="HundrED introduction video"
+                  style={styles.videoSize}
+                  src="https://www.youtube.com/embed/niGGKthoCNQ"
+                  frameBorder="0"
+                  allowFullScreen
+                />
               </div>
             </div>
             <div style={styles.rightSpace} />

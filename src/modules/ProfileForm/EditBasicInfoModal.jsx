@@ -1,13 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import Radium from 'radium';
 import FlatButton from 'material-ui-old/FlatButton';
 import Dialog from 'material-ui-old/Dialog';
-import AutoComplete from 'material-ui-old/AutoComplete';
 
 import MUITextField from '../../components/MUITextField';
-import ChipInput from '../../components/ChipInput';
+import ChipInputWrapper from '../../components/ChipInputWrapper';
 import styles from './editModalStyles';
 
 const cityList = [
@@ -16,64 +15,44 @@ const cityList = [
   'Vantaa',
 ];
 
-const required = value => value ? undefined : 'Required';
+const required = value => (value ? undefined : 'Required');
 
-const email = value =>
+const email = value => (
   value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value) ?
-  'Invalid email address' : undefined;
+  'Invalid email address' : undefined
+);
 
-const tel = value =>
+const tel = value => (
   value && !/^\d{8,10}$/.test(value) ?
-  'Invalid phone number' : undefined;
+  'Invalid phone number' : undefined
+);
 
-const name = value =>
+const name = value => (
   value && !/^[A-ZÅÄÖa-zåäö\s-]{3,100}$/.test(value) ?
-  'Name must contain only letters and be at least 3 characters long' : undefined;
+  'Name must contain only letters and be at least 3 characters long' : undefined
+);
 
-const renderTextField = ({ input, label, meta: { touched, error }, ...custom }) => (
+const renderTextField = ({ input, label, meta: { touched, error }, ...rest }) => (
   <MUITextField
     floatingLabelText={label}
     errorText={touched && error}
     {...input}
-    {...custom}
+    {...rest}
   />
 );
 
-const renderChipInput = ({ input, label, hintText, dataSource, meta: { touched, error }, ...custom }) => (
-  <ChipInput
+const mapStateToProps = (state, ownProps) => ({
+  initialValues: ownProps.expert,
+});
 
-    {...input}
-    value={input.value || []}
-    onRequestAdd={(addedChip) => {
-      let values = input.value || [];
-      values = values.slice();
-      values.push(addedChip);
-      input.onChange(values);
-    }}
-    onRequestDelete={(deletedChip) => {
-      let values = input.value || [];
-      values = values.filter(v => v !== deletedChip);
-      input.onChange(values);
-    }}
-    onBlur={() => input.onBlur()}
-
-    onChange={chips => handleChange(chips)} // Chips inside textfield
-    filter={AutoComplete.fuzzyFilter} // Autocomplete
-    maxSearchResults={5} // Autocomplete (number of suggestions shown)
-    hintText={hintText}
-    floatingLabelText={label}
-    floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
-    underlineFocusStyle={styles.underlineStyle}
-    floatingLabelFixed
-    className="formcontainer"
-    fullWidth
-    dataSource={dataSource}
-    {...custom}
-  />
-);
-
+@connect(mapStateToProps)
+@reduxForm({
+  form: 'myProfileEditForm',
+  destroyOnUnmount: false,
+  enableReinitialize: true,
+})
 @Radium
-class BasicInfoModal extends Component {
+class BasicInfoModal extends React.Component {
 
   state = {
     open: false,
@@ -90,7 +69,9 @@ class BasicInfoModal extends Component {
   render() {
     return (
       <div>
-        <a style={styles.link} label="Dialog" onTouchTap={this.handleOpen}><img src={'../../img/edit.png'} style={styles.editPen} /></a>
+        <a style={styles.link} label="Dialog" onTouchTap={this.handleOpen}>
+          <img alt="edit" src={'../../img/edit.png'} style={styles.editPen} />
+        </a>
         <Dialog
           modal={false}
           autoScrollBodyContent
@@ -114,20 +95,22 @@ class BasicInfoModal extends Component {
                   name="phone"
                   validate={[required, tel]}
                   component={renderTextField}
-                  label="Phone" type="text"
+                  label="Phone"
+                  type="text"
                   floatingLabelFixed
                 />
                 <Field
                   name="email"
                   validate={[required, email]}
                   component={renderTextField}
-                  label="Email" type="text"
+                  label="Email"
+                  type="text"
                   floatingLabelFixed
                 />
                 <Field
                   name="area"
                   label="Supported locations"
-                  component={renderChipInput}
+                  component={ChipInputWrapper}
                   id="supportedLocations"
                   dataSource={cityList}
                   floatingLabelFixed
@@ -149,23 +132,10 @@ class BasicInfoModal extends Component {
               />
             </form>
           </div>
-
         </Dialog>
       </div>
     );
   }
 }
-
-BasicInfoModal = reduxForm({
-  form: 'myProfileEditForm',
-  destroyOnUnmount: false,
-  enableReinitialize: true,
-})(BasicInfoModal);
-
-BasicInfoModal = connect(
-  (state, ownProps) => ({
-    initialValues: ownProps.expert,
-  }),
-)(BasicInfoModal);
 
 export default BasicInfoModal;

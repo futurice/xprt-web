@@ -23,12 +23,12 @@ export default class EditPictureModal extends React.Component {
     this.setState({ open: false });
   };
 
-  _handleSubmit(e) {
+  handleSubmit(e) {
     console.log('handle uploading-', this.state.file);
     this.props.doEdit(e);
   }
 
-  _handleImageChange(e) {
+  handleImageChange(e) {
     e.preventDefault();
 
     const reader = new FileReader();
@@ -46,16 +46,21 @@ export default class EditPictureModal extends React.Component {
 
   render() {
     const { imagePreviewUrl } = this.state;
-    let $imagePreview = null;
+    let imagePreview = null;
     if (imagePreviewUrl) {
-      $imagePreview = (<img style={styles.editProfilePicture} src={imagePreviewUrl} />);
+      imagePreview = (
+        // eslint-disable-next-line jsx-a11y/img-redundant-alt
+        <img alt="Edit profile picture" style={styles.editProfilePicture} src={imagePreviewUrl} />
+      );
     } else {
-      $imagePreview = (<div style={styles.editProfilePicture}>Please select a profile picture</div>);
+      imagePreview = (<div style={styles.editProfilePicture}>Please select a profile picture</div>);
     }
 
     return (
       <div>
-        <a style={styles.link} label="Dialog" onTouchTap={this.handleOpen}><img src={'../../img/edit.png'} style={styles.editPenLeft} /></a>
+        <a style={styles.link} label="Dialog" onTouchTap={this.handleOpen}>
+          <img alt="edit" src={'../../img/edit.png'} style={styles.editPenLeft} />
+        </a>
         <Dialog
           title="Choose your avatar"
           modal={false}
@@ -67,9 +72,9 @@ export default class EditPictureModal extends React.Component {
         >
           <div style={styles.editPictureWindow}>
             <form onSubmit={this.props.handleSubmit}>
-              <form name="image" onSubmit={e => this._handleSubmit(e)}>
+              <form name="image" onSubmit={e => this.handleSubmit(e)}>
                 <div className="imgPreview" style={styles.imgPreview}>
-                  {$imagePreview}
+                  {imagePreview}
                 </div>
 
                 <div style={styles.buttonArea}>
@@ -80,8 +85,9 @@ export default class EditPictureModal extends React.Component {
                     containerElement="label"
                   >
                     <input
-                      type="file" style={styles.uploadInput}
-                      onChange={e => this._handleImageChange(e)}
+                      type="file"
+                      style={styles.uploadInput}
+                      onChange={e => this.handleImageChange(e)}
                     />
                   </FlatButton>
                   <FlatButton
@@ -89,15 +95,13 @@ export default class EditPictureModal extends React.Component {
                     labelPosition="before"
                     style={styles.button}
                     containerElement="label"
-                    onClick={e => this._handleSubmit(e)}
+                    onClick={e => this.handleSubmit(e)}
                   />
                 </div>
               </form>
             </form>
           </div>
-
         </Dialog>
-
       </div>
     );
   }

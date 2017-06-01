@@ -9,14 +9,12 @@ import { connect } from 'react-redux';
 import MUITextField from '../../components/MUITextField';
 import styles from './editModalStyles';
 
-const required = value => value ? undefined : 'Required';
-
-const renderTextField = ({ input, label, meta: { touched, error }, ...custom }) => (
+const renderTextField = ({ input, label, meta: { touched, error }, ...rest }) => (
   <MUITextField
     floatingLabelText={label}
     errorText={touched && error}
     {...input}
-    {...custom}
+    {...rest}
   />
 );
 
@@ -28,6 +26,18 @@ const renderCheckbox = ({ input, label }) => (
   />
 );
 
+const selector = formValueSelector('companyDetailsForm');
+const mapStateToProps = (state, ownProps) => ({
+  initialValues: ownProps.expert,
+  officeVisitPossible: selector(state, 'officeVisit'),
+});
+
+@connect(mapStateToProps)
+@reduxForm({
+  form: 'companyDetailsForm',
+  destroyOnUnmount: false,
+  enableReinitialize: true,
+})
 @Radium
 export default class EditCompanyDetailsModal extends React.Component {
   state = {
@@ -45,7 +55,9 @@ export default class EditCompanyDetailsModal extends React.Component {
   render() {
     return (
       <div>
-        <a style={styles.link} label="Dialog" onTouchTap={this.handleOpen}><img src={'../../img/edit.png'} style={styles.editPen} /></a>
+        <a style={styles.link} label="Dialog" onTouchTap={this.handleOpen}>
+          <img alt="edit" src={'../../img/edit.png'} style={styles.editPen} />
+        </a>
         <Dialog
           modal={false}
           autoScrollBodyContent
@@ -80,17 +92,20 @@ export default class EditCompanyDetailsModal extends React.Component {
                 label="Office visit possible"
               />
 
-              <p>Check this box if you agree that teachers can come to your office with
-                  a group of students</p>
+              <p>
+                Check this box if you agree that teachers can come to your office with
+                a group of students
+              </p>
 
-              {this.props.officeVisitPossible &&
-              <Field
-                name="address"
-                label="Office address"
-                component={renderTextField}
-                id="officeAddress"
-                floatingLabelFixed
-              />
+              {
+                this.props.officeVisitPossible &&
+                <Field
+                  name="address"
+                  label="Office address"
+                  component={renderTextField}
+                  id="officeAddress"
+                  floatingLabelFixed
+                />
               }
             </div>
             <FlatButton
@@ -113,25 +128,3 @@ export default class EditCompanyDetailsModal extends React.Component {
     );
   }
 }
-
-EditCompanyDetailsModal = reduxForm({
-  form: 'companyDetailsForm',
-  destroyOnUnmount: false,
-  enableReinitialize: true,
-})(EditCompanyDetailsModal);
-
-EditCompanyDetailsModal = connect(
-  (state, ownProps) => ({
-    initialValues: ownProps.expert,
-  }),
-)(EditCompanyDetailsModal);
-
-const selector = formValueSelector('companyDetailsForm');
-EditCompanyDetailsModal = connect(
-  (state) => {
-    const officeVisitPossible = selector(state, 'officeVisit');
-    return {
-      officeVisitPossible,
-    };
-  },
-)(EditCompanyDetailsModal);

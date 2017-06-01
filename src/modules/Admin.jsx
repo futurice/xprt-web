@@ -330,7 +330,8 @@ class AdminView extends React.Component {
       return <CircularProgress />;
     }
 
-    // this function checks if any of lecture data mathches with search and makes an array of the matching data
+    // this function checks if any of lecture data mathches with search and makes an array of the
+    // matching data
     let filteredLectures = lectures.filter((lecture) => {
       const lectureName = lecture.lecturetheme.toLowerCase();
       const expertName = lecture.ExpertName.toLowerCase();
@@ -351,13 +352,14 @@ class AdminView extends React.Component {
       if (stateValue === 'ignored' && lectureStatus === 'pending') {
         const datesent = new Date(lecture.datesent);
         const today = new Date();
-        const days = dateDiffInDays(today, datesent, msPerDay);
+        const days = this.dateDiffInDays(today, datesent, msPerDay);
         if (days >= 14) {
           lectureStatus = 'ignored';
         }
       }
 
-      // returns if any data matches with the search, also checks if user wants to see all lectures or for example held lectures
+      // returns if any data matches with the search, also checks if user wants to see all lectures
+      // or for example held lectures
       return (lectureName.indexOf(searchString) !== -1
       || expertName.indexOf(searchString) !== -1
       || teacherName.indexOf(searchString) !== -1
@@ -425,7 +427,8 @@ class AdminView extends React.Component {
       return <span>{status} {day}.{month}.{year}</span>;
     }
 
-    // loops trough every lecture and prints all information of a lecture and returns an expandable div
+    // loops trough every lecture and prints all information of a lecture and returns an expandable
+    // div
     filteredLectures = filteredLectures.map(lecture => (
       <div key={lecture.lecturetheme}>
         <Card style={{ ...styles.colorIndicatorGreen, ...styles.cardMargin }}>
@@ -489,7 +492,8 @@ class AdminView extends React.Component {
         </Card>
       </div>
       ));
-      // this function checks if any of user data mathches with search and makes an array of the matching data
+      // this function checks if any of user data mathches with search and makes an array of the
+      // matching data
     let filteredUsers = users.filter((user) => {
       const contactName = user.name.toLowerCase();
       const contactEmail = user.email.toLowerCase();
@@ -515,7 +519,8 @@ class AdminView extends React.Component {
           // ||contactCity.indexOf(searchString) !== -1
     });
 
-        // loops trough every user and prints all information of a lecture and returns an expandable div
+        // loops trough every user and prints all information of a lecture and returns an expandable
+        // div
     filteredUsers = filteredUsers.map(user => (
       <div key={user.name}>
         <Card style={{ ...styles.colorIndicatorGreen, ...styles.cardMargin }}>
@@ -602,7 +607,12 @@ class AdminView extends React.Component {
                 <br />
                 <div style={styles.firstWrapper}>
 
-                  <DropDownMenu value={this.state.userValue} onChange={this.userHandleChange} openImmediately={false} style={styles.DropDownMenu}>
+                  <DropDownMenu
+                    value={this.state.userValue}
+                    onChange={this.userHandleChange}
+                    openImmediately={false}
+                    style={styles.DropDownMenu}
+                  >
                     <MenuItem value={'all'} primaryText="ALL" />
                     <MenuItem value={'expert'} primaryText="EXPERTS" />
                     <MenuItem value={'teacher'} primaryText="TEACHERS" />
@@ -629,7 +639,12 @@ class AdminView extends React.Component {
               <br />
               <div style={styles.firstWrapper}>
 
-                <DropDownMenu value={this.state.lectureValue} onChange={this.lectureHandleChange} openImmediately={false} style={styles.DropDownMenu}>
+                <DropDownMenu
+                  value={this.state.lectureValue}
+                  onChange={this.lectureHandleChange}
+                  openImmediately={false}
+                  style={styles.DropDownMenu}
+                >
                   <MenuItem value={'all'} primaryText="ALL" />
                   <MenuItem value={'pending'} primaryText="PENDING" />
                   <MenuItem value={'accepted'} primaryText="ACCEPTED" />

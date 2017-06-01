@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
-import theme from '../utils/theme';
+import React from 'react';
 
-export default class XprtLogoSmall extends Component {
+export default class XprtLogoSmall extends React.Component {
   render() {
     return (
       <svg width="82px" height="32px" viewBox="0 0 291 116" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">

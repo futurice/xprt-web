@@ -1,3 +1,6 @@
+// This is a version of https://github.com/TeamWertarbyte/material-ui-chip-input
+// adapted to use 'material-ui-old' imports
+
 /**
  * Notice: Some code was adapted from Material-UI's text field.
  *         Copyright (c) 2014 Call-Em-All (https://github.com/callemall/material-ui)

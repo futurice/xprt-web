@@ -8,4 +8,7 @@ export default {
     color: theme.legacyPalette.primary2Color,
     borderColor: theme.legacyPalette.primary2Color,
   },
+  hintStyle: {
+    color: theme.legacyPalette.hintColor,
+  },
 };

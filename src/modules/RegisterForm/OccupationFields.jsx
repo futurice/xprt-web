@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Field, reduxForm, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
-import MUITextField from '../../components/MUITextField';
 import Checkbox from 'material-ui-old/Checkbox';
-import DialogButtons from '../../components/DialogButtons';
-import styles from './registerFormStyles';
 
-const renderTextField = ({ input, label, meta: { touched, error }, ...custom }) => (
+import MUITextField from '../../components/MUITextField';
+import DialogButtons from '../../components/DialogButtons';
+
+const renderTextField = ({ input, label, meta: { touched, error }, ...rest }) => (
   <MUITextField
     floatingLabelText={label}
     errorText={touched && error}
     {...input}
-    {...custom}
+    {...rest}
   />
 );
 
@@ -23,19 +23,27 @@ const renderCheckbox = ({ input, label }) => (
   />
 );
 
+const selector = formValueSelector('registerForm');
+const mapStateToProps = state => ({
+  officeVisitPossible: selector(state, 'officeVisitPossible'),
+});
 
-class OccupationFields extends Component {
+@reduxForm({
+  form: 'registerForm',
+  destroyOnUnmount: false,
+})
+@connect(mapStateToProps)
+export default class OccupationFields extends React.Component {
   /* This prevents enter from closing the registration window*/
-  onKeyPress(event) {
-    if (event.which === 13 /* Enter */) {
-      event.preventDefault();
-    }
-  }
+  // onKeyPress(event) {
+  //   if (event.which === 13 /* Enter */) {
+  //     event.preventDefault();
+  //   }
+  // }
   render() {
     return (
       <form
         onSubmit={this.props.handleSubmit}
-        onKeyPress={this.onKeyPress}
       >
         <div style={{ height: 394 }}>
           <Field
@@ -59,8 +67,10 @@ class OccupationFields extends Component {
             label="Office visit possible"
           />
 
-          <p>Check this box if you agree that teachers can come to your office with
-              a group of students</p>
+          <p>
+            Check this box if you agree that teachers can come to your office with a group of
+            students
+          </p>
 
           {this.props.officeVisitPossible &&
           <Field
@@ -74,27 +84,10 @@ class OccupationFields extends Component {
         <DialogButtons
           stepIndex={this.props.stepIndex}
           handlePrev={this.props.handlePrev}
+          handleSubmit={this.props.handleSubmit}
           handleCancel={this.props.handleCancel}
         />
       </form>
     );
   }
 }
-
-OccupationFields = reduxForm({
-  form: 'registerForm',
-  destroyOnUnmount: false,
-})(OccupationFields);
-
-const selector = formValueSelector('registerForm');
-OccupationFields = connect(
-  (state) => {
-    // can select values individually
-    const officeVisitPossible = selector(state, 'officeVisitPossible');
-    return {
-      officeVisitPossible,
-    };
-  },
-)(OccupationFields);
-
-export default OccupationFields;

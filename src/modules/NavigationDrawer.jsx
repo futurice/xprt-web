@@ -3,18 +3,7 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { push } from 'react-router-redux';
 
-import Toolbar from 'material-ui/Toolbar';
-import Typography from 'material-ui/Typography';
-import IconButton from 'material-ui/IconButton';
-import Icon from 'material-ui/Icon';
-
-import { AppBar, Divider, Drawer, MenuItem } from 'material-ui-old';
-
-import List, {
-  ListItem,
-  ListItemText,
-  ListItemIcon,
-} from 'material-ui/List';
+import { Divider, Drawer, MenuItem } from 'material-ui-old';
 
 import isArray from 'lodash/isArray';
 
@@ -86,8 +75,6 @@ export default class NavigationDrawer extends React.Component {
   };
 
   render() {
-    const { close, changeView, drawerOpened, path, user } = this.props;
-
     return (
       <Drawer
         open={this.props.drawerOpened}
@@ -97,18 +84,19 @@ export default class NavigationDrawer extends React.Component {
       >
 
         {
-          routes.map((route, index) => {
+          routes.map((route) => {
             let active = (this.props.pathname === route.path);
             if (route.path === routes[0].path && this.props.pathname === '/') {
               active = true;
             }
 
-            if (isArray(route.hideWhenScope) && route.hideWhenScope.includes(this.props.user.scope)) {
+            if (isArray(route.hideWhenScope)
+              && route.hideWhenScope.includes(this.props.user.scope)) {
               return null;
             }
 
             return (
-              <div key={index}>
+              <div key={route.path}>
                 {route.separator ? <Divider /> : null}
                 <MenuItem
                   style={{
