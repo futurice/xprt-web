@@ -35,9 +35,8 @@ const styles = {
   teacherExpertWrapper: {
     display: 'flex',
     flexDirection: 'row',
-    alignItems: 'flex-end',
     flexWrap: 'no-wrap',
-    paddingBottom: '10%',
+    paddingBottom: '50px', // avoids phone images from overlapping
     '@media (max-width: 769px)': {
       flexDirection: 'column',
     },
@@ -68,6 +67,7 @@ const styles = {
   },
   headerWrapper: {
     display: 'flex',
+    marginTop: '10%',
   },
   // wrapping for whole page
   landingWrapper: {
@@ -77,7 +77,6 @@ const styles = {
     justifyContent: 'center',
     paddingLeft: '10%',
     paddingRight: '10%',
-    paddingTop: '5%',
     backgroundImage: `url(${XprtBackground})`,
     backgroundSize: 'cover',
   },
@@ -90,8 +89,9 @@ const styles = {
   // For Hundred & Futurice logos
   secondLogos: {
     display: 'flex',
+    alignItems: 'flex-end',
+    paddingBottom: '20px',
     alignSelf: 'flex-end',
-    marginTop: '5em',
     '@media (max-width: 769px)': {
       alignSelf: 'center',
       marginBottom: '3em',
@@ -140,7 +140,6 @@ const styles = {
     flex: 5,
     flexBasis: '200px',
     hyphens: 'auto',
-    height: '242px',
     '@media (max-width: 769px)': {
       textAlign: 'center',
     },
@@ -153,7 +152,6 @@ const styles = {
     flex: 4,
     flexBasis: '200px',
     hyphens: 'auto',
-    height: '242px',
     marginTop: '2em',
     '@media (min-width: 769px)': {
       borderLeft: '1px solid #333333',
