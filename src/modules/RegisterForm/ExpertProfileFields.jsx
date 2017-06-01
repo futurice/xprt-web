@@ -63,19 +63,23 @@ export default class ExpertProfileFields extends React.Component {
               name="shortIntroduction"
               label="Short introduction"
               component={renderTextField}
-              type="text"
               hintText="Describe yourself, your expertise and experience briefly"
               floatingLabelFixed
+              multiLine
+              rowsMax={6}
               validate={required}
             />
 
             <Field
               name="subjects"
-              label="Subjects"
+              floatingLabelText="Subjects"
               component={ChipInputWrapper}
               id="subjects"
               dataSource={subjectList}
               hintText="List the subjects you could teach about"
+              floatingLabelFixed
+              multiLine
+              rowsMax={6}
               validate={chipRequired}
             />
 
@@ -86,18 +90,20 @@ export default class ExpertProfileFields extends React.Component {
               hintText="Preferred topic in mind? Presentation or interactive? Most suitable for which ages? Any special equipment needed?"
               floatingLabelFixed
               multiLine
-              rows={2}
-              rowsMax={4}
+              rowsMax={6}
               validate={required}
             />
 
             <Field
               name="supportedLocations"
-              label="Supported locations"
+              floatingLabelText="Locations"
               component={ChipInputWrapper}
               id="supportedLocations"
               dataSource={cityList}
               hintText="List the cities you could teach in"
+              floatingLabelFixed
+              multiLine
+              rowsMax={6}
               validate={chipRequired}
             />
 

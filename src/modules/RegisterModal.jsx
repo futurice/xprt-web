@@ -16,13 +16,6 @@ const styles = {
     width: '100%',
     minHeight: 450,
   },
-  contentStyle: {
-    marginLeft: 60,
-    width: 708,
-  },
-  contentStyleResponsive: {
-    width: '98%',
-  },
   button: {
     border: '1px solid #555555',
     padding: 15,
@@ -126,18 +119,19 @@ class RegisterModal extends React.Component {
 
     return (
       <div>
-        <FlatButton label="CREATE AN ACCOUNT" style={{ ...styles.button, ...styles.buttonGold }} onTouchTap={this.handleOpen} /><br />
+        <FlatButton
+          label="CREATE AN ACCOUNT"
+          style={{ ...styles.button, ...styles.buttonGold }}
+          onTouchTap={this.handleOpen}
+        />
+        <Dialog
+          open={this.state.open}
+          onRequestClose={this.handleClose}
+          autoScrollBodyContent
+          style={styles.dialogFixTop}
+        >
 
-        <MediaQuery query="(min-width: 769px)">
-          <Dialog
-            modal
-            open={this.state.open}
-            onRequestClose={this.handleClose}
-            autoScrollBodyContent
-            style={styles.dialogFixTop}
-            contentStyle={styles.contentStyle}
-          >
-
+          <MediaQuery query="(min-width: 769px)">
             <Stepper activeStep={stepIndex}>
               <Step>
                 <StepLabel style={styles.stepLabel}>BASIC INFO</StepLabel>
@@ -149,24 +143,9 @@ class RegisterModal extends React.Component {
                 <StepLabel style={styles.stepLabel}>EXPERT PROFILE</StepLabel>
               </Step>
             </Stepper>
-
-            <div style={styles.fieldsStyle}>
-              {this.getStepContent(stepIndex)}
-            </div>
-
-          </Dialog>
-        </MediaQuery>
-
-        <MediaQuery query="(max-width: 768px)">
-          <Dialog
-            modal
-            open={this.state.open}
-            autoScrollBodyContent
-            style={styles.dialogFixTop}
-            contentStyle={styles.contentStyleResponsive}
-          >
-
-            <Stepper activeStep={stepIndex}>
+          </MediaQuery>
+          <MediaQuery query="(max-width: 768px)">
+            <Stepper orientation="vertical" activeStep={stepIndex}>
               <Step>
                 <StepLabel style={styles.stepLabel}>BASIC INFO</StepLabel>
               </Step>
@@ -177,13 +156,13 @@ class RegisterModal extends React.Component {
                 <StepLabel style={styles.stepLabel}>EXPERT PROFILE</StepLabel>
               </Step>
             </Stepper>
+          </MediaQuery>
 
-            <div style={styles.fieldsStyle}>
-              {this.getStepContent(stepIndex)}
-            </div>
+          <div style={styles.fieldsStyle}>
+            {this.getStepContent(stepIndex)}
+          </div>
 
-          </Dialog>
-        </MediaQuery>
+        </Dialog>
       </div>
     );
   }

@@ -59,6 +59,7 @@ export default {
     accent3Color: white,
     textColor: '#CCCCCC',
     hintColor: '#777777',
+    errorColor: '#F44336',
     alternateTextColor: white,
     menuTextColor: '#08412A',
     menuTextColorActive: '#fff',

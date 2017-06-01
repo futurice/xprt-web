@@ -9,6 +9,9 @@ const styles = {
   floatingLabelFocusStyle: {
     color: theme.legacyPalette.primary2Color,
   },
+  floatingLabelStyle: {
+    color: theme.legacyPalette.primary3Color,
+  },
   underlineStyle: {
     color: theme.legacyPalette.primary2Color,
     borderColor: theme.legacyPalette.primary2Color,
@@ -22,6 +25,12 @@ export default class ChipInputWrapper extends React.Component {
   static propTypes = {
     // eslint-disable-next-line react/forbid-prop-types
     input: PropTypes.object.isRequired,
+    // eslint-disable-next-line react/forbid-prop-types
+    meta: PropTypes.object,
+  };
+
+  static defaultProps = {
+    meta: null,
   };
 
   onRequestAdd = (addedChip, input) => {
@@ -68,11 +77,9 @@ export default class ChipInputWrapper extends React.Component {
         ]}
         filter={AutoComplete.fuzzyFilter} // Autocomplete
         maxSearchResults={5} // Autocomplete (number of suggestions shown)
-        openOnFocus
         hintStyle={styles.hintStyle}
-        floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
         underlineFocusStyle={styles.underlineStyle}
-        floatingLabelFixed
+        focusColor={theme.legacyPalette.primary2Color}
         className="formcontainer"
         fullWidth
         {...rest}

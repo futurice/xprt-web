@@ -84,7 +84,7 @@ const getStyles = (props, context, state) => {
   };
 
   if (state.isFocused) {
-    styles.floatingLabel.color = focusColor;
+    styles.floatingLabel.color = props.focusColor || focusColor;
   }
 
   if (props.floatingLabelText) {
@@ -413,6 +413,7 @@ class ChipInput extends React.Component {
       underlineFocusStyle,
       underlineShow,
       underlineStyle,
+      focusColor,
       defaultValue = [], // eslint-disable-line no-unused-vars
       filter,
       value,
@@ -456,11 +457,11 @@ class ChipInput extends React.Component {
     const floatingLabelTextElement = floatingLabelText && (
       <TextFieldLabel
         muiTheme={this.context.muiTheme}
-        style={Object.assign(styles.floatingLabel, this.props.floatingLabelStyle)}
         shrinkStyle={Object.assign(styles.floatingLabelFocusStyle, this.props.floatingLabelFocusStyle)}
         htmlFor={inputId}
         shrink={shrinkFloatingLabel}
         disabled={disabled}
+        style={styles.floatingLabel}
       >
         {floatingLabelText}
       </TextFieldLabel>
