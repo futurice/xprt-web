@@ -51,7 +51,7 @@ class DialogButtons extends React.Component {
           label={this.props.stepIndex === 2 ? 'Finish' : 'Next'}
           icon={this.props.stepIndex === 2 ? '' : <ArrowForward />}
           labelPosition="before"
-          type="submit"
+          type={'submit' /* this is here to enable submit on return press */}
           primary={this.props.stepIndex === 2}
           onTouchTap={this.props.handleSubmit}
           style={{ ...styles.button, ...styles.iconButton }}

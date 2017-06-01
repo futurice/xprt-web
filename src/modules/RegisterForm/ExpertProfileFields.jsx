@@ -49,59 +49,66 @@ export default class ExpertProfileFields extends React.Component {
   // }
   render() {
     return (
-      <form
-        onSubmit={this.props.handleSubmit}
-      >
-        <div style={{ height: 394 }}>
-          <Field
-            name="shortIntroduction"
-            label="Short introduction"
-            component={renderTextField}
-            type="text"
-            hintText="Describe yourself, your expertise and experience briefly"
-            floatingLabelFixed
-            validate={required}
-          />
+      <form onSubmit={this.props.handleSubmit}>
+        <div
+          style={{
+            minHeight: 450,
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+          }}
+        >
+          <div>
+            <Field
+              name="shortIntroduction"
+              label="Short introduction"
+              component={renderTextField}
+              type="text"
+              hintText="Describe yourself, your expertise and experience briefly"
+              floatingLabelFixed
+              validate={required}
+            />
 
-          <Field
-            name="subjects"
-            label="Subjects"
-            component={ChipInputWrapper}
-            id="subjects"
-            dataSource={subjectList}
-            hintText="List the subjects you could teach about"
-            validate={chipRequired}
-          />
+            <Field
+              name="subjects"
+              label="Subjects"
+              component={ChipInputWrapper}
+              id="subjects"
+              dataSource={subjectList}
+              hintText="List the subjects you could teach about"
+              validate={chipRequired}
+            />
 
-          <Field
-            name="lectureDetails"
-            label="Lecture details"
-            component={renderTextField}
-            hintText="Preferred topic in mind? Presentation or interactive? Most suitable for which ages? Any special equipment needed?"
-            floatingLabelFixed
-            multiLine
-            rows={2}
-            rowsMax={4}
-            validate={required}
-          />
+            <Field
+              name="lectureDetails"
+              label="Lecture details"
+              component={renderTextField}
+              hintText="Preferred topic in mind? Presentation or interactive? Most suitable for which ages? Any special equipment needed?"
+              floatingLabelFixed
+              multiLine
+              rows={2}
+              rowsMax={4}
+              validate={required}
+            />
 
-          <Field
-            name="supportedLocations"
-            label="Supported locations"
-            component={ChipInputWrapper}
-            id="supportedLocations"
-            dataSource={cityList}
-            hintText="List the cities you could teach in"
-            validate={chipRequired}
-          />
+            <Field
+              name="supportedLocations"
+              label="Supported locations"
+              component={ChipInputWrapper}
+              id="supportedLocations"
+              dataSource={cityList}
+              hintText="List the cities you could teach in"
+              validate={chipRequired}
+            />
 
+          </div>
+          <DialogButtons
+            stepIndex={this.props.stepIndex}
+            handlePrev={this.props.handlePrev}
+            handleCancel={this.props.handleCancel}
+            handleSubmit={this.props.handleSubmit}
+          />
         </div>
-        <DialogButtons
-          stepIndex={this.props.stepIndex}
-          handlePrev={this.props.handlePrev}
-          handleCancel={this.props.handleCancel}
-          handleSubmit={this.props.handleSubmit}
-        />
       </form>
     );
   }

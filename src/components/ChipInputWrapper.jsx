@@ -44,7 +44,7 @@ export default class ChipInputWrapper extends React.Component {
   };
 
   render() {
-    const { input, ...rest } = this.props;
+    const { input, meta, ...rest } = this.props;
 
     return (
       <ChipInput

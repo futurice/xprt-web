@@ -12,10 +12,6 @@ const styles = {
     color: theme.legacyPalette.primary2Color,
     borderColor: theme.legacyPalette.primary2Color,
   },
-  errorStyle: {
-    position: 'absolute',
-    right: 0,
-  },
   hintStyle: {
     color: theme.legacyPalette.hintColor,
   },
@@ -37,7 +33,6 @@ class MUITextField extends React.Component {
       floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
       underlineFocusStyle={styles.underlineStyle}
       hintStyle={styles.hintStyle}
-      errorStyle={styles.errorStyle}
       fullWidth
       {...rest}
     />

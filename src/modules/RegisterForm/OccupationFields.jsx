@@ -42,51 +42,58 @@ export default class OccupationFields extends React.Component {
   // }
   render() {
     return (
-      <form
-        onSubmit={this.props.handleSubmit}
-      >
-        <div style={{ height: 394 }}>
-          <Field
-            name="companyName"
-            label="Company name"
-            component={renderTextField}
-            id="companyName"
-          />
+      <form onSubmit={this.props.handleSubmit}>
+        <div
+          style={{
+            minHeight: 450,
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+          }}
+        >
+          <div>
+            <Field
+              name="companyName"
+              label="Company name"
+              component={renderTextField}
+              id="companyName"
+            />
 
-          <Field
-            name="title"
-            label="Title"
-            component={renderTextField}
-            id="title"
-          />
+            <Field
+              name="title"
+              label="Title"
+              component={renderTextField}
+              id="title"
+            />
 
-          <Field
-            name="officeVisitPossible"
-            id="officeVisitPossible"
-            component={renderCheckbox}
-            label="Office visit possible"
-          />
+            <Field
+              name="officeVisitPossible"
+              id="officeVisitPossible"
+              component={renderCheckbox}
+              label="Office visit possible"
+            />
 
-          <p>
-            Check this box if you agree that teachers can come to your office with a group of
-            students
-          </p>
+            <p>
+              Check this box if you agree that teachers can come to your office with a group of
+              students
+            </p>
 
-          {this.props.officeVisitPossible &&
-          <Field
-            name="officeAddress"
-            label="Office address"
-            component={renderTextField}
-            id="officeAddress"
+            {this.props.officeVisitPossible &&
+            <Field
+              name="officeAddress"
+              label="Office address"
+              component={renderTextField}
+              id="officeAddress"
+            />
+            }
+          </div>
+          <DialogButtons
+            stepIndex={this.props.stepIndex}
+            handlePrev={this.props.handlePrev}
+            handleSubmit={this.props.handleSubmit}
+            handleCancel={this.props.handleCancel}
           />
-          }
         </div>
-        <DialogButtons
-          stepIndex={this.props.stepIndex}
-          handlePrev={this.props.handlePrev}
-          handleSubmit={this.props.handleSubmit}
-          handleCancel={this.props.handleCancel}
-        />
       </form>
     );
   }

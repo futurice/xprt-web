@@ -55,21 +55,28 @@ class BasicInfoFields extends React.Component {
   /* This prevents enter from closing the registration window*/
   render() {
     return (
-      <form
-        onSubmit={this.props.handleSubmit}
-      >
-        <div style={{ height: 394 }}>
-          <Field name="name" validate={[required, name]} component={renderTextField} label="Name" type="text" />
-          <Field name="phone" validate={[required, tel]} component={renderTextField} label="Phone" type="text" />
-          <Field name="email" validate={[required, email]} component={renderTextField} label="Email" type="text" />
-          <Field name="password" validate={required} component={renderTextField} label="Password" type="password" />
-          <Field name="repeatpassword" validate={required} component={renderTextField} label="Repeat password" type="password" />
+      <form onSubmit={this.props.handleSubmit}>
+        <div
+          style={{
+            minHeight: 450,
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+          }}
+        >
+          <div>
+            <Field name="name" validate={[required, name]} component={renderTextField} label="Name" type="text" />
+            <Field name="phone" validate={[required, tel]} component={renderTextField} label="Phone" type="text" />
+            <Field name="email" validate={[required, email]} component={renderTextField} label="Email" type="text" />
+            <Field name="password" validate={required} component={renderTextField} label="Password" type="password" />
+            <Field name="repeatpassword" validate={required} component={renderTextField} label="Repeat password" type="password" />
+          </div>
+          <DialogButtons
+            stepIndex={this.props.stepIndex}
+            handleSubmit={this.props.handleSubmit}
+            handleCancel={this.props.handleCancel}
+          />
         </div>
-        <DialogButtons
-          stepIndex={this.props.stepIndex}
-          handleSubmit={this.props.handleSubmit}
-          handleCancel={this.props.handleCancel}
-        />
       </form>
     );
   }
