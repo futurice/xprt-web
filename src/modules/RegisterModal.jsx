@@ -27,15 +27,6 @@ const styles = {
   buttonGold: {
     color: theme.legacyPalette.primary2Color,
   },
-  dialogFixTop: {
-    border: 0,
-    zIndex: '1302',
-    display: 'flex',
-    flexFlow: 'row nowrap',
-    justifyContent: 'center',
-    width: '100%',
-    alignItems: 'baseline',
-  },
   stepLabel: {
     color: theme.legacyPalette.primary2Color,
     fontSize: 17,
@@ -128,7 +119,6 @@ class RegisterModal extends React.Component {
           open={this.state.open}
           onRequestClose={this.handleClose}
           autoScrollBodyContent
-          style={styles.dialogFixTop}
         >
 
           <MediaQuery query="(min-width: 769px)">
@@ -161,7 +151,6 @@ class RegisterModal extends React.Component {
           <div style={styles.fieldsStyle}>
             {this.getStepContent(stepIndex)}
           </div>
-
         </Dialog>
       </div>
     );
