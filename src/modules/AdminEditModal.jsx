@@ -6,6 +6,7 @@ import FlatButton from 'material-ui-old/FlatButton';
 import Dialog from 'material-ui-old/Dialog';
 import Checkbox from 'material-ui-old/Checkbox';
 
+import EditPen from '../../assets/edit.png';
 import MUITextField from '../components/MUITextField';
 import ChipInputWrapper from '../components/ChipInputWrapper';
 import theme from '../utils/theme';
@@ -191,7 +192,7 @@ export default class AdminEditModal extends React.Component {
     return (
       <div>
         <a style={styles.link} label="Dialog" onTouchTap={this.handleOpen}>
-          <img alt="edit" src={'../../img/edit.png'} style={styles.editPen} />
+          <img alt="edit" src={EditPen} style={styles.editPen} />
         </a>
         <Dialog
           modal={false}

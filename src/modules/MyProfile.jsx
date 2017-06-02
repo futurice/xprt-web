@@ -15,6 +15,8 @@ import { connect } from 'react-redux';
 
 import rest from '../utils/rest';
 
+import XprtBackground from '../../assets/xprt-background.png';
+import UnknownProfile from '../../assets/unknown.png';
 import EditCompanyDetailsModal from './ProfileForm/EditCompanyDetailsModal';
 import EditBasicInfoModal from './ProfileForm/EditBasicInfoModal';
 import EditExpertDetailsModal from './ProfileForm/EditExpertModal';
@@ -32,7 +34,7 @@ of the page overall
     paddingLeft: '30px',
     height: '360px',
     color: theme.legacyPalette.textColor,
-    backgroundImage: "url('../img/xprt-background.png')",
+    backgroundImage: `url(${XprtBackground})`,
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     textAlign: 'left',
@@ -41,6 +43,7 @@ of the page overall
     },
   },
   secondWrapper: {
+    boxShadow: '0 -20px 20px 0px #111',
     display: 'flex',
     flexDirection: 'row',
     color: theme.legacyPalette.textColor,
@@ -410,7 +413,7 @@ export default class MyProfile extends React.Component {
           }}
           avatar={
             <Avatar
-              src="../../img/placeholder_profilepicture.png"
+              src={UnknownProfile}
               size={60}
               style={styles.avatarStyle}
             />
@@ -479,7 +482,7 @@ export default class MyProfile extends React.Component {
           }}
           avatar={
             <Avatar
-              src="../../img/placeholder_profilepicture.png"
+              src={UnknownProfile}
               size={60}
               style={styles.avatarStyle}
             />
@@ -526,7 +529,7 @@ export default class MyProfile extends React.Component {
           }}
           avatar={
             <Avatar
-              src="../../img/placeholder_profilepicture.png"
+              src={UnknownProfile}
               size={60}
               style={styles.avatarStyle}
             />

@@ -3,6 +3,7 @@ import Radium from 'radium';
 import FlatButton from 'material-ui-old/FlatButton';
 import Dialog from 'material-ui-old/Dialog';
 
+import EditPen from '../../../assets/edit.png';
 import styles from './editModalStyles';
 
 @Radium
@@ -59,7 +60,7 @@ export default class EditPictureModal extends React.Component {
     return (
       <div>
         <a style={styles.link} label="Dialog" onTouchTap={this.handleOpen}>
-          <img alt="edit" src={'../../img/edit.png'} style={styles.editPenLeft} />
+          <img alt="edit" src={EditPen} style={styles.editPenLeft} />
         </a>
         <Dialog
           title="Choose your avatar"
