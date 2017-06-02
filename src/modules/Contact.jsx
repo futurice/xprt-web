@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 
 import FacebookIcon from '../components/FacebookIcon';
 import TwitterIcon from '../components/TwitterIcon';
+import XprtBackground from '../../assets/xprt-background.png';
 import Footer from '../components/Footer';
 import ContactForm from './ContactForm';
 
@@ -16,6 +17,8 @@ const styles = {
 
   wrapper: {
     color: theme.legacyPalette.textColor,
+    backgroundImage: `url(${XprtBackground})`,
+    backgroundSize: 'cover',
   },
   teacherExpertWrapper: {
     display: 'flex',
@@ -32,10 +35,12 @@ const styles = {
     flexWrap: 'wrap',
   },
   landingWrapper: {
-    minHeight: '80vh',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    minHeight: '100vh',
     paddingLeft: '4%',
     paddingRight: '4%',
-    marginTop: '20vh',
     '@media (max-width: 768px)': {
       marginTop: 10,
     },
@@ -66,6 +71,7 @@ const styles = {
     marginLeft: '3em',
     paddingLeft: '3em',
     '@media (max-width: 768px)': {
+      marginTop: 0,
       marginLeft: 0,
       paddingLeft: 0,
       textAlign: 'center',
@@ -114,14 +120,9 @@ const styles = {
       fontSize: '16px',
     },
   },
-  buttonStyle: {
-    border: '1px solid #555555',
-    padding: '15px',
-    borderRadius: '20px',
-    lineHeight: '0.4em',
-    marginTop: '1em',
-    marginBottom: '1em',
-    color: theme.legacyPalette.primary2Color,
+  iconButton: {
+    height: 56,
+    width: 56,
   },
   errorInput: {
     borderColor: 'red',
@@ -181,10 +182,10 @@ class Contact extends React.Component {
             00140 Helsinki
           </p>
               <p>info@xprt.fi</p>
-              <IconButton onTouchTap={() => (window.location = 'https://www.facebook.com/HundrEDorg/')}>
+              <IconButton style={styles.iconButton} onTouchTap={() => (window.location = 'https://www.facebook.com/HundrEDorg/')}>
                 <FacebookIcon />
               </IconButton>
-              <IconButton onTouchTap={() => (window.location = 'https://www.twitter.com/HundrEDorg/')}>
+              <IconButton style={styles.iconButton} onTouchTap={() => (window.location = 'https://www.twitter.com/HundrEDorg/')}>
                 <TwitterIcon />
               </IconButton>
             </div>

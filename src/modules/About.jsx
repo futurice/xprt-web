@@ -8,8 +8,9 @@ import { push } from 'react-router-redux';
 
 import rest from '../utils/rest';
 
-import LoginModal from './LoginModal';
-import RegisterModal from './RegisterModal';
+import { openLoginModal } from './LoginModal';
+import { openRegisterModal } from './RegisterModal';
+import XprtBackground from '../../assets/xprt-background.png';
 import Footer from '../components/Footer';
 
 import theme from '../utils/theme';
@@ -17,6 +18,8 @@ import theme from '../utils/theme';
 const styles = {
   wrapper: {
     color: theme.legacyPalette.textColor,
+    backgroundImage: `url(${XprtBackground})`,
+    backgroundSize: 'cover',
   },
   teacherExpertWrapper: {
     display: 'flex',
@@ -28,8 +31,6 @@ const styles = {
   },
   teacherExpertWrapperBottom: {
     display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
     paddingBottom: '25px',
     '@media (max-width: 768px)': {
       flexDirection: 'column-reverse',
@@ -48,15 +49,14 @@ const styles = {
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    '@media (max-width: 768px)': {
-      display: 'none',
-    },
   },
   landingWrapper: {
-    minHeight: '80vh',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    minHeight: '100vh',
     paddingLeft: '4%',
     paddingRight: '4%',
-    marginTop: '20vh',
     '@media (max-width: 768px)': {
       marginTop: 10,
     },
@@ -98,14 +98,14 @@ const styles = {
     },
   },
   leftSpace: {
-    flex: 3,
-    '@media (max-width: 768px)': {
+    flex: 2,
+    '@media (max-width: 1280px)': {
       display: 'none',
     },
   },
   rightSpace: {
-    flex: 3,
-    '@media (max-width: 768px)': {
+    flex: 2,
+    '@media (max-width: 1280px)': {
       display: 'none',
     },
   },
@@ -114,7 +114,6 @@ const styles = {
     fontWeight: '300',
     textAlign: 'right',
     flex: 3,
-    flexBasis: '200px',
     '@media (max-width: 768px)': {
       textAlign: 'center',
       fontSize: '16px',
@@ -126,30 +125,31 @@ const styles = {
     borderLeft: '1px solid rgba(204, 204, 204, .34)',
     borderBottom: 0,
     textAlign: 'left',
+    display: 'flex',
     flex: 4,
+    flexDirection: 'column',
     marginLeft: '3em',
     paddingLeft: '3em',
-    flexBasis: '200px',
     '@media (max-width: 768px)': {
       textAlign: 'center',
       margin: 0,
       padding: 0,
       borderLeft: 0,
       borderBottom: '1px solid rgba(204, 204, 204, .34)',
-      display: 'flex',
-      flexDirection: 'column-reverse',
-      flexBasis: '0px',
       fontSize: '16px',
     },
   },
   buttonStyle: {
     border: '1px solid #555555',
-    padding: '15px',
+    //padding: '15px',
     borderRadius: '20px',
-    lineHeight: '0.4em',
+    //lineHeight: '0.4em',
     marginTop: '1em',
     margin: 5,
     width: '235px',
+  },
+  buttonGold: {
+    color: theme.legacyPalette.primary2Color,
   },
   mobileHide: {
     '@media (max-width: 768px)': {
@@ -157,16 +157,20 @@ const styles = {
     },
   },
   video: {
-    '@media (min-width: 768px)': {
-      order: '-1',
-    },
+    position: 'relative',
+    width: '100%',
+    height: 0,
+    paddingBottom: '56.25%',
   },
   videoSize: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
     width: '100%',
-    height: 315,
+    height: '100%',
   },
   mobileShow: {
-    '@media (min-width: 768px)': {
+    '@media (min-width: 769px)': {
       display: 'none',
     },
   },
@@ -186,23 +190,8 @@ const mapDispatchToProps = dispatch => ({
   doLogin(creds, callback) {
     dispatch(rest.actions.auth({}, { body: JSON.stringify(creds) }, callback));
   },
-  doRegister(user) {
-    dispatch(rest.actions.register.post({}, { body: JSON.stringify(
-      { name: user.name,
-        email: user.email,
-        password: user.password,
-        description: user.shortIntroduction,
-        isExpert: true,
-        details: user.lectureDetails,
-        title: user.title,
-        address: user.officeAddress,
-        phone: user.phone,
-        company: user.companyName,
-        locale: 'fi',
-        subjects: user.subjects,
-        area: user.supportedLocations }),
-    }));
-  },
+  doOpenRegisterModal: () => dispatch(openRegisterModal()),
+  doOpenLoginModal: () => dispatch(openLoginModal()),
 });
 
 @connect(mapStateToProps, mapDispatchToProps)
@@ -212,7 +201,6 @@ class About extends React.Component {
     return (
       <div style={styles.wrapper}>
         <div style={styles.landingWrapper}>
-
           <div style={styles.headerWrapper}>
             <div style={styles.leftSpace} />
             <div style={styles.empty} />
@@ -239,11 +227,19 @@ class About extends React.Component {
                 generation.
               </p>
               {this.props.isLoggedIn ?
-                <FlatButton label="MY PROFILE" style={styles.buttonStyle} onTouchTap={() => this.props.changeView('/profile')} />
+                <FlatButton label="MY PROFILE" style={{ ...styles.buttonStyle, ...styles.buttonGold }} onTouchTap={() => this.props.changeView('/profile')} />
                 :
                 <div>
-                  <RegisterModal doRegister={this.props.doRegister} />
-                  <LoginModal doLogin={this.props.doLogin} />
+                  <FlatButton
+                    label="CREATE AN ACCOUNT"
+                    style={{ ...styles.buttonStyle, ...styles.buttonGold }}
+                    onTouchTap={this.props.doOpenRegisterModal}
+                  />
+                  <FlatButton
+                    label="LOGIN"
+                    style={{ ...styles.buttonStyle, ...styles.buttonGold }}
+                    onTouchTap={this.props.doOpenLoginModal}
+                  />
                 </div>
 
               }
@@ -253,12 +249,9 @@ class About extends React.Component {
                 Xprt connects teachers and experts for the benefit on Finnish school children.
                 Arranging a visiting lecture from a professional expert has become easier
               </p>
-              <p style={styles.mobileHide}>
+              <p>
                 See Xprt in action.
               </p>
-              <div style={styles.mobileShow}>
-                <h1 style={styles.bigHeader}>About</h1>
-              </div>
               <div style={styles.video}>
                 <iframe
                   title="HundrED introduction video"

@@ -164,12 +164,12 @@ of the right column.
   },
   // for decline/accept buttons
   buttonStyle: {
-    paddingTop: '25px',
-    paddingBottom: '27px',
-    paddingLeft: '20px',
-    paddingRight: '15px',
+    //paddingTop: '25px',
+    //paddingBottom: '27px',
+    //paddingLeft: '20px',
+    //paddingRight: '15px',
     borderRadius: '40px',
-    lineHeight: '0.4em',
+    //lineHeight: '0.4em',
     marginTop: '1em',
     fontSize: '18px',
   },

@@ -5,30 +5,17 @@ import FlatButton from 'material-ui-old/FlatButton';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 
-import MUITextField from '../components/MUITextField';
-import theme from '../utils/theme';
+import {
+  createAction,
+  createReducer,
+} from 'redux-act';
+
 import rest from '../utils/rest';
 
+import LoginFields from './LoginForm/LoginFields';
+import theme from '../utils/theme';
+
 const styles = {
-  buttonStyle: {
-    border: '1px solid #555555',
-    margin: 5,
-    padding: '15px',
-    borderRadius: '20px',
-    lineHeight: '0.4em',
-    marginTop: '1em',
-    marginBottom: '2em',
-  },
-  LoginButtonStyle: {
-    border: '1px solid #555555',
-    margin: 5,
-    padding: '15px',
-    borderRadius: '20px',
-    lineHeight: '0.4em',
-  },
-  buttonGold: {
-    color: theme.legacyPalette.primary2Color,
-  },
   dialog: {
     width: '100%',
     maxWidth: '350px',
@@ -36,118 +23,83 @@ const styles = {
   },
 };
 
-class LoginModal extends React.Component {
+// Action creators
+export const openLoginModal = createAction('Open login modal');
+export const closeLoginModal = createAction('Close login modal');
 
-  state = {
+// Initial state
+const initialState = {
+  open: false,
+};
+
+// Reducer
+export const reducer = createReducer({
+  [openLoginModal]: state => ({
+    ...state,
+    open: true,
+  }),
+  [closeLoginModal]: state => ({
+    ...state,
     open: false,
-    email: '',
-    password: '',
-  };
+  }),
+}, initialState);
 
-  handleOpen = () => {
-    this.setState({ open: true });
-  };
+const mapStateToProps = state => ({
+  auth: state.auth,
+  open: state.loginModal.open,
+});
 
-  handleClose = () => {
-    this.setState({
-      open: false,
-      email: '',
-      password: '',
-    });
-    this.props.clearLogin();
-  };
+const mapDispatchToProps = dispatch => ({
+  doLogin: (creds, callback) => dispatch(rest.actions.auth({}, {
+    body: JSON.stringify(creds),
+  }, callback)),
+  doCloseLoginModal: () => dispatch(closeLoginModal()),
+  changeView: view => dispatch(push(view.toLowerCase())),
+});
 
-  handleSubmit = (event) => {
-    event.preventDefault();
-    this.props.doLogin({ email: this.state.email, password: this.state.password }, (err) => {
-      if (!err) {
-        this.props.changeView('/profile');
-      }
-    });
-  };
-
-  handleForgottenPassword = (event) => {
-    event.preventDefault();
-    this.props.changeView('/contact');
-  }
-
-  handleChange = (event, field) => {
-    this.setState({
-      [field]: event.target.value,
-    });
-  };
-
+@connect(mapStateToProps, mapDispatchToProps)
+export default class LoginModal extends React.Component {
   render() {
     const errMsg = this.props.auth.error && this.props.auth.error.message;
+    const { open, doCloseLoginModal, doLogin, changeView } = this.props;
 
     return (
-
       <div>
-        <FlatButton label="LOGIN" style={{ ...styles.buttonStyle, ...styles.buttonGold }} onTouchTap={this.handleOpen} />
         <Dialog
           title="LOGIN"
           titleStyle={{ color: theme.legacyPalette.primary2Color, fontSize: 17 }}
           modal={false}
-          open={this.state.open}
+          open={open}
           contentStyle={styles.dialog}
-          onRequestClose={this.handleClose}
+          onRequestClose={doCloseLoginModal}
         >
-          <form
-            onSubmit={this.handleSubmit}
-          >
-            <MUITextField
-              floatingLabelText="Email"
-              value={this.state.email}
-              onChange={(event) => {
-                this.handleChange(event, 'email');
-              }}
-            />
-            <MUITextField
-              floatingLabelText="Password"
-              type="password"
-              value={this.state.password}
-              onChange={(event) => {
-                this.handleChange(event, 'password');
-              }}
-            />
-            <FlatButton
-              labelStyle={{ fontSize: 13, color: theme.legacyPalette.primary2Color }}
-              label="Forgotten password?"
-              hoverColor="#444444"
-              onTouchTap={this.handleForgottenPassword}
-              style={{ width: '100%' }}
-            />
-            {errMsg}
-            <FlatButton
-              type="button"
-              label="Cancel"
-              style={styles.buttonStyle}
-              onTouchTap={this.handleClose}
-            />
-            <FlatButton
-              type="submit"
-              label="Login"
-              style={styles.LoginButtonStyle}
-              primary
-              onTouchTap={this.handleSubmit}
-            />
-          </form>
+          <LoginFields
+            onSubmit={(creds) => {
+              doCloseLoginModal();
+              doLogin(creds, (err) => {
+                if (!err) {
+                  // WTF: this doesn't work here?
+                  /*
+                  changeView('/about');
+                  */
+                }
+              });
+            }}
+            handleClose={doCloseLoginModal}
+          />
+          {errMsg}
+          <FlatButton
+            labelStyle={{ fontSize: 13, color: theme.legacyPalette.primary2Color }}
+            label="Forgotten password?"
+            hoverColor="#444444"
+            onTouchTap={() => {
+              doCloseLoginModal();
+              changeView('/contact');
+            }}
+            style={{ width: '100%' }}
+          />
         </Dialog>
       </div>
     );
   }
 }
-
-export default connect(
-  state => ({
-    auth: state.auth,
-  }),
-  dispatch => ({
-    changeView(view) {
-      dispatch(push(view.toLowerCase()));
-    },
-    clearLogin() {
-      dispatch(rest.actions.auth.reset());
-    },
-  }),
-)(LoginModal);

@@ -52,7 +52,7 @@ const routeConfigs = [{
   name: 'MyProfile',
   component: MyProfile,
   icon: 'account_circle',
-  requiresLogin: true,
+  // requiresLogin: true, // this doesn't work with our custom login modal component
   hideWhenScope: [null],
 }, {
   path: '/about',
@@ -119,6 +119,7 @@ class AuthRedirectRoute extends React.Component {
 
   render() {
     const { component: ChildComponent, loggedIn, requiresLogin, ...rest } = this.props;
+    console.log('rendering', this.props.pathname);
 
     return (
       <Route

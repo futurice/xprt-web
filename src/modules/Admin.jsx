@@ -145,9 +145,9 @@ const styles = {
 
   buttonStyle: {
     border: '1px solid rgba(204, 204, 204, .34)',
-    padding: '15px',
+    //padding: '15px',
     borderRadius: '20px',
-    lineHeight: '0.4em',
+    //lineHeight: '0.4em',
     marginTop: '1em',
   },
   mobileHide: {

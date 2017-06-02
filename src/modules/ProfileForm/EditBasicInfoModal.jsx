@@ -52,7 +52,7 @@ const mapStateToProps = (state, ownProps) => ({
   enableReinitialize: true,
 })
 @Radium
-class BasicInfoModal extends React.Component {
+export default class BasicInfoModal extends React.Component {
 
   state = {
     open: false,
@@ -137,5 +137,3 @@ class BasicInfoModal extends React.Component {
     );
   }
 }
-
-export default BasicInfoModal;

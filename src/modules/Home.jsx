@@ -8,8 +8,8 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import rest from '../utils/rest';
 
-import LoginModal from './LoginModal';
-import RegisterModal from './RegisterModal';
+import { openRegisterModal } from './RegisterModal';
+import { openLoginModal } from './LoginModal';
 // import TermsModal from '../components/TermsModal';
 // import PrivacyModal from '../components/PrivacyModal';
 import Footer from '../components/Footer';
@@ -36,7 +36,7 @@ const styles = {
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'no-wrap',
-    paddingBottom: '50px', // avoids phone images from overlapping
+    paddingBottom: '100px', // avoids phone images from overlapping
     '@media (max-width: 769px)': {
       flexDirection: 'column',
     },
@@ -151,6 +151,8 @@ const styles = {
     textAlign: 'center',
     flex: 4,
     flexBasis: '200px',
+    display: 'flex',
+    flexDirection: 'column',
     hyphens: 'auto',
     marginTop: '2em',
     '@media (min-width: 769px)': {
@@ -163,13 +165,12 @@ const styles = {
   },
   // For Teachers & Experts -divs
   homeText: {
-    minHeight: '130px',
+    minHeight: '80px',
   },
   buttonStyle: {
     border: '1px solid #555555',
-    padding: '15px',
     borderRadius: '20px',
-    lineHeight: '0.4em',
+    //lineHeight: '0.4em',
     marginTop: '1em',
     margin: 5,
     width: '235px',
@@ -275,28 +276,8 @@ const mapDispatchToProps = dispatch => ({
   changeView(view) {
     dispatch(push(view.toLowerCase()));
   },
-  doLogin(creds, callback) {
-    dispatch(rest.actions.auth({}, { body: JSON.stringify(creds) }, callback));
-  },
-  doRegister(user) {
-    dispatch(rest.actions.register.post({}, {
-      body: JSON.stringify({
-        name: user.name,
-        email: user.email,
-        password: user.password,
-        description: user.shortIntroduction,
-        isExpert: true,
-        details: user.lectureDetails,
-        title: user.title,
-        address: user.officeAddress,
-        phone: user.phone,
-        company: user.companyName,
-        locale: 'fi',
-        subjects: user.subjects,
-        area: user.supportedLocations,
-      }),
-    }));
-  },
+  doOpenRegisterModal: () => dispatch(openRegisterModal()),
+  doOpenLoginModal: () => dispatch(openLoginModal()),
 });
 
 @connect(mapStateToProps, mapDispatchToProps)
@@ -337,8 +318,8 @@ export default class Home extends React.Component {
                   }
                 </p>
               </div>
-              <div>
-                <FlatButton label="DOWNLOAD FOR IPHONE" style={styles.buttonStyle} /><br />
+              <div style={{ display: 'flex', alignItems: 'flex-end', flexDirection: 'column' }}>
+                <FlatButton label="DOWNLOAD FOR IPHONE" style={styles.buttonStyle} />
                 <FlatButton label="DOWNLOAD FOR ANDROID" style={styles.buttonStyle} />
               </div>
             </div>
@@ -354,21 +335,34 @@ export default class Home extends React.Component {
                 </p>
               </div>
               {this.props.isLoggedIn ?
-                <FlatButton label="MY PROFILE" style={styles.buttonStyle} onTouchTap={() => this.props.changeView('/profile')} />
+                <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end', flexDirection: 'column' }}>
+                  <FlatButton label="MY PROFILE" style={{ ...styles.buttonStyle, ...styles.buttonGold }} onTouchTap={() => this.props.changeView('/profile')} />
+                </div>
                 :
-                <div>
-                  <RegisterModal doRegister={this.props.doRegister} />
-                  <LoginModal doLogin={this.props.doLogin} />
+                <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end', flexDirection: 'column' }}>
+                  <FlatButton
+                    label="CREATE AN ACCOUNT"
+                    style={{ ...styles.buttonStyle, ...styles.buttonGold }}
+                    onTouchTap={this.props.doOpenRegisterModal}
+                  />
+                  <FlatButton
+                    label="LOGIN"
+                    style={{ ...styles.buttonStyle, ...styles.buttonGold }}
+                    onTouchTap={this.props.doOpenLoginModal}
+                  />
                 </div>
 
               }
-              <br />
             </div>
           </div>
 
           <div style={styles.secondLogos}>
-            <HundredLogo />
-            <FuturiceLogo />
+            <a href="https://hundred.org">
+              <HundredLogo />
+            </a>
+            <a href="https://futurice.com">
+              <FuturiceLogo />
+            </a>
           </div>
         </div>
         <div style={styles.secondWrapper}>

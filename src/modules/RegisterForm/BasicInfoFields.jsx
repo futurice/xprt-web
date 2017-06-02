@@ -3,16 +3,6 @@ import { Field, reduxForm } from 'redux-form';
 import MUITextField from '../../components/MUITextField';
 import DialogButtons from '../../components/DialogButtons';
 
-/* const renderTextField = props => (
-  <MUITextField
-    floatingLabelText={props.label}
-    errorText={props.touched && props.error}
-    floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
-    underlineFocusStyle={styles.underlineStyle}
-    fullWidth={true}
-    {...props} />
-)*/
-
 const required = value => (value ? undefined : 'Required');
 const email = value => (
   value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value) ?
@@ -51,8 +41,7 @@ const validate = (values) => {
   validate,
   destroyOnUnmount: false,
 })
-class BasicInfoFields extends React.Component {
-  /* This prevents enter from closing the registration window*/
+export default class BasicInfoFields extends React.Component {
   render() {
     return (
       <form onSubmit={this.props.handleSubmit}>
@@ -81,5 +70,3 @@ class BasicInfoFields extends React.Component {
     );
   }
 }
-
-export default BasicInfoFields;

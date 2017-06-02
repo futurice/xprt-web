@@ -23,6 +23,9 @@ import { StyleRoot } from 'radium';
 import ErrorSnackbar from './modules/ErrorSnackbar';
 import NavigationDrawer from './modules/NavigationDrawer';
 import NavigationDrawerSmall from './modules/NavigationDrawerSmall';
+
+import RegisterModal from './modules/RegisterModal';
+import LoginModal from './modules/LoginModal';
 // import Header from './modules/Header';
 
 import routeConfigs, { IndexRoute, ConfiguredRoutes } from './utils/routes';
@@ -93,6 +96,9 @@ const Root = () => (
               <div style={style.appContainer}>
                 <NavigationDrawerSmall />
                 <NavigationDrawer />
+
+                <RegisterModal />
+                <LoginModal />
 
                 <div style={style.viewContainer}>
                   <IndexRoute routeConfig={routeConfigs[0]} />
