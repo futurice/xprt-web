@@ -197,10 +197,9 @@ class Contact extends React.Component {
 
                 <p>
                   Contact us to hear more.
-
-                  <span style={{ ...styles.requiredText, ...styles.mobileHide }}>
-                    * marks a required field
-                  </span>
+                </p>
+                <p style={{ ...styles.requiredText, ...styles.mobileHide }}>
+                  (* marks a required field)
                 </p>
 
                 <ContactForm onSubmit={(fields) => {
