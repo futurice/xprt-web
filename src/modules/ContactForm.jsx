@@ -126,11 +126,6 @@ const styles = {
     borderRadius: 5,
     fontFamily: ('Catamaran' : 'sans-serif'),
     fontSize: 16,
-    '@media (max-width: 768px)': {
-      maxWidth: 768,
-      width: '100%',
-      borderRadius: 0,
-    },
   },
   errorInput: {
     borderColor: 'red',
