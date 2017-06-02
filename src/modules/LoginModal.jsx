@@ -78,10 +78,7 @@ export default class LoginModal extends React.Component {
               doCloseLoginModal();
               doLogin(creds, (err) => {
                 if (!err) {
-                  // WTF: this doesn't work here?
-                  /*
-                  changeView('/about');
-                  */
+                  changeView('/profile');
                 }
               });
             }}

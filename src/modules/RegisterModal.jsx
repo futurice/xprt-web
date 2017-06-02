@@ -145,7 +145,6 @@ export default class RegisterModal extends React.Component {
 
   render() {
     const { open, stepIndex, doCloseRegisterModal } = this.props;
-    console.log(open);
 
     return (
       <Dialog

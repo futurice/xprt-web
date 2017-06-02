@@ -119,7 +119,6 @@ class AuthRedirectRoute extends React.Component {
 
   render() {
     const { component: ChildComponent, loggedIn, requiresLogin, ...rest } = this.props;
-    console.log('rendering', this.props.pathname);
 
     return (
       <Route
