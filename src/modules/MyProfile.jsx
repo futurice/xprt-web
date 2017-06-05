@@ -465,6 +465,25 @@ export default class MyProfile extends React.Component {
       </Card>
     ));
 
+    if (!invitations.length) {
+      invitations = (
+        <Card
+          style={{
+            ...styles.contentCardRight,
+              /*
+                The next style attribute creates the yellow line
+                at the top of the contentCard
+              */
+            ...styles.colorIndicatorYellow,
+          }}
+        >
+          <CardText>
+            No new invitations
+          </CardText>
+        </Card>
+      );
+    }
+
     accepted = accepted.map(lecture => (
       <Card style={{
         ...styles.contentCardRight,
@@ -516,6 +535,25 @@ export default class MyProfile extends React.Component {
       </Card>
     ));
 
+    if (!accepted.length) {
+      accepted = (
+        <Card
+          style={{
+            ...styles.contentCardRight,
+              /*
+                The next style attribute creates the green line
+                at the top of the contentCard
+              */
+            ...styles.colorIndicatorGreen,
+          }}
+        >
+          <CardText>
+            No upcoming lectures
+          </CardText>
+        </Card>
+      );
+    }
+
     declined = declined.map(lecture => (
       <Card style={styles.contentCardRight}>
         <CardHeader
@@ -561,6 +599,16 @@ export default class MyProfile extends React.Component {
         </CardText>
       </Card>
     ));
+
+    if (!declined.length) {
+      declined = (
+        <Card style={styles.contentCardRight}>
+          <CardText>
+            No declined lectures
+          </CardText>
+        </Card>
+      );
+    }
 
     return (
       <div>
