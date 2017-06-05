@@ -648,7 +648,7 @@ class AdminView extends React.Component {
                   <MenuItem value={'all'} primaryText="ALL" />
                   <MenuItem value={'pending'} primaryText="PENDING" />
                   <MenuItem value={'accepted'} primaryText="ACCEPTED" />
-                  <MenuItem value={'rejected'} primaryText="REJECTED" />
+                  <MenuItem value={'rejected'} primaryText="DECLINED" />
                   <MenuItem value={'ignored'} primaryText="NOT ANSWERED" />
                 </DropDownMenu>
                 <div style={styles.leftSpace} />
