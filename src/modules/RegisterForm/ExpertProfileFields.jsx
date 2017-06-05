@@ -34,7 +34,6 @@ const renderTextField = ({ input, label, meta: { touched, error }, ...rest }) =>
 );
 
 const required = value => (value ? undefined : 'Required');
-const chipRequired = value => (value ? undefined : 'At least one chip');
 
 @reduxForm({
   form: 'registerForm',
@@ -80,7 +79,7 @@ export default class ExpertProfileFields extends React.Component {
               floatingLabelFixed
               multiLine
               rowsMax={6}
-              validate={chipRequired}
+              validate={required}
             />
 
             <Field
@@ -104,7 +103,7 @@ export default class ExpertProfileFields extends React.Component {
               floatingLabelFixed
               multiLine
               rowsMax={6}
-              validate={chipRequired}
+              validate={required}
             />
 
           </div>

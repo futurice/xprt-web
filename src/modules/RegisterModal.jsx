@@ -11,6 +11,7 @@ import {
 } from 'redux-act';
 
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 
 import rest from '../utils/rest';
 
@@ -82,7 +83,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  doRegister: user => dispatch(rest.actions.register.post({}, {
+  doRegister: user => dispatch(rest.actions.register({}, {
     body: JSON.stringify({
       name: user.name,
       email: user.email,
@@ -98,6 +99,13 @@ const mapDispatchToProps = dispatch => ({
       subjects: user.subjects,
       area: user.supportedLocations,
     }),
+  }, (err) => {
+    if (!err) {
+      dispatch(closeRegisterModal());
+
+      // Go to profile page after successful registration
+      dispatch(push('/profile'));
+    }
   })),
   doStepForward: () => dispatch(stepForward()),
   doStepBack: () => dispatch(stepBack()),

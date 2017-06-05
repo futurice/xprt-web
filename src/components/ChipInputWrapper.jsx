@@ -76,6 +76,7 @@ export default class ChipInputWrapper extends React.Component {
           188,
         ]}
         filter={AutoComplete.fuzzyFilter} // Autocomplete
+        errorText={meta.touched && meta.error}
         maxSearchResults={5} // Autocomplete (number of suggestions shown)
         hintStyle={styles.hintStyle}
         underlineFocusStyle={styles.underlineStyle}

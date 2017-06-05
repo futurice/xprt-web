@@ -28,7 +28,25 @@ Information about request: `state.teams.error`, `state.teams.sync`, `state.teams
 
 const rest = reduxApi({
   auth: {
+    reducerName: 'auth',
     url: `${config.apiRoot}/users/authenticate`,
+    transformer: (data = {}) => {
+      if (data.token) {
+        return {
+          ...data,
+          decoded: jwtDecode(data.token),
+        };
+      }
+      return data;
+    },
+
+    options: {
+      method: 'POST',
+    },
+  },
+  register: {
+    reducerName: 'auth',
+    url: `${config.apiRoot}/users`,
     transformer: (data = {}) => {
       if (data.token) {
         return {
@@ -63,10 +81,6 @@ const rest = reduxApi({
   },
   adminUser: {
     url: `${config.apiRoot}/users/:userId`,
-    crud: true,
-  },
-  register: {
-    url: `${config.apiRoot}/users`,
     crud: true,
   },
   users: {
