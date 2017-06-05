@@ -1,9 +1,10 @@
 import React from 'react';
+import MediaQuery from 'react-responsive';
 
 import { FormattedMessage } from 'react-intl';
 import { push } from 'react-router-redux';
 
-import { Divider, Drawer, MenuItem } from 'material-ui-old';
+import { AppBar, Divider, Drawer, MenuItem } from 'material-ui-old';
 
 import isArray from 'lodash/isArray';
 
@@ -82,6 +83,13 @@ export default class NavigationDrawer extends React.Component {
         containerStyle={styles.drawer}
         onRequestChange={() => this.props.close()}
       >
+
+        <MediaQuery query="(max-width: 900px)">
+          <AppBar
+            style={styles.appBar}
+            onLeftIconButtonTouchTap={() => this.props.close()}
+          />
+        </MediaQuery>
 
         {
           routes.map((route) => {
