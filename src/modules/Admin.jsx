@@ -45,6 +45,7 @@ const styles = {
     paddingLeft: '4%',
     paddingRight: '4%',
     backgroundImage: `url(${XprtBackground})`,
+    backgroundAttachment: 'fixed',
     backgroundSize: '2500px',
     '@media (max-width: 900px)': {
       marginTop: 10,
