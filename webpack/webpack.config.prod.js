@@ -66,7 +66,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      title: 'frontend-hipster-kit',
+      title: 'XPRT',
       favicon: 'assets/favicon.ico',
       template: 'webpack/template.html',
     }),
