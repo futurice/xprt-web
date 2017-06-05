@@ -413,8 +413,8 @@ export default class MyProfile extends React.Component {
       }}
       >
         <CardHeader
-          title={lecture.title}
-          subtitle={lecture.email}
+          title={lecture.name}
+          subtitle={lecture.lecturetheme}
           titleStyle={{
             ...styles.titleStyle,
           }}
@@ -501,7 +501,7 @@ export default class MyProfile extends React.Component {
       }}
       >
         <CardHeader
-          title={lecture.title}
+          title={lecture.name}
           subtitle={lecture.lecturetheme}
           titleStyle={{
             ...styles.titleStyle,
@@ -577,7 +577,7 @@ export default class MyProfile extends React.Component {
     declined = declined.map(lecture => (
       <Card style={styles.contentCardRight}>
         <CardHeader
-          title={lecture.title}
+          title={lecture.name}
           subtitle={lecture.lecturetheme}
           titleStyle={{
             ...styles.titleStyle,
