@@ -67,6 +67,12 @@ of the page overall
     paddingBottom: '1px',
     background: '#262626',
   },
+  // Admin user notification with red text
+  adminText: {
+    color: theme.legacyPalette.errorColor,
+    fontSize: '16px',
+    fontWeight: '300',
+  },
   // Green titles for the page
   mainDivTextTitle: {
     color: theme.legacyPalette.primary1Color,
@@ -643,6 +649,7 @@ export default class MyProfile extends React.Component {
             <div style={styles.contentCardLeft}>
               {/* This modal opens up editing window of profile's basic info*/}
               <EditBasicInfoModal onSubmit={this.handleEdit} expert={expert} />
+              {expert.scope === 'admin' && <p style={styles.adminText}>ADMIN USER</p>}
               <p style={styles.mainDivTextTitle}>NAME:</p>
               <p style={styles.mainDivText}>{expert.name}</p>
               <p style={styles.mainDivTextTitle}>PHONE:</p>
