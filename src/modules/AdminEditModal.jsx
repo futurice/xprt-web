@@ -75,7 +75,7 @@ const styles = {
     fontSize: '16px',
     fontWeight: '300',
     '@media (max-width: 900px)': {
-      maxWidth: 768,
+      maxWidth: 900,
       width: '100%',
       borderRadius: 0,
     },

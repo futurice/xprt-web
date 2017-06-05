@@ -340,7 +340,9 @@ export default class Home extends React.Component {
               </div>
               {this.props.isLoggedIn ?
                 <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end', flexDirection: 'column' }}>
-                  <FlatButton label="MY PROFILE" style={{ ...styles.buttonStyle, ...styles.buttonGold }} onTouchTap={() => this.props.changeView('/profile')} />
+                  <div>
+                    <FlatButton label="MY PROFILE" style={{ ...styles.buttonStyle, ...styles.buttonGold }} onTouchTap={() => this.props.changeView('/profile')} />
+                  </div>
                 </div>
                 :
                 <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end', flexDirection: 'column' }}>
