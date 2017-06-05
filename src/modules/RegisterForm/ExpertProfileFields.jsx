@@ -76,7 +76,7 @@ export default class ExpertProfileFields extends React.Component {
               component={ChipInputWrapper}
               id="subjects"
               dataSource={subjectList}
-              hintText="List the subjects you could teach about"
+              hintText="Subjects you could teach"
               floatingLabelFixed
               multiLine
               rowsMax={6}
@@ -100,7 +100,7 @@ export default class ExpertProfileFields extends React.Component {
               component={ChipInputWrapper}
               id="supportedLocations"
               dataSource={cityList}
-              hintText="List the cities you could teach in"
+              hintText="Cities you could teach in"
               floatingLabelFixed
               multiLine
               rowsMax={6}

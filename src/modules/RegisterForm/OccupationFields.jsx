@@ -18,7 +18,7 @@ const renderTextField = ({ input, label, meta: { touched, error }, ...rest }) =>
 const renderCheckbox = ({ input, label }) => (
   <Checkbox
     label={label}
-    checked={input.value}
+    checked={!!input.value}
     onCheck={(e, checked) => input.onChange(checked)}
   />
 );
@@ -57,6 +57,7 @@ export default class OccupationFields extends React.Component {
               label="Company name"
               component={renderTextField}
               id="companyName"
+              validate={() => false}
             />
 
             <Field

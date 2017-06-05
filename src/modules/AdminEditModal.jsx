@@ -132,7 +132,7 @@ const renderTextField = ({ input, label, meta: { touched, error }, ...rest }) =>
 const renderCheckbox = ({ input, label, style }) => (
   <Checkbox
     label={label}
-    checked={input.value}
+    checked={!!input.value}
     onCheck={(e, checked) => input.onChange(checked)}
     style={style}
   />
