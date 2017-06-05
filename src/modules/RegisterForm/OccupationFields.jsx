@@ -18,8 +18,8 @@ const renderTextField = ({ input, label, meta: { touched, error }, ...rest }) =>
 const renderCheckbox = ({ input, label }) => (
   <Checkbox
     label={label}
-    checked={!!input.value}
-    onCheck={input.onChange}
+    checked={input.value}
+    onCheck={(e, checked) => input.onChange(checked)}
   />
 );
 

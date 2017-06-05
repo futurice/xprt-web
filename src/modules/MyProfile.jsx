@@ -289,16 +289,16 @@ function SubjectList(props) {
 }
 
 function OfficeVisit(props) {
-  if (!props.address) {
+  if (!props.officeVisit) {
     return (
       <Checkbox label="Office visit possible" checked={false} disabled style={styles.checkbox} />
     );
   }
   return (
     <div>
+      <p><Checkbox label="Office visit possible" checked disabled style={styles.checkbox} /></p>
       <p style={styles.mainDivTextTitle}>OFFICE ADDRESS:</p>
       <p style={styles.mainDivText}>{props.address}</p>
-      <p><Checkbox label="Office visit possible" checked disabled style={styles.checkbox} /></p>
     </div>
   );
 }
@@ -661,7 +661,7 @@ export default class MyProfile extends React.Component {
               <p style={styles.mainDivTextTitle}>JOB TITLE:</p>
               <p style={styles.mainDivText}>{expert.title}</p>
 
-              <OfficeVisit address={expert.address} />
+              <OfficeVisit officeVisit={expert.officeVisit} address={expert.address} />
 
             </div>
             {/* Contains short introductions, label, etc. */}
