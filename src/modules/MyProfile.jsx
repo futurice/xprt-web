@@ -334,12 +334,12 @@ const mapDispatchToProps = dispatch => ({
     dispatch(rest.actions.expertLectures());
   },
   editInvitation(lectureId, status, cb) {
-    dispatch(rest.actions.invitations.post({ lectureId }, { body: JSON.stringify(
+    dispatch(rest.actions.invitations.patch({ lectureId }, { body: JSON.stringify(
       { status },
     ) }, cb));
   },
   editProfile(data, cb) {
-    dispatch(rest.actions.profile.post({}, {
+    dispatch(rest.actions.profile.patch({}, {
       body: JSON.stringify(data),
     }, cb));
   },

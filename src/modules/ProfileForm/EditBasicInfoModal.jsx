@@ -5,6 +5,7 @@ import Radium from 'radium';
 import FlatButton from 'material-ui-old/FlatButton';
 import Dialog from 'material-ui-old/Dialog';
 
+import { required, email } from '../../utils/validate';
 import EditPen from '../../../assets/edit.png';
 import MUITextField from '../../components/MUITextField';
 import ChipInputWrapper from '../../components/ChipInputWrapper';
@@ -15,23 +16,6 @@ const cityList = [
   'Espoo',
   'Vantaa',
 ];
-
-const required = value => (value ? undefined : 'Required');
-
-const email = value => (
-  value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value) ?
-  'Invalid email address' : undefined
-);
-
-const tel = value => (
-  value && !/^\d{8,10}$/.test(value) ?
-  'Invalid phone number' : undefined
-);
-
-const name = value => (
-  value && !/^[A-ZÅÄÖa-zåäö\s-]{3,100}$/.test(value) ?
-  'Name must contain only letters and be at least 3 characters long' : undefined
-);
 
 const renderTextField = ({ input, label, meta: { touched, error }, ...rest }) => (
   <MUITextField
@@ -86,7 +70,7 @@ export default class BasicInfoModal extends React.Component {
               <div>
                 <Field
                   name="name"
-                  validate={[required, name]}
+                  validate={[required]}
                   component={renderTextField}
                   label="Name"
                   type="text"
@@ -94,7 +78,7 @@ export default class BasicInfoModal extends React.Component {
                 />
                 <Field
                   name="phone"
-                  validate={[required, tel]}
+                  validate={[required]}
                   component={renderTextField}
                   label="Phone"
                   type="text"

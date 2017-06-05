@@ -2,6 +2,8 @@ import React from 'react';
 import FlatButton from 'material-ui-old/FlatButton';
 import { Field, reduxForm } from 'redux-form';
 
+import { required, email } from '../utils/validate';
+
 import theme from '../utils/theme';
 
 const styles = {
@@ -144,13 +146,6 @@ const styles = {
     paddingRight: 10,
   },
 };
-
-// TODO Validate max lengths etc. http://redux-form.com/6.6.3/examples/fieldLevelValidation/
-const required = value => (value ? undefined : 'Required');
-const email = value => (
-  value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value) ?
-  'Invalid email address' : undefined
-);
 
 const renderTextField = ({ input, label, type, meta: { touched, error } }) => (
   <div>

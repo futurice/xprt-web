@@ -16,6 +16,8 @@ import MUITextField from '../components/MUITextField';
 import ChipInputWrapper from '../components/ChipInputWrapper';
 import theme from '../utils/theme';
 
+import { required, email } from '../utils/validate';
+
 const styles = {
   floatingLabelFocusStyle: {
     color: theme.legacyPalette.primary2Color,
@@ -118,13 +120,6 @@ const subjectList = [
   'Musiikki',
   'Historia',
 ];
-
-const required = value => (value ? undefined : 'Required');
-
-const email = value => (
-  value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value) ?
-  'Invalid email address' : undefined
-);
 
 const renderTextField = ({ input, label, meta: { touched, error }, ...rest }) => (
   <MUITextField

@@ -276,7 +276,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(closeAdminEditModal());
   },
   editProfile(userId, data, cb) {
-    dispatch(rest.actions.adminUser.post({ userId }, { body: JSON.stringify(
+    dispatch(rest.actions.adminUser.patch({ userId }, { body: JSON.stringify(
       data),
     }, cb));
   },

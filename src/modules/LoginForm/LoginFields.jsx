@@ -4,11 +4,7 @@ import FlatButton from 'material-ui-old/FlatButton';
 import MUITextField from '../../components/MUITextField';
 import theme from '../../utils/theme';
 
-const required = value => (value ? undefined : 'Required');
-const email = value => (
-  value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value) ?
-  'Invalid email address' : undefined
-);
+import { required, email } from '../../utils/validate';
 
 const renderTextField = ({ input, label, meta: { touched, error }, ...rest }) => (
   <MUITextField
