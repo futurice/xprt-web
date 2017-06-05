@@ -68,14 +68,14 @@ export default {
     fontFamily: ('Catamaran' : 'sans-serif'),
     fontSize: '16px',
     fontWeight: '300',
-    '@media (max-width: 768px)': {
-      maxWidth: 768,
+    '@media (max-width: 900px)': {
+      maxWidth: 900,
       width: '100%',
       borderRadius: 0,
     },
   },
   mobileHide: {
-    '@media (max-width: 768px)': {
+    '@media (max-width: 900px)': {
       display: 'none',
     },
   },

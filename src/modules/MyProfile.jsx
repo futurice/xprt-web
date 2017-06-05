@@ -38,7 +38,7 @@ of the page overall
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     textAlign: 'left',
-    '@media (max-width: 768px)': {
+    '@media (max-width: 900px)': {
       display: 'none',
     },
   },
@@ -48,11 +48,11 @@ of the page overall
     flexDirection: 'row',
     color: theme.legacyPalette.textColor,
     background: '#262626',
-    '@media (max-width: 768px)': {
+    '@media (max-width: 900px)': {
       flexDirection: 'column',
     },
     mobileHide: {
-      '@media (max-width: 768px)': {
+      '@media (max-width: 900px)': {
         display: 'none',
       },
     },
@@ -103,7 +103,7 @@ Next elements change the outlook of the left column.
     marginTop: '-200px',
     paddingLeft: '25px',
     marginRight: 100,
-    '@media (max-width: 768px)': {
+    '@media (max-width: 900px)': {
       marginTop: 0,
       marginRight: 85,
     },
@@ -206,7 +206,7 @@ of the right column.
     flexDirection: 'column',
     marginTop: '-195px',
     marginRight: 25,
-    '@media (max-width: 768px)': {
+    '@media (max-width: 900px)': {
       marginTop: 0,
       marginLeft: 25,
     },

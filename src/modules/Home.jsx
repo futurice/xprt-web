@@ -37,33 +37,28 @@ const styles = {
     flexDirection: 'row',
     flexWrap: 'no-wrap',
     paddingBottom: '100px', // avoids phone images from overlapping
-    '@media (max-width: 769px)': {
+    '@media (max-width: 900px)': {
       flexDirection: 'column',
     },
   },
   // Wraps the lower part
   secondWrapper: {
-    height: '750px',
     display: 'flex',
-    '@media (max-width:769px)': {
+    '@media (max-width:900px)': {
       height: '100%',
     },
   },
   // wraps up the part were cellphone pics are located
   secondInnerWrapper: {
     background: '#cccccc',
-    height: '700px',
     width: '100%',
-    '@media (max-width:769px)': {
+    '@media (max-width:900px)': {
       height: '100%',
     },
   },
   // wraps up the carousel
   thirdWrapper: {
-    height: '350px',
-    '@media (max-width: 769px)': {
-      height: '100%',
-    },
+    height: '100%',
   },
   headerWrapper: {
     display: 'flex',
@@ -81,7 +76,7 @@ const styles = {
     backgroundSize: 'cover',
   },
   topLogo: {
-    '@media (max-width: 769px)': {
+    '@media (max-width: 900px)': {
       marginTop: '50px',
       marginBottom: '70px',
     },
@@ -92,7 +87,7 @@ const styles = {
     alignItems: 'flex-end',
     paddingBottom: '20px',
     alignSelf: 'flex-end',
-    '@media (max-width: 769px)': {
+    '@media (max-width: 900px)': {
       alignSelf: 'center',
       marginBottom: '3em',
     },
@@ -105,7 +100,7 @@ const styles = {
   empty: {
     flex: 1,
     flexShrink: 0,
-    '@media (max-width: 769px)': {
+    '@media (max-width: 900px)': {
       display: 'none',
     },
   },
@@ -120,7 +115,7 @@ const styles = {
     alignSelf: 'center',
     textAlign: 'center',
     borderBottom: '1px solid rgba(204,204,204,0.34)',
-    '@media (min-width: 769px)': {
+    '@media (min-width: 901px)': {
       minWidth: '300px',
       maxWidth: '50%',
       textAlign: 'left',
@@ -128,7 +123,7 @@ const styles = {
     },
   },
   mobileFont: {
-    '@media (max-width: 769px)': {
+    '@media (max-width: 900px)': {
       fontSize: '16px',
     },
   },
@@ -137,10 +132,12 @@ const styles = {
     fontSize: '18px',
     fontWeight: '300',
     textAlign: 'right',
-    flex: 5,
-    flexBasis: '200px',
     hyphens: 'auto',
-    '@media (max-width: 769px)': {
+    '@media (min-width: 901px)': {
+      flex: 5,
+      flexBasis: '200px',
+    },
+    '@media (max-width: 900px)': {
       textAlign: 'center',
     },
   },
@@ -149,13 +146,13 @@ const styles = {
     fontSize: '18px',
     fontWeight: '300',
     textAlign: 'center',
-    flex: 4,
-    flexBasis: '200px',
     display: 'flex',
     flexDirection: 'column',
     hyphens: 'auto',
     marginTop: '2em',
-    '@media (min-width: 769px)': {
+    '@media (min-width: 901px)': {
+      flex: 4,
+      flexBasis: '200px',
       borderLeft: '1px solid #333333',
       marginLeft: '2em',
       paddingLeft: '2em',
@@ -182,7 +179,7 @@ const styles = {
     display: 'flex',
     flexDirection: 'row',
     height: '100%',
-    '@media (max-width:769px)': {
+    '@media (max-width:900px)': {
       flexDirection: 'column',
     },
   },
@@ -199,7 +196,7 @@ const styles = {
     flex: 2,
     marginTop: '-12%',
     textAlign: 'center',
-    '@media (max-width: 769px)': {
+    '@media (max-width: 900px)': {
       marginTop: '-5%',
       top: '-5%',
     },
@@ -208,7 +205,7 @@ const styles = {
     flex: 2,
     marginTop: '-5%',
     textAlign: 'center',
-    '@media (max-width: 769px)': {
+    '@media (max-width: 900px)': {
       marginTop: '0',
     },
   },
@@ -216,7 +213,7 @@ const styles = {
     flex: 2,
     marginTop: '2%',
     textAlign: 'center',
-    '@media (max-width: 769px)': {
+    '@media (max-width: 900px)': {
       marginTop: '0',
     },
   },
@@ -231,7 +228,7 @@ const styles = {
     fontWeight: '300',
   },
   imageDescription: {
-    '@media (max-width:769px)': {
+    '@media (max-width: 900px)': {
       display: 'none',
     },
   },
@@ -242,8 +239,11 @@ const styles = {
   firstRow: {
     minWidth: 0,
     minHeight: 0,
+    padding: 32,
     margin: '0 auto',
-    width: '40%',
+    '@media (min-width: 901px)': {
+      width: '50%',
+    },
   },
   // For Pics in The Carousel
   profilePicture: {
@@ -259,7 +259,7 @@ const styles = {
     textAlign: 'center',
     margin: '0 auto',
     width: '100%',
-    '@media (max-width: 769px)': {
+    '@media (max-width: 900px)': {
       width: '90%',
     },
   },
@@ -318,9 +318,13 @@ export default class Home extends React.Component {
                   }
                 </p>
               </div>
-              <div style={{ display: 'flex', alignItems: 'flex-end', flexDirection: 'column' }}>
-                <FlatButton label="DOWNLOAD FOR IPHONE" style={styles.buttonStyle} />
-                <FlatButton label="DOWNLOAD FOR ANDROID" style={styles.buttonStyle} />
+              <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end', flexDirection: 'column' }}>
+                <div>
+                  <FlatButton label="DOWNLOAD FOR IPHONE" style={styles.buttonStyle} />
+                </div>
+                <div>
+                  <FlatButton label="DOWNLOAD FOR ANDROID" style={styles.buttonStyle} />
+                </div>
               </div>
             </div>
             <div style={styles.rightText}>
@@ -340,16 +344,20 @@ export default class Home extends React.Component {
                 </div>
                 :
                 <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end', flexDirection: 'column' }}>
-                  <FlatButton
-                    label="CREATE AN ACCOUNT"
-                    style={{ ...styles.buttonStyle, ...styles.buttonGold }}
-                    onTouchTap={this.props.doOpenRegisterModal}
-                  />
-                  <FlatButton
-                    label="LOGIN"
-                    style={{ ...styles.buttonStyle, ...styles.buttonGold }}
-                    onTouchTap={this.props.doOpenLoginModal}
-                  />
+                  <div>
+                    <FlatButton
+                      label="CREATE AN ACCOUNT"
+                      style={{ ...styles.buttonStyle, ...styles.buttonGold }}
+                      onTouchTap={this.props.doOpenRegisterModal}
+                    />
+                  </div>
+                  <div>
+                    <FlatButton
+                      label="LOGIN"
+                      style={{ ...styles.buttonStyle, ...styles.buttonGold }}
+                      onTouchTap={this.props.doOpenLoginModal}
+                    />
+                  </div>
                 </div>
 
               }

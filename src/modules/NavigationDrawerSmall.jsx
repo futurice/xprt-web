@@ -18,12 +18,12 @@ const styles = {
     boxShadow: 'none',
   },
   leftNav: {
-    '@media (max-width:768px)': {
+    '@media (max-width:900px)': {
       display: 'none',
     },
   },
   topNav: {
-    '@media (min-width: 769px)': {
+    '@media (min-width: 901px)': {
       display: 'none',
     },
   },

@@ -46,7 +46,7 @@ class DialogButtons extends React.Component {
   render() {
     return (
       <div>
-        <MediaQuery query="(min-width: 769px)">
+        <MediaQuery query="(min-width: 901px)">
           <FlatButton
             label="Cancel"
             icon={<Cancel />}
@@ -71,7 +71,7 @@ class DialogButtons extends React.Component {
             style={styles.button}
           />
         </MediaQuery>
-        <MediaQuery query="(max-width: 768px)">
+        <MediaQuery query="(max-width: 900px)">
           <div style={{ display: 'flex' }}>
             <FlatButton
               icon={<Cancel />}

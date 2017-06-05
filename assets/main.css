@@ -14,7 +14,7 @@ body {
   margin-left: 60px;
 }
 
-@media (max-width:769px){
+@media (max-width:900px){
   body {margin-left: 0px;}
 }
 

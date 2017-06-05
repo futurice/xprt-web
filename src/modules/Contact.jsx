@@ -25,7 +25,7 @@ const styles = {
     flexDirection: 'row',
     flexWrap: 'wrap',
     paddingBottom: '20px',
-    '@media (max-width: 768px)': {
+    '@media (max-width: 900px)': {
       flexDirection: 'column-reverse',
     },
   },
@@ -41,7 +41,7 @@ const styles = {
     minHeight: '100vh',
     paddingLeft: '4%',
     paddingRight: '4%',
-    '@media (max-width: 768px)': {
+    '@media (max-width: 900px)': {
       marginTop: 10,
     },
   },
@@ -52,14 +52,14 @@ const styles = {
   bigHeader: {
     color: theme.legacyPalette.primary1Color,
     fontWeight: 300,
-    '@media (max-width: 768px)': {
+    '@media (max-width: 900px)': {
       fontSize: 24,
     },
   },
   empty: {
     flex: 3,
     flexBasis: '200px',
-    '@media (max-width: 768px)': {
+    '@media (max-width: 900px)': {
       display: 'none',
     },
   },
@@ -70,7 +70,7 @@ const styles = {
     flexBasis: '200px',
     marginLeft: '3em',
     paddingLeft: '3em',
-    '@media (max-width: 768px)': {
+    '@media (max-width: 900px)': {
       marginTop: 0,
       marginLeft: 0,
       paddingLeft: 0,
@@ -79,13 +79,13 @@ const styles = {
   },
   leftSpace: {
     flex: 3,
-    '@media (max-width: 768px)': {
+    '@media (max-width: 900px)': {
       display: 'none',
     },
   },
   rightSpace: {
     flex: 3,
-    '@media (max-width: 768px)': {
+    '@media (max-width: 900px)': {
       display: 'none',
     },
   },
@@ -95,7 +95,7 @@ const styles = {
     textAlign: 'right',
     flex: 3,
     flexBasis: '200px',
-    '@media (max-width: 768px)': {
+    '@media (max-width: 900px)': {
       textAlign: 'center',
       paddingTop: 30,
       fontSize: '16px',
@@ -110,7 +110,7 @@ const styles = {
     marginLeft: '3em',
     paddingLeft: '3em',
     flexBasis: '200px',
-    '@media (max-width: 768px)': {
+    '@media (max-width: 900px)': {
       textAlign: 'center',
       marginLeft: 0,
       paddingLeft: 0,
@@ -133,7 +133,7 @@ const styles = {
     margin: 0,
   },
   mobileHide: {
-    '@media (max-width: 768px)': {
+    '@media (max-width: 900px)': {
       display: 'none',
     },
   },

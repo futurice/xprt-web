@@ -46,7 +46,7 @@ const styles = {
     paddingRight: '4%',
     backgroundImage: `url(${XprtBackground})`,
     backgroundSize: '2500px',
-    '@media (max-width: 768px)': {
+    '@media (max-width: 900px)': {
       marginTop: 10,
     },
   },
@@ -60,7 +60,7 @@ const styles = {
     flexDirection: 'row',
     flexWrap: 'wrap',
     marginBottom: 20,
-    '@media (max-width: 768px)': {
+    '@media (max-width: 900px)': {
       flexDirection: 'column-reverse',
     },
   },
@@ -68,7 +68,7 @@ const styles = {
   bigHeader: {
     color: theme.legacyPalette.primary1Color,
     fontWeight: 300,
-    '@media (max-width: 768px)': {
+    '@media (max-width: 900px)': {
       fontSize: 24,
     },
   },
@@ -80,7 +80,7 @@ const styles = {
     flexBasis: '200px',
     marginLeft: '3em',
     paddingLeft: '3em',
-    '@media (max-width: 768px)': {
+    '@media (max-width: 900px)': {
       margin: 0,
       padding: 0,
       textAlign: 'center',
@@ -88,13 +88,13 @@ const styles = {
   },
   leftSpace: {
     flex: 3,
-    '@media (max-width: 768px)': {
+    '@media (max-width: 900px)': {
       display: 'none',
     },
   },
   rightSpace: {
     flex: 3,
-    '@media (max-width: 768px)': {
+    '@media (max-width: 900px)': {
       display: 'none',
     },
   },
@@ -104,7 +104,7 @@ const styles = {
     textAlign: 'right',
     flex: 3,
     flexBasis: '200px',
-    '@media (max-width: 768px)': {
+    '@media (max-width: 900px)': {
       textAlign: 'center',
       fontSize: '16px',
     },
@@ -123,7 +123,7 @@ const styles = {
     marginLeft: '3em',
     paddingLeft: '3em',
     flexBasis: '200px',
-    '@media (max-width: 768px)': {
+    '@media (max-width: 900px)': {
       textAlign: 'center',
       margin: 0,
       padding: 0,
@@ -151,12 +151,12 @@ const styles = {
     marginTop: '1em',
   },
   mobileHide: {
-    '@media (max-width: 768px)': {
+    '@media (max-width: 900px)': {
       display: 'none',
     },
   },
   mobileShow: {
-    '@media (min-width: 768px)': {
+    '@media (min-width: 900px)': {
       display: 'none',
     },
   },
@@ -211,7 +211,7 @@ const styles = {
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'stretch',
-    '@media (min-width: 768px)': {
+    '@media (min-width: 900px)': {
       flexWrap: 'nowrap',
     },
   },

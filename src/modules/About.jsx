@@ -25,14 +25,14 @@ const styles = {
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    '@media (max-width: 768px)': {
+    '@media (max-width: 900px)': {
       flexDirection: 'column-reverse',
     },
   },
   teacherExpertWrapperBottom: {
     display: 'flex',
     paddingBottom: '25px',
-    '@media (max-width: 768px)': {
+    '@media (max-width: 900px)': {
       flexDirection: 'column-reverse',
     },
   },
@@ -57,7 +57,7 @@ const styles = {
     minHeight: '100vh',
     paddingLeft: '4%',
     paddingRight: '4%',
-    '@media (max-width: 768px)': {
+    '@media (max-width: 900px)': {
       marginTop: 10,
     },
   },
@@ -73,14 +73,14 @@ const styles = {
   bigHeader: {
     color: theme.legacyPalette.primary1Color,
     fontWeight: 300,
-    '@media (max-width: 768px)': {
+    '@media (max-width: 900px)': {
       fontSize: 24,
     },
   },
   empty: {
     flex: 3,
     flexBasis: '200px',
-    '@media (max-width: 768px)': {
+    '@media (max-width: 900px)': {
       display: 'none',
     },
   },
@@ -91,7 +91,7 @@ const styles = {
     flexBasis: '200px',
     marginLeft: '3em',
     paddingLeft: '3em',
-    '@media (max-width: 768px)': {
+    '@media (max-width: 900px)': {
       margin: 0,
       padding: 0,
       textAlign: 'center',
@@ -114,7 +114,7 @@ const styles = {
     fontWeight: '300',
     textAlign: 'right',
     flex: 3,
-    '@media (max-width: 768px)': {
+    '@media (max-width: 900px)': {
       textAlign: 'center',
       fontSize: '16px',
     },
@@ -130,7 +130,7 @@ const styles = {
     flexDirection: 'column',
     marginLeft: '3em',
     paddingLeft: '3em',
-    '@media (max-width: 768px)': {
+    '@media (max-width: 900px)': {
       textAlign: 'center',
       margin: 0,
       padding: 0,
@@ -152,7 +152,7 @@ const styles = {
     color: theme.legacyPalette.primary2Color,
   },
   mobileHide: {
-    '@media (max-width: 768px)': {
+    '@media (max-width: 900px)': {
       display: 'none',
     },
   },
@@ -170,7 +170,7 @@ const styles = {
     height: '100%',
   },
   mobileShow: {
-    '@media (min-width: 769px)': {
+    '@media (min-width: 901px)': {
       display: 'none',
     },
   },
@@ -218,8 +218,12 @@ class About extends React.Component {
                 Download and install the app to browse and view the experts profile. Easily invite
                 experts to your classroom.
               </p>
-              <FlatButton label="DOWNLOAD FOR IPHONE" style={styles.buttonStyle} /><br />
-              <FlatButton label="DOWNLOAD FOR ANDROID" style={styles.buttonStyle} />
+              <div>
+                <FlatButton label="DOWNLOAD FOR IPHONE" style={styles.buttonStyle} />
+              </div>
+              <div>
+                <FlatButton label="DOWNLOAD FOR ANDROID" style={styles.buttonStyle} />
+              </div>
 
               <p style={styles.smallHeaderUnder}>EXPERTS</p>
               <p>
@@ -230,18 +234,21 @@ class About extends React.Component {
                 <FlatButton label="MY PROFILE" style={{ ...styles.buttonStyle, ...styles.buttonGold }} onTouchTap={() => this.props.changeView('/profile')} />
                 :
                 <div>
-                  <FlatButton
-                    label="CREATE AN ACCOUNT"
-                    style={{ ...styles.buttonStyle, ...styles.buttonGold }}
-                    onTouchTap={this.props.doOpenRegisterModal}
-                  />
-                  <FlatButton
-                    label="LOGIN"
-                    style={{ ...styles.buttonStyle, ...styles.buttonGold }}
-                    onTouchTap={this.props.doOpenLoginModal}
-                  />
+                  <div>
+                    <FlatButton
+                      label="CREATE AN ACCOUNT"
+                      style={{ ...styles.buttonStyle, ...styles.buttonGold }}
+                      onTouchTap={this.props.doOpenRegisterModal}
+                    />
+                  </div>
+                  <div>
+                    <FlatButton
+                      label="LOGIN"
+                      style={{ ...styles.buttonStyle, ...styles.buttonGold }}
+                      onTouchTap={this.props.doOpenLoginModal}
+                    />
+                  </div>
                 </div>
-
               }
             </div>
             <div style={styles.rightText}>
