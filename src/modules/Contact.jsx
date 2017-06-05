@@ -144,7 +144,7 @@ const styles = {
 
 const mapDispatchToProps = dispatch => ({
   submitFeedback: (fields, cb) => {
-    dispatch(rest.actions.feedback.patch({}, {
+    dispatch(rest.actions.feedback.post({}, {
       body: JSON.stringify({
         ...fields,
         creatorType: 'expert',
