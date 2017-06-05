@@ -181,6 +181,10 @@ of the right column.
     border: '1px solid #CCCCCC',
     color: theme.legacyPalette.primary2Color,
   },
+  buttonRed: {
+    border: '1px solid #CCCCCC',
+    color: theme.legacyPalette.errorColor,
+  },
   ButtonAlignRight: {
     textAlign: 'right',
   },
@@ -530,7 +534,17 @@ export default class MyProfile extends React.Component {
           <p style={styles.mainDivText}>{lecture.location}</p>
           <p style={styles.mainDivTextBold}>Short description of the lecture:</p>
           <p style={styles.mainDivText}>{lecture.description}</p>
-
+          <div style={styles.ButtonAlignRight}>
+            <FlatButton
+              onTouchTap={() => this.handleInvite(lecture.id, 'rejected')}
+              expandable
+              label="DECLINE"
+              style={{
+                ...styles.buttonStyle,
+                ...styles.buttonRed,
+              }}
+            />
+          </div>
         </CardText>
       </Card>
     ));
