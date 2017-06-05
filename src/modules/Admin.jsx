@@ -15,7 +15,7 @@ import MenuItem from 'material-ui-old/MenuItem';
 import { connect } from 'react-redux';
 
 import rest from '../utils/rest';
-import EditModal from './AdminEditModal';
+import EditModal, { closeAdminEditModal } from './AdminEditModal';
 import XprtBackground from '../../assets/xprt-background.png';
 
 import theme from '../utils/theme';
@@ -260,7 +260,6 @@ const styles = {
     borderRadius: '20px',
     lineHeight: '0.4em',
   },
-
 };
 
 const mapStateToProps = state => ({
@@ -272,6 +271,9 @@ const mapDispatchToProps = dispatch => ({
   refresh() {
     dispatch(rest.actions.users());
     dispatch(rest.actions.adminLectures());
+  },
+  doCloseModal() {
+    dispatch(closeAdminEditModal());
   },
   editProfile(userId, data, cb) {
     dispatch(rest.actions.adminUser.post({ userId }, { body: JSON.stringify(
@@ -307,7 +309,9 @@ class AdminView extends React.Component {
   userHandleChange = (event, index, userValue) => this.setState({ userValue });
 
   handleEdit = (values) => {
+    console.log('handleEdit', values);
     this.props.editProfile(values.id, values, () => {
+      this.props.doCloseModal();
       this.props.refresh();
     });
   }
@@ -321,6 +325,8 @@ class AdminView extends React.Component {
   };
 
   render() {
+    const { editModalOpen } = this.props;
+
     const users = this.props.users.data;
     const lectures = this.props.adminLectures.data;
     const loading = this.props.users.loading;
@@ -524,6 +530,17 @@ class AdminView extends React.Component {
           // ||contactCity.indexOf(searchString) !== -1
     });
 
+    filteredUsers = filteredUsers.sort((a, b) => {
+      if (a.name.toLowerCase() < b.name.toLowerCase()) {
+        return -1;
+      }
+      if (a.name.toLowerCase() > b.name.toLowerCase()) {
+        return 1;
+      }
+
+      return 0;
+    });
+
         // loops trough every user and prints all information of a lecture and returns an expandable
         // div
     filteredUsers = filteredUsers.map(user => (
@@ -591,7 +608,7 @@ class AdminView extends React.Component {
               </div>
 
               <div style={styles.right}>
-                <EditModal onSubmit={this.handleEdit} user={user} />
+                <EditModal onSubmit={this.handleEdit} open={editModalOpen} user={user} />
               </div>
             </div>
           </CardText>

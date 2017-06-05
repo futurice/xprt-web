@@ -7,6 +7,7 @@ import { reducer as intl } from './intl';
 import { reducer as err } from '../modules/ErrorSnackbar';
 import { reducer as registerModal } from '../modules/RegisterModal';
 import { reducer as loginModal } from '../modules/LoginModal';
+import { reducer as adminEditModal } from '../modules/AdminEditModal';
 import { reducers as restReducers } from './rest';
 
 const reducers = {
@@ -30,6 +31,9 @@ const reducers = {
 
   // Login modal state
   loginModal,
+
+  // Admin edit modal state
+  adminEditModal,
 
   // REST API endpoints' state
   ...restReducers,

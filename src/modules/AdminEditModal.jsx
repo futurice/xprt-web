@@ -6,6 +6,11 @@ import FlatButton from 'material-ui-old/FlatButton';
 import Dialog from 'material-ui-old/Dialog';
 import Checkbox from 'material-ui-old/Checkbox';
 
+import {
+  createAction,
+  createReducer,
+} from 'redux-act';
+
 import EditPen from '../../assets/edit.png';
 import MUITextField from '../components/MUITextField';
 import ChipInputWrapper from '../components/ChipInputWrapper';
@@ -139,12 +144,40 @@ const renderCheckbox = ({ input, label, style }) => (
 );
 
 const selector = formValueSelector('myProfileEditForm');
+
+// Action creators
+export const openAdminEditModal = createAction('Open admin edit modal');
+export const closeAdminEditModal = createAction('Close admin edit modal');
+
+// Initial state
+const initialState = {
+  open: false,
+};
+
+// Reducer
+export const reducer = createReducer({
+  [openAdminEditModal]: state => ({
+    ...state,
+    open: true,
+  }),
+  [closeAdminEditModal]: state => ({
+    ...state,
+    open: false,
+  }),
+}, initialState);
+
 const mapStateToProps = (state, ownProps) => ({
   officeVisit: selector(state, 'officeVisit'),
   initialValues: ownProps.user,
+  editModalOpen: state.adminEditModal.open,
 });
 
-@connect(mapStateToProps)
+const mapDispatchToProps = dispatch => ({
+  doCloseModal: () => dispatch(closeAdminEditModal()),
+  doOpenModal: () => dispatch(openAdminEditModal()),
+});
+
+@connect(mapStateToProps, mapDispatchToProps)
 @reduxForm({
   form: 'myProfileEditForm',
   destroyOnUnmount: true,
@@ -152,58 +185,23 @@ const mapStateToProps = (state, ownProps) => ({
 })
 @Radium
 export default class AdminEditModal extends React.Component {
-  state = {
-    open: false,
-  };
-
-  handleOpen = () => {
-    this.setState({ open: true });
-  };
-
-  handleClose = () => {
-    this.setState({ open: false });
-  };
-
-  handleNext = () => {
-    const { stepIndex } = this.state;
-    if (!this.state.loading) {
-      this.dummyAsync(() => this.setState({
-        loading: false,
-        stepIndex: stepIndex + 1,
-        finished: stepIndex >= 2,
-      }));
-    }
-  };
-
-  handlePrev = () => {
-    const { stepIndex } = this.state;
-
-    if (stepIndex === 0) {
-      this.props.closeRegistration();
-    } else if (!this.state.loading) {
-      this.dummyAsync(() => this.setState({
-        loading: false,
-        stepIndex: stepIndex - 1,
-      }));
-    }
-  };
-
   render() {
+    const { editModalOpen, doOpenModal, doCloseModal, handleSubmit } = this.props;
     return (
       <div>
-        <a style={styles.link} label="Dialog" onTouchTap={this.handleOpen}>
+        <a style={styles.link} label="Dialog" onTouchTap={doOpenModal}>
           <img alt="edit" src={EditPen} style={styles.editPen} />
         </a>
         <Dialog
           modal={false}
           autoScrollBodyContent
-          open={this.state.open}
-          onRequestClose={this.handleClose}
+          open={editModalOpen}
+          onRequestClose={doCloseModal}
           titleStyle={styles.noborder}
           actionsContainerStyle={styles.noborder}
         >
           <div style={styles.contentCard}>
-            <form onSubmit={this.props.handleSubmit}>
+            <form onSubmit={handleSubmit}>
               <div>
                 <Field
                   name="name"
@@ -308,13 +306,13 @@ export default class AdminEditModal extends React.Component {
               <FlatButton
                 label="Save"
                 primary
-                onTouchTap={this.handleClose}
+                type="submit"
                 style={styles.button}
               />
               <FlatButton
                 label="Cancel"
                 primary
-                onTouchTap={this.handleClose}
+                onTouchTap={doCloseModal}
                 style={styles.button}
               />
             </form>
