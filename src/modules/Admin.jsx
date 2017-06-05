@@ -405,6 +405,11 @@ class AdminView extends React.Component {
 
     // makes dates be in format dd.mm.yyyy
     function DateFormat(props) {
+      if (!props.date) {
+        return (
+          <span>No date set</span>
+        );
+      }
       const date = props.date;
       const day = date.slice(8, 10);
       const month = date.slice(5, 7);
@@ -430,7 +435,7 @@ class AdminView extends React.Component {
     // loops trough every lecture and prints all information of a lecture and returns an expandable
     // div
     filteredLectures = filteredLectures.map(lecture => (
-      <div key={lecture.lecturetheme}>
+      <div key={lecture.id}>
         <Card style={{ ...styles.colorIndicatorGreen, ...styles.cardMargin }}>
           <CardHeader actAsExpander showExpandableButton style={styles.cardHeaderStyle}>
             <div style={styles.parent}>
@@ -505,8 +510,8 @@ class AdminView extends React.Component {
       } else if (user.isExpert) {
         userType = 'expert';
       }
-      const supportedLocationsList = user.area.toString().toLowerCase();
-      const subjectsList = user.subjects.toString().toLowerCase();
+      const supportedLocationsList = user.area && user.area.toString().toLowerCase();
+      const subjectsList = user.subjects && user.subjects.toString().toLowerCase();
           // const contactCity = contact.city.toLowerCase();
       const searchString = this.state.userSearch.toLowerCase();
       const stateValue = this.state.userValue;
@@ -522,7 +527,7 @@ class AdminView extends React.Component {
         // loops trough every user and prints all information of a lecture and returns an expandable
         // div
     filteredUsers = filteredUsers.map(user => (
-      <div key={user.name}>
+      <div key={user.id}>
         <Card style={{ ...styles.colorIndicatorGreen, ...styles.cardMargin }}>
           <CardHeader actAsExpander showExpandableButton>
 
