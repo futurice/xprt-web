@@ -8,6 +8,7 @@ import {
 import Avatar from 'material-ui-old/Avatar';
 import { Tabs, Tab } from 'material-ui-old/Tabs';
 import TextField from 'material-ui-old/TextField';
+import throttle from 'lodash/throttle';
 import CircularProgress from 'material-ui-old/CircularProgress';
 import DropDownMenu from 'material-ui-old/DropDownMenu';
 import MenuItem from 'material-ui-old/MenuItem';
@@ -46,7 +47,7 @@ const styles = {
     paddingRight: '4%',
     backgroundImage: `url(${XprtBackground})`,
     backgroundAttachment: 'fixed',
-    backgroundSize: '2500px',
+    backgroundSize: 'cover',
     '@media (max-width: 900px)': {
       marginTop: 10,
     },
@@ -273,6 +274,12 @@ const mapDispatchToProps = dispatch => ({
     dispatch(rest.actions.users());
     dispatch(rest.actions.adminLectures());
   },
+  getUsers(name) {
+    dispatch(rest.actions.users.force({ filter: { name } }));
+  },
+  getLectures(description) {
+    dispatch(rest.actions.adminLectures.force({ filter: { 'lectures.description': description } }));
+  },
   doCloseModal() {
     dispatch(closeAdminEditModal());
   },
@@ -296,13 +303,18 @@ class AdminView extends React.Component {
     this.props.refresh();
   }
 
+  throttledLectureFetch = throttle(this.props.getLectures, 500);
+  throttledUserFetch = throttle(this.props.getUsers, 500);
+
 // triggered when user types on textfield
   updateLectureSearch = (event) => {
     this.setState({ lectureSearch: event.target.value });
+    this.throttledLectureFetch(event.target.value);
   }
 // triggered when user types on textfield
   updateUserSearch = (event) => {
     this.setState({ userSearch: event.target.value });
+    this.throttledUserFetch(event.target.value);
   }
 // triggered when dropdown is selected
   lectureHandleChange = (event, index, lectureValue) => this.setState({ lectureValue });
@@ -333,12 +345,13 @@ class AdminView extends React.Component {
     const loading = this.props.users.loading;
 
     // shows the circular loading animation until users and lectures are loaded
-    if (!users || !lectures || loading) {
-      return <CircularProgress />;
-    }
+    // if (!users || !lectures || loading) {
+    //   return <CircularProgress />;
+    // }
 
     // this function checks if any of lecture data mathches with search and makes an array of the
     // matching data
+    /*
     let filteredLectures = lectures.filter((lecture) => {
       const lectureName = lecture.lecturetheme.toLowerCase();
       const expertName = lecture.ExpertName.toLowerCase();
@@ -377,6 +390,7 @@ class AdminView extends React.Component {
       || subjectsList.indexOf(searchString) !== -1)
       && (lectureStatus === stateValue || stateValue === 'all');
     });
+    */
 
     // this function loops trough arrays inside object
     function List(props) {
@@ -441,7 +455,7 @@ class AdminView extends React.Component {
 
     // loops trough every lecture and prints all information of a lecture and returns an expandable
     // div
-    filteredLectures = filteredLectures.map(lecture => (
+    const filteredLectures = lectures.map(lecture => (
       <div key={lecture.id}>
         <Card style={{ ...styles.colorIndicatorGreen, ...styles.cardMargin }}>
           <CardHeader actAsExpander showExpandableButton style={styles.cardHeaderStyle}>
@@ -506,6 +520,7 @@ class AdminView extends React.Component {
       ));
       // this function checks if any of user data mathches with search and makes an array of the
       // matching data
+      /*
     let filteredUsers = users.filter((user) => {
       const contactName = user.name.toLowerCase();
       const contactEmail = user.email.toLowerCase();
@@ -541,10 +556,11 @@ class AdminView extends React.Component {
 
       return 0;
     });
+    */
 
         // loops trough every user and prints all information of a lecture and returns an expandable
         // div
-    filteredUsers = filteredUsers.map(user => (
+    const filteredUsers = users.map(user => (
       <div key={user.id}>
         <Card style={{ ...styles.colorIndicatorGreen, ...styles.cardMargin }}>
           <CardHeader actAsExpander showExpandableButton>
