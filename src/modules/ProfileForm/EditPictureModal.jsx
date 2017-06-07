@@ -70,34 +70,32 @@ export default class EditPictureModal extends React.Component {
           actionsContainerStyle={styles.noborder}
         >
           <div style={styles.editPictureWindow}>
-            <form onSubmit={this.props.handleSubmit}>
-              <form name="image" onSubmit={e => this.handleSubmit(e)}>
-                <div className="imgPreview" style={styles.imgPreview}>
-                  {imagePreview}
-                </div>
+            <form name="image" onSubmit={e => this.handleSubmit(e)}>
+              <div className="imgPreview" style={styles.imgPreview}>
+                {imagePreview}
+              </div>
 
-                <div style={styles.buttonArea}>
-                  <FlatButton
-                    label="Choose an Image"
-                    labelPosition="before"
-                    style={styles.button}
-                    containerElement="label"
-                  >
-                    <input
-                      type="file"
-                      style={styles.uploadInput}
-                      onChange={e => this.handleImageChange(e)}
-                    />
-                  </FlatButton>
-                  <FlatButton
-                    label="Submit"
-                    labelPosition="before"
-                    style={styles.button}
-                    containerElement="label"
-                    onClick={e => this.handleSubmit(e)}
+              <div style={styles.buttonArea}>
+                <FlatButton
+                  label="Choose an Image"
+                  labelPosition="before"
+                  style={styles.button}
+                  containerElement="label"
+                >
+                  <input
+                    type="file"
+                    style={styles.uploadInput}
+                    onChange={e => this.handleImageChange(e)}
                   />
-                </div>
-              </form>
+                </FlatButton>
+                <FlatButton
+                  label="Submit"
+                  labelPosition="before"
+                  style={styles.button}
+                  containerElement="label"
+                  onClick={e => this.handleSubmit(e)}
+                />
+              </div>
             </form>
           </div>
         </Dialog>
