@@ -16,7 +16,6 @@ import { connect } from 'react-redux';
 import rest from '../utils/rest';
 
 import XprtBackground from '../../assets/xprt-background.png';
-import UnknownProfile from '../../assets/unknown.png';
 import EditCompanyDetailsModal from './ProfileForm/EditCompanyDetailsModal';
 import EditBasicInfoModal from './ProfileForm/EditBasicInfoModal';
 import EditExpertDetailsModal from './ProfileForm/EditExpertModal';
@@ -264,7 +263,7 @@ function SubjectChips(props) {
   }
 
   const list = subjects.map(subject =>
-    <Chip style={styles.chip}>{subject}</Chip>,
+    <Chip key={subject} style={styles.chip}>{subject}</Chip>,
   );
   return (
     <div style={styles.wrapper}>{list}</div>
@@ -285,9 +284,9 @@ function SubjectList(props) {
   const length = subjects.length;
   const list = subjects.map((subject, i) => {
     if (length === i + 1) {
-      return <span>{subject}</span>;
+      return <span key={subject}>{subject}</span>;
     }
-    return <span>{subject}, </span>;
+    return <span key={subject}>{subject}, </span>;
   });
   return (
     <span>{list}</span>
@@ -403,14 +402,16 @@ export default class MyProfile extends React.Component {
     });
 
     invitations = invitations.map(lecture => (
-      <Card style={{
-        ...styles.contentCardRight,
+      <Card
+        key={lecture.id}
+        style={{
+          ...styles.contentCardRight,
           /*
             The next style attribute creates the yellow line
             at the top of the contentCard
           */
-        ...styles.colorIndicatorYellow,
-      }}
+          ...styles.colorIndicatorYellow,
+        }}
       >
         <CardHeader
           title={lecture.name}
@@ -423,7 +424,7 @@ export default class MyProfile extends React.Component {
           }}
           avatar={
             <Avatar
-              src={UnknownProfile}
+              src={lecture.expertImageUrl}
               size={60}
               style={styles.avatarStyle}
             />
@@ -455,7 +456,6 @@ export default class MyProfile extends React.Component {
           <div style={styles.ButtonAlignRight}>
             <FlatButton
               onTouchTap={() => this.handleInvite(lecture.id, 'rejected')}
-              expandable
               label="DECLINE"
               style={{
                 ...styles.buttonStyle,
@@ -463,7 +463,6 @@ export default class MyProfile extends React.Component {
             />
             <FlatButton
               onTouchTap={() => this.handleInvite(lecture.id, 'accepted')}
-              expandable
               label="ACCEPT"
               style={{
                 ...styles.buttonStyle,
@@ -495,10 +494,12 @@ export default class MyProfile extends React.Component {
     }
 
     accepted = accepted.map(lecture => (
-      <Card style={{
-        ...styles.contentCardRight,
-        ...styles.colorIndicatorGreen,
-      }}
+      <Card
+        key={lecture.id}
+        style={{
+          ...styles.contentCardRight,
+          ...styles.colorIndicatorGreen,
+        }}
       >
         <CardHeader
           title={lecture.name}
@@ -511,7 +512,7 @@ export default class MyProfile extends React.Component {
           }}
           avatar={
             <Avatar
-              src={UnknownProfile}
+              src={lecture.expertImageUrl}
               size={60}
               style={styles.avatarStyle}
             />
@@ -543,7 +544,6 @@ export default class MyProfile extends React.Component {
           <div style={styles.ButtonAlignRight}>
             <FlatButton
               onTouchTap={() => this.handleInvite(lecture.id, 'rejected')}
-              expandable
               label="DECLINE"
               style={{
                 ...styles.buttonStyle,
@@ -575,7 +575,10 @@ export default class MyProfile extends React.Component {
     }
 
     declined = declined.map(lecture => (
-      <Card style={styles.contentCardRight}>
+      <Card
+        key={lecture.id}
+        style={styles.contentCardRight}
+      >
         <CardHeader
           title={lecture.name}
           subtitle={lecture.lecturetheme}
@@ -587,7 +590,7 @@ export default class MyProfile extends React.Component {
           }}
           avatar={
             <Avatar
-              src={UnknownProfile}
+              src={lecture.expertImageUrl}
               size={60}
               style={styles.avatarStyle}
             />

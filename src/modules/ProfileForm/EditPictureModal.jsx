@@ -8,11 +8,9 @@ import styles from './editModalStyles';
 
 @Radium
 export default class EditPictureModal extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { file: '', imagePreviewUrl: '' };
-  }
   state = {
+    file: '',
+    imagePreviewUrl: '',
     open: false,
   };
 
