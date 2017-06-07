@@ -52,7 +52,7 @@ const routeConfigs = [{
   name: 'MyProfile',
   component: MyProfile,
   icon: 'account_circle',
-  // requiresLogin: true, // this doesn't work with our custom login modal component
+  requiresLogin: true,
   hideWhenScope: [null],
 }, {
   path: '/about',
@@ -69,6 +69,7 @@ const routeConfigs = [{
   name: 'AdminView',
   component: AdminView,
   icon: 'preferences',
+  requiresLogin: true,
   hideWhenScope: [null, 'user'],
 }, {
   path: '/logout',
@@ -99,7 +100,7 @@ const mapStateToProps = state => ({
 });
 
 // Takes a routeConfig and wraps it in react-router's <Route> component.
-// If requiresLogin is true, redirect to /login if user has not authenticated
+// If requiresLogin is true, redirect to '/' if user has not authenticated
 
 // Must wrap in withRouter here to avoid this:
 // https://reacttraining.com/react-router/web/guides/dealing-with-update-blocking
@@ -129,7 +130,7 @@ class AuthRedirectRoute extends React.Component {
           ) : (
             <Redirect
               to={{
-                pathname: '/login',
+                pathname: '/',
                 state: { from: props.location },
               }}
             />
