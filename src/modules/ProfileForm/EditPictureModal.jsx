@@ -2,10 +2,22 @@ import React from 'react';
 import Radium from 'radium';
 import FlatButton from 'material-ui-old/FlatButton';
 import Dialog from 'material-ui-old/Dialog';
+import { connect } from 'react-redux';
 
 import EditPen from '../../../assets/edit.png';
 import styles from './editModalStyles';
 
+import rest from '../../utils/rest';
+
+const mapDispatchToProps = dispatch => ({
+  editProfile(data, cb) {
+    dispatch(rest.actions.profile.patch({}, {
+      body: JSON.stringify(data),
+    }, cb));
+  },
+});
+
+@connect(null, mapDispatchToProps)
 @Radium
 export default class EditPictureModal extends React.Component {
   state = {
@@ -22,9 +34,10 @@ export default class EditPictureModal extends React.Component {
     this.setState({ open: false });
   };
 
-  handleSubmit(e) {
-    console.log('handle uploading-', this.state.file);
-    this.props.doEdit(e);
+  handleSubmit() {
+    this.props.editProfile({
+      image: this.state.file,
+    });
   }
 
   handleImageChange(e) {
@@ -33,10 +46,10 @@ export default class EditPictureModal extends React.Component {
     const reader = new FileReader();
     const file = e.target.files[0];
 
-    reader.onloadend = () => {
+    reader.onload = (readFile) => {
       this.setState({
-        file,
-        imagePreviewUrl: reader.result,
+        file: readFile.target.result,
+        imagePreviewUrl: readFile.target.result,
       });
     };
 
