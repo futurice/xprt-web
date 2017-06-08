@@ -9,6 +9,7 @@ import Avatar from 'material-ui-old/Avatar';
 import FlatButton from 'material-ui-old/FlatButton';
 import Checkbox from 'material-ui-old/Checkbox';
 import Chip from 'material-ui-old/Chip';
+import Dialog from 'material-ui-old/Dialog';
 import CircularProgress from 'material-ui-old/CircularProgress';
 import isArray from 'lodash/isArray';
 import { connect } from 'react-redux';
@@ -340,6 +341,11 @@ const mapDispatchToProps = dispatch => ({
 @connect(mapStateToProps, mapDispatchToProps)
 @Radium
 export default class MyProfile extends React.Component {
+  state = {
+    selectedLecture: null,
+    confirmationDialog: false,
+  };
+
   componentDidMount() {
     this.props.refresh();
   }
@@ -536,7 +542,10 @@ export default class MyProfile extends React.Component {
           <p style={styles.mainDivText}>{lecture.description}</p>
           <div style={styles.ButtonAlignRight}>
             <FlatButton
-              onTouchTap={() => this.handleInvite(lecture.id, 'rejected')}
+              onTouchTap={() => this.setState({
+                selectedLecture: lecture,
+                confirmationDialog: true,
+              })}
               label="DECLINE"
               style={{
                 ...styles.buttonStyle,
@@ -628,6 +637,34 @@ export default class MyProfile extends React.Component {
 
     return (
       <div>
+        <Dialog
+          title="Are you sure you wish to decline the accepted lecture?"
+          actions={
+            <div>
+              <FlatButton
+                label="Cancel"
+                primary
+                keyboardFocused
+                onTouchTap={() => this.setState({ confirmationDialog: false })}
+              />
+              <FlatButton
+                label="Decline"
+                primary
+                onTouchTap={() => {
+                  this.setState({ confirmationDialog: false });
+                  this.handleInvite(this.state.selectedLecture.id, 'rejected');
+                }}
+              />
+            </div>
+          }
+          modal={false}
+          open={this.state.confirmationDialog}
+          onRequestClose={() => this.setState({ confirmationDialog: false })}
+        >
+          The lecture will be declined, and {this.state.selectedLecture &&
+          this.state.selectedLecture.name} will receive an e-mail about the declined lecture. Note
+          that this action is permanent and cannot be undone.
+        </Dialog>
         <div style={styles.firstWrapper}>
           <img
             alt="Expert profile"
