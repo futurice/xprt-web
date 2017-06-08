@@ -29,17 +29,12 @@ These first element change the outlook
 of the page overall
 */
   firstWrapper: {
-    paddingTop: '50px',
-    paddingLeft: '30px',
-    height: '360px',
+    padding: '50px',
     color: theme.legacyPalette.textColor,
     backgroundImage: `url(${XprtBackground})`,
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     textAlign: 'left',
-    '@media (max-width: 900px)': {
-      display: 'none',
-    },
   },
   secondWrapper: {
     boxShadow: '0 -20px 20px 0px #111',
@@ -105,7 +100,6 @@ Next elements change the outlook of the left column.
     display: 'flex',
     flex: 1,
     flexDirection: 'column',
-    marginTop: '-200px',
     paddingLeft: '25px',
     marginRight: 100,
     '@media (max-width: 900px)': {
@@ -151,7 +145,7 @@ of the right column.
   },
   rightDivTitle: {
     fontSize: '18px',
-    marginBottom: '12px',
+    marginBottom: '18px',
   },
   rightDivTitleAccept: {
     color: theme.legacyPalette.primary1Color,
@@ -209,7 +203,6 @@ of the right column.
     display: 'flex',
     flex: 1,
     flexDirection: 'column',
-    marginTop: '-195px',
     marginRight: 25,
     '@media (max-width: 900px)': {
       marginTop: 0,
@@ -638,8 +631,8 @@ export default class MyProfile extends React.Component {
         <div style={styles.firstWrapper}>
           <img
             alt="Expert profile"
-            src={expert.imageUrl}
-            style={{ ...styles.profilePicture, ...styles.mobileHide }}
+            src={`${expert.imageUrl}?${new Date().getTime()}`}
+            style={styles.profilePicture}
           />
           <EditPictureModal doEdit={this.props.doEdit} />
         </div>

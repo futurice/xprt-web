@@ -15,6 +15,10 @@ const mapDispatchToProps = dispatch => ({
       body: JSON.stringify(data),
     }, cb));
   },
+  refresh() {
+    dispatch(rest.actions.profile());
+    dispatch(rest.actions.expertLectures());
+  },
 });
 
 @connect(null, mapDispatchToProps)
@@ -37,7 +41,7 @@ export default class EditPictureModal extends React.Component {
   handleSubmit() {
     this.props.editProfile({
       image: this.state.file,
-    });
+    }, this.props.refresh);
   }
 
   handleImageChange(e) {
