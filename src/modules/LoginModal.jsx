@@ -75,9 +75,9 @@ export default class LoginModal extends React.Component {
         >
           <LoginFields
             onSubmit={(creds) => {
-              doCloseLoginModal();
               doLogin(creds, (err) => {
                 if (!err) {
+                  doCloseLoginModal();
                   changeView('/profile');
                 }
               });

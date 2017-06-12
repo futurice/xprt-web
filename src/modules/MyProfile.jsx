@@ -397,7 +397,7 @@ export default class MyProfile extends React.Component {
     let declined = lectures.filter((lecture) => {
       const status = lecture.status.toLowerCase();
 
-      return status === 'rejected';
+      return status === 'declined';
     });
 
     invitations = invitations.map(lecture => (
@@ -437,24 +437,22 @@ export default class MyProfile extends React.Component {
           <p style={styles.mainDivText}>{lecture.name}</p>
           <p style={styles.mainDivTextBold}>School name:</p>
           <p style={styles.mainDivText}>{lecture.school}</p>
-          <p style={styles.mainDivTextBold}>Subjects:</p>
-          <p style={styles.mainDivText}><SubjectList subjects={lecture.subjects} /></p>
           <p style={styles.mainDivTextBold}>Educational stage:</p>
           <p style={styles.mainDivText}>{lecture.educationalstage}</p>
           <p style={styles.mainDivTextTitleLecture}>LECTURE:</p>
-          <p style={styles.mainDivTextBold}>Theme of the lecture:</p>
+          <p style={styles.mainDivTextBold}>Lecture title:</p>
           <p style={styles.mainDivText}>{lecture.lecturetheme}</p>
-          <p style={styles.mainDivTextBold}>Date of lecture: (option 1):</p>
+          <p style={styles.mainDivTextBold}>Subjects:</p>
+          <p style={styles.mainDivText}><SubjectList subjects={lecture.subjects} /></p>
+          <p style={styles.mainDivTextBold}>Date:</p>
           <p style={styles.mainDivText}><DateFormat date={lecture.dateOption1} /></p>
-          <p style={styles.mainDivTextBold}>Date of lecture: (option 2):</p>
-          <p style={styles.mainDivText}><DateFormat date={lecture.dateOption2} /></p>
           <p style={styles.mainDivTextBold}>Location:</p>
           <p style={styles.mainDivText}>{lecture.location}</p>
           <p style={styles.mainDivTextBold}>Short description of the lecture:</p>
           <p style={styles.mainDivText}>{lecture.description}</p>
           <div style={styles.ButtonAlignRight}>
             <FlatButton
-              onTouchTap={() => this.handleInvite(lecture.id, 'rejected')}
+              onTouchTap={() => this.handleInvite(lecture.id, 'declined')}
               label="DECLINE"
               style={{
                 ...styles.buttonStyle,
@@ -525,17 +523,15 @@ export default class MyProfile extends React.Component {
           <p style={styles.mainDivText}>{lecture.name} ({lecture.email})</p>
           <p style={styles.mainDivTextBold}>School name:</p>
           <p style={styles.mainDivText}>{lecture.school}</p>
-          <p style={styles.mainDivTextBold}>Subjects:</p>
-          <p style={styles.mainDivText}><SubjectList subjects={lecture.subjects} /></p>
           <p style={styles.mainDivTextBold}>Educational stage:</p>
           <p style={styles.mainDivText}>{lecture.educationalstage}</p>
           <p style={styles.mainDivTextTitleLecture}>LECTURE:</p>
-          <p style={styles.mainDivTextBold}>Theme of the lecture:</p>
+          <p style={styles.mainDivTextBold}>Lecture title:</p>
           <p style={styles.mainDivText}>{lecture.lecturetheme}</p>
-          <p style={styles.mainDivTextBold}>Date of lecture: (option 1):</p>
+          <p style={styles.mainDivTextBold}>Subjects:</p>
+          <p style={styles.mainDivText}><SubjectList subjects={lecture.subjects} /></p>
+          <p style={styles.mainDivTextBold}>Date:</p>
           <p style={styles.mainDivText}><DateFormat date={lecture.dateOption1} /></p>
-          <p style={styles.mainDivTextBold}>Date of lecture: (option 2):</p>
-          <p style={styles.mainDivText}><DateFormat date={lecture.dateOption2} /></p>
           <p style={styles.mainDivTextBold}>Location:</p>
           <p style={styles.mainDivText}>{lecture.location}</p>
           <p style={styles.mainDivTextBold}>Short description of the lecture:</p>
@@ -606,17 +602,15 @@ export default class MyProfile extends React.Component {
           <p style={styles.mainDivText}>{lecture.name} ({lecture.email})</p>
           <p style={styles.mainDivTextBold}>School name:</p>
           <p style={styles.mainDivText}>{lecture.school}</p>
-          <p style={styles.mainDivTextBold}>Subjects:</p>
-          <p style={styles.mainDivText}><SubjectList subjects={lecture.subjects} /></p>
           <p style={styles.mainDivTextBold}>Educational stage:</p>
           <p style={styles.mainDivText}>{lecture.educationalstage}</p>
           <p style={styles.mainDivTextTitleLecture}>LECTURE:</p>
-          <p style={styles.mainDivTextBold}>Theme of the lecture:</p>
+          <p style={styles.mainDivTextBold}>Lecture title:</p>
           <p style={styles.mainDivText}>{lecture.lecturetheme}</p>
-          <p style={styles.mainDivTextBold}>Date of lecture: (option 1):</p>
+          <p style={styles.mainDivTextBold}>Subjects:</p>
+          <p style={styles.mainDivText}><SubjectList subjects={lecture.subjects} /></p>
+          <p style={styles.mainDivTextBold}>Date:</p>
           <p style={styles.mainDivText}><DateFormat date={lecture.dateOption1} /></p>
-          <p style={styles.mainDivTextBold}>Date of lecture: (option 2):</p>
-          <p style={styles.mainDivText}><DateFormat date={lecture.dateOption2} /></p>
           <p style={styles.mainDivTextBold}>Location:</p>
           <p style={styles.mainDivText}>{lecture.location}</p>
           <p style={styles.mainDivTextBold}>Short description of the lecture:</p>
@@ -652,7 +646,7 @@ export default class MyProfile extends React.Component {
                 primary
                 onTouchTap={() => {
                   this.setState({ confirmationDialog: false });
-                  this.handleInvite(this.state.selectedLecture.id, 'rejected');
+                  this.handleInvite(this.state.selectedLecture.id, 'declined');
                 }}
               />
             </div>

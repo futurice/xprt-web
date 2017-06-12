@@ -3,7 +3,7 @@ import { Field, reduxForm } from 'redux-form';
 import MUITextField from '../../components/MUITextField';
 import DialogButtons from '../../components/DialogButtons';
 
-import { required, email, matchingPasswords } from '../../utils/validate';
+import { required, email, matchingPasswords, pwLength } from '../../utils/validate';
 
 const renderTextField = ({ input, label, meta: { touched, error }, ...rest }) => (
   <MUITextField
@@ -16,7 +16,7 @@ const renderTextField = ({ input, label, meta: { touched, error }, ...rest }) =>
 
 @reduxForm({
   form: 'registerForm',
-  matchingPasswords,
+  validate: matchingPasswords,
   destroyOnUnmount: false,
 })
 export default class BasicInfoFields extends React.Component {
@@ -35,8 +35,8 @@ export default class BasicInfoFields extends React.Component {
             <Field name="name" validate={[required]} component={renderTextField} label="Name" type="text" />
             <Field name="phone" validate={[required]} component={renderTextField} label="Phone" type="text" />
             <Field name="email" validate={[required, email]} component={renderTextField} label="Email" type="text" />
-            <Field name="password" validate={required} component={renderTextField} label="Password" type="password" />
-            <Field name="repeatpassword" validate={required} component={renderTextField} label="Repeat password" type="password" />
+            <Field name="password" validate={[required, pwLength]} component={renderTextField} label="Password" type="password" />
+            <Field name="repeatpassword" validate={[required, pwLength]} component={renderTextField} label="Repeat password" type="password" />
           </div>
           <DialogButtons
             stepIndex={this.props.stepIndex}

@@ -277,7 +277,10 @@ const mapDispatchToProps = dispatch => ({
     dispatch(push(view.toLowerCase()));
   },
   doOpenRegisterModal: () => dispatch(openRegisterModal()),
-  doOpenLoginModal: () => dispatch(openLoginModal()),
+  doOpenLoginModal: () => {
+    dispatch(rest.actions.auth.reset());
+    dispatch(openLoginModal());
+  },
 });
 
 @connect(mapStateToProps, mapDispatchToProps)

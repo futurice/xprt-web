@@ -7,6 +7,10 @@ export const email = value => (
   'Invalid email address' : undefined
 );
 
+export const pwLength = value => (
+  value.length < 6 ? 'Password must contain at least 6 characters.' : undefined
+);
+
 export const matchingPasswords = (values) => {
   const errors = {};
 

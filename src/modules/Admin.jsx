@@ -274,11 +274,11 @@ const mapDispatchToProps = dispatch => ({
     dispatch(rest.actions.users());
     dispatch(rest.actions.adminLectures());
   },
-  getUsers(name) {
-    dispatch(rest.actions.users.force({ filter: { name } }));
+  getUsers(filter) {
+    dispatch(rest.actions.users.force({ filter }));
   },
-  getLectures(description) {
-    dispatch(rest.actions.adminLectures.force({ filter: { 'lectures.description': description } }));
+  getLectures(filter) {
+    dispatch(rest.actions.adminLectures.force({ filter }));
   },
   doCloseModal() {
     dispatch(closeAdminEditModal());
@@ -296,7 +296,7 @@ class AdminView extends React.Component {
   // Gives sorting dropdown menu a default value. 1 = first value of options
   constructor(props) {
     super(props);
-    this.state = { userValue: 'all', lectureValue: 'all', lectureSearch: '', userSearch: '' };
+    this.state = { userFilter: 'all', lectureFilter: 'all', lectureSearch: '', userSearch: '' };
   }
 
   componentDidMount() {
@@ -306,23 +306,39 @@ class AdminView extends React.Component {
   throttledLectureFetch = throttle(this.props.getLectures, 500);
   throttledUserFetch = throttle(this.props.getUsers, 500);
 
+  fetchLecturesWithFilters = () => {
+    this.throttledLectureFetch({
+      any: this.state.lectureSearch,
+      status: this.state.lectureFilter === 'all' ? undefined : this.state.lectureFilter,
+    });
+  }
+
+  fetchUsersWithFilters = () => {
+    this.throttledUserFetch({
+      any: this.state.userSearch,
+      isExpert: this.state.userFilter === 'expert' ? 'true' : undefined,
+      isTeacher: this.state.userFilter === 'teacher' ? 'true' : undefined,
+    });
+  }
+
 // triggered when user types on textfield
   updateLectureSearch = (event) => {
-    this.setState({ lectureSearch: event.target.value });
-    this.throttledLectureFetch(event.target.value);
+    this.setState({ lectureSearch: event.target.value }, this.fetchLecturesWithFilters);
   }
 // triggered when user types on textfield
   updateUserSearch = (event) => {
-    this.setState({ userSearch: event.target.value });
-    this.throttledUserFetch(event.target.value);
+    this.setState({ userSearch: event.target.value }, this.fetchUsersWithFilters);
   }
 // triggered when dropdown is selected
-  lectureHandleChange = (event, index, lectureValue) => this.setState({ lectureValue });
+  lectureHandleChange = (event, index, lectureFilter) => {
+    this.setState({ lectureFilter }, this.fetchLecturesWithFilters);
+  }
   // triggered when dropdown is selected
-  userHandleChange = (event, index, userValue) => this.setState({ userValue });
+  userHandleChange = (event, index, userFilter) => {
+    this.setState({ userFilter }, this.fetchUsersWithFilters);
+  }
 
   handleEdit = (values) => {
-    console.log('handleEdit', values);
     this.props.editProfile(values.id, values, () => {
       this.props.doCloseModal();
       this.props.refresh();
@@ -342,7 +358,7 @@ class AdminView extends React.Component {
 
     const users = this.props.users.data;
     const lectures = this.props.adminLectures.data;
-    const loading = this.props.users.loading;
+    // const loading = this.props.users.loading;
 
     // shows the circular loading animation until users and lectures are loaded
     // if (!users || !lectures || loading) {
@@ -364,7 +380,7 @@ class AdminView extends React.Component {
 
       let lectureStatus = lecture.status;
       const searchString = this.state.lectureSearch.toLowerCase();
-      const stateValue = this.state.lectureValue;
+      const stateValue = this.state.lectureFilter;
       const msPerDay = 1000 * 60 * 60 * 24;
 
       // if 'not answered' is selected from dropdown menu, calculates days
@@ -536,7 +552,7 @@ class AdminView extends React.Component {
       const subjectsList = user.subjects && user.subjects.toString().toLowerCase();
           // const contactCity = contact.city.toLowerCase();
       const searchString = this.state.userSearch.toLowerCase();
-      const stateValue = this.state.userValue;
+      const stateValue = this.state.userFilter;
 
       return (contactName.indexOf(searchString) !== -1 ||
           contactEmail.indexOf(searchString) !== -1 ||
@@ -647,7 +663,7 @@ class AdminView extends React.Component {
                 <div style={styles.firstWrapper}>
 
                   <DropDownMenu
-                    value={this.state.userValue}
+                    value={this.state.userFilter}
                     onChange={this.userHandleChange}
                     openImmediately={false}
                     style={styles.DropDownMenu}
@@ -679,7 +695,7 @@ class AdminView extends React.Component {
               <div style={styles.firstWrapper}>
 
                 <DropDownMenu
-                  value={this.state.lectureValue}
+                  value={this.state.lectureFilter}
                   onChange={this.lectureHandleChange}
                   openImmediately={false}
                   style={styles.DropDownMenu}
@@ -687,8 +703,7 @@ class AdminView extends React.Component {
                   <MenuItem value={'all'} primaryText="ALL" />
                   <MenuItem value={'pending'} primaryText="PENDING" />
                   <MenuItem value={'accepted'} primaryText="ACCEPTED" />
-                  <MenuItem value={'rejected'} primaryText="DECLINED" />
-                  <MenuItem value={'ignored'} primaryText="NOT ANSWERED" />
+                  <MenuItem value={'declined'} primaryText="DECLINED" />
                 </DropDownMenu>
                 <div style={styles.leftSpace} />
                 <div style={styles.leftText}>

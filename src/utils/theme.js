@@ -60,7 +60,7 @@ export default {
     textColor: '#CCCCCC',
     hintColor: '#777777',
     errorColor: '#F44336',
-    alternateTextColor: white,
+    alternateTextColor: darkBlack,
     menuTextColor: '#08412A',
     menuTextColorActive: '#fff',
     canvasColor: '#333333',
