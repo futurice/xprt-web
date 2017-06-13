@@ -308,12 +308,7 @@ function DateFormat(props) {
   if (!date) {
     return <span>No date set</span>;
   }
-  const day = date.slice(8, 10);
-  const month = date.slice(5, 7);
-  const year = date.slice(0, 4);
-  return (
-    <span>{day}.{month}.{year}</span>
-  );
+  return <span>{new Date(date).toLocaleString()}</span>;
 }
 
 const mapStateToProps = state => ({
@@ -442,14 +437,14 @@ export default class MyProfile extends React.Component {
           <p style={styles.mainDivTextTitleLecture}>LECTURE:</p>
           <p style={styles.mainDivTextBold}>Lecture title:</p>
           <p style={styles.mainDivText}>{lecture.lecturetheme}</p>
+          <p style={styles.mainDivTextBold}>Short description of the lecture:</p>
+          <p style={styles.mainDivText}>{lecture.description}</p>
           <p style={styles.mainDivTextBold}>Subjects:</p>
           <p style={styles.mainDivText}><SubjectList subjects={lecture.subjects} /></p>
           <p style={styles.mainDivTextBold}>Date:</p>
           <p style={styles.mainDivText}><DateFormat date={lecture.dateOption1} /></p>
           <p style={styles.mainDivTextBold}>Location:</p>
           <p style={styles.mainDivText}>{lecture.location}</p>
-          <p style={styles.mainDivTextBold}>Short description of the lecture:</p>
-          <p style={styles.mainDivText}>{lecture.description}</p>
           <div style={styles.ButtonAlignRight}>
             <FlatButton
               onTouchTap={() => this.handleInvite(lecture.id, 'declined')}
