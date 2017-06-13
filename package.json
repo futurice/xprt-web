@@ -82,6 +82,7 @@
     "redux-api": "^0.10.5",
     "redux-form": "^6.7.0",
     "redux-thunk": "^2.2.0",
+    "serve": "^5.2.2",
     "styled-components": "^2.0.0"
   }
 }
