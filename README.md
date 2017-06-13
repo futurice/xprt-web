@@ -1,4 +1,4 @@
-# frontend-hipster-kit
+XPRT web frontend
 
 ## Documentation
 
