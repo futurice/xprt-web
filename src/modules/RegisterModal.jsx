@@ -98,6 +98,7 @@ const mapDispatchToProps = dispatch => ({
       locale: 'fi',
       subjects: user.subjects,
       area: user.supportedLocations,
+      officeVisit: user.officeVisit,
     }),
   }, (err) => {
     if (!err) {

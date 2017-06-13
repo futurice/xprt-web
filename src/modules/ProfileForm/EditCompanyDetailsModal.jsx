@@ -30,7 +30,7 @@ const renderCheckbox = ({ input, label }) => (
 const selector = formValueSelector('companyDetailsForm');
 const mapStateToProps = (state, ownProps) => ({
   initialValues: ownProps.expert,
-  officeVisitPossible: selector(state, 'officeVisit'),
+  officeVisit: selector(state, 'officeVisit'),
 });
 
 @connect(mapStateToProps)
@@ -88,7 +88,7 @@ export default class EditCompanyDetailsModal extends React.Component {
 
               <Field
                 name="officeVisit"
-                id="officeVisitPossible"
+                id="officeVisit"
                 component={renderCheckbox}
                 label="Office visit possible"
               />
@@ -99,7 +99,7 @@ export default class EditCompanyDetailsModal extends React.Component {
               </p>
 
               {
-                this.props.officeVisitPossible &&
+                this.props.officeVisit &&
                 <Field
                   name="address"
                   label="Office address"

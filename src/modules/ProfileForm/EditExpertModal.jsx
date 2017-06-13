@@ -95,7 +95,7 @@ export default class ExperdDetailsModal extends React.Component {
                 name="details"
                 validate={required}
                 component={renderTextField}
-                label="Lecture details"
+                label="Lecture preferences"
                 type="text"
                 floatingLabelFixed
               />

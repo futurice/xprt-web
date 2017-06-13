@@ -84,7 +84,7 @@ export default class ExpertProfileFields extends React.Component {
 
             <Field
               name="lectureDetails"
-              label="Lecture details"
+              label="Lecture preferences"
               component={renderTextField}
               hintText="Preferred topic in mind? Presentation or interactive? Most suitable for which ages? Any special equipment needed?"
               floatingLabelFixed

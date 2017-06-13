@@ -252,7 +252,7 @@ export default class AdminEditModal extends React.Component {
 
                 <Field
                   name="officeVisit"
-                  id="officeVisitPossible"
+                  id="officeVisit"
                   component={renderCheckbox}
                   label="Office visit possible"
                   style={{ marginTop: 20 }}
@@ -293,7 +293,7 @@ export default class AdminEditModal extends React.Component {
                   name="details"
                   validate={required}
                   component={renderTextField}
-                  label="Lecture details"
+                  label="Lecture preferences"
                   type="text"
                   floatingLabelFixed
                 />

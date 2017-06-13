@@ -707,7 +707,7 @@ export default class MyProfile extends React.Component {
               <p style={styles.mainDivTextTitle}>SUBJECTS:</p>
               {/* Next div wraps subjects chips close todether*/}
               <SubjectChips subjects={expert.subjects} />
-              <p style={styles.mainDivTextTitle}>LECTURE DETAILS:
+              <p style={styles.mainDivTextTitle}>LECTURE PREFERENCES:
               </p>
               <p style={styles.mainDivText}>{expert.details}</p>
             </div>

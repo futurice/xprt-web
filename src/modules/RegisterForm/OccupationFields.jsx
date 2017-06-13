@@ -25,7 +25,7 @@ const renderCheckbox = ({ input, label }) => (
 
 const selector = formValueSelector('registerForm');
 const mapStateToProps = state => ({
-  officeVisitPossible: selector(state, 'officeVisitPossible'),
+  officeVisit: selector(state, 'officeVisit'),
 });
 
 @reduxForm({
@@ -68,8 +68,8 @@ export default class OccupationFields extends React.Component {
             />
 
             <Field
-              name="officeVisitPossible"
-              id="officeVisitPossible"
+              name="officeVisit"
+              id="officeVisit"
               component={renderCheckbox}
               label="Office visit possible"
             />
@@ -79,7 +79,7 @@ export default class OccupationFields extends React.Component {
               students
             </p>
 
-            {this.props.officeVisitPossible &&
+            {this.props.officeVisit &&
             <Field
               name="officeAddress"
               label="Office address"
